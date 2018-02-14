@@ -18291,7 +18291,7 @@ class Calendar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
             { key: "1", className: "calendar__header" },
             this.renderHeader()
         ), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "div",
+            "main",
             { key: "2", className: "calendar__body" },
             this.renderDays()
         )];
@@ -18307,7 +18307,7 @@ class Calendar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
                 "<"
             )
         ), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "div",
+            "h1",
             { className: "calendar__header_title" },
             this.state.monthArray[this.state.month],
             " ",

@@ -14,14 +14,14 @@ class Calendar extends React.Component {
     render() {
         return ([
             <header key="1" className="calendar__header">{this.renderHeader()}</header>,
-            <div key="2" className="calendar__body">{this.renderDays()}</div>
+            <main key="2" className="calendar__body">{this.renderDays()}</main>
         ])
     }
 
     renderHeader() {
         return [
             <button className="calendar__btn" onClick={() => this.goToPrevMonth()}><span>&lt;</span></button>,
-            <div className="calendar__header_title">{this.state.monthArray[this.state.month]} {this.state.year}</div>,
+            <h1 className="calendar__header_title">{this.state.monthArray[this.state.month]} {this.state.year}</h1>,
             <button className="calendar__btn" onClick={() => this.goToNextMonth()}><span>&gt;</span></button>
         ]
     }
