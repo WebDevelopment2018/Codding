@@ -23,20 +23,23 @@ body, html {
 .calendar__header_title {
     font-size: 25px;
     font-weight: 300;
-
+    height: 50px;
+    line-height: 56px;
 }
 .calendar__body{
     width: 350px;
-    height: 290px; /*250*/
+    height: 280px;
     margin-bottom: 20px;
 }
 .calendar__footer {
     border-top: 2px solid #fa5051;
-    color: slategrey;}
+    color: slategrey;
+}
 .calendar__footer_day{
     display: inline-block;
     width: 50px;
     text-align: center;
+    margin-top: 5px;
 }
 .calendar__btn {
     width: 50px;
@@ -49,6 +52,7 @@ body, html {
     line-height: 50px;
     cursor: pointer;
     outline: none;
+
 }
 .calendarB{
     display: none;
