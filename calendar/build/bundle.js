@@ -944,8 +944,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Calendar__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Footer__ = __webpack_require__(28);
-
 
 
 
@@ -954,8 +952,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     "div",
     { className: "calendar" },
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Calendar__["a" /* default */], null),
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Footer__["a" /* default */], null)
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Calendar__["a" /* default */], null)
 ), document.querySelector('.container'));
 
 /***/ }),
@@ -18273,6 +18270,10 @@ module.exports = camelize;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Body__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Footer__ = __webpack_require__(28);
+
+
 
 
 class Calendar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
@@ -18293,7 +18294,13 @@ class Calendar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
         ), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "main",
             { key: "2", className: "calendar__body" },
-            this.renderDays()
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Body__["a" /* default */], {
+                year: this.state.year,
+                month: this.state.month })
+        ), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "footer",
+            { key: "3", className: "calendar__footer" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Footer__["a" /* default */], null)
         )];
     }
 
@@ -18320,60 +18327,6 @@ class Calendar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
                 null,
                 ">"
             )
-        )];
-    }
-
-    renderDays() {
-        let month = new Date(this.state.year, this.state.month, 1),
-            monthFirstDay = month.getDay() || 7,
-            monthLength = new Date(this.state.year, this.state.month + 1, 0).getDate(),
-            prevMonthLength = new Date(this.state.year, this.state.month, 0).getDate(),
-            start_disabled_days = [],
-            days = [],
-            end_disabled_days = [],
-            i;
-
-        for (i = 0; i < monthFirstDay - 1; i++) {
-            start_disabled_days.push(prevMonthLength - i);
-        }
-        for (i = 0; i < monthLength; i++) {
-            days.push(i + 1);
-        }
-        for (i = 0; i < 42 - (monthFirstDay - 1) - monthLength; i++) {
-            end_disabled_days.push(i);
-        }
-
-        return [__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "div",
-            { className: "calendar__body" },
-            "                                            ",
-            start_disabled_days.sort().map((s_dis_day, i) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "calendar__day calendar__day_disabled", key: `s_dis_day-${++i}` },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "span",
-                    null,
-                    s_dis_day
-                )
-            )),
-            days.map((day, j) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "calendar__day ", key: `day-${++j}` },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "span",
-                    null,
-                    day
-                )
-            )),
-            end_disabled_days.map((e_dis_day, k) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "calendar__day calendar__day_disabled", key: `e_dis_day-${++k}` },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "span",
-                    null,
-                    e_dis_day + 1
-                )
-            ))
         )];
     }
 
@@ -18431,6 +18384,74 @@ class Footer extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     }
 }
 /* harmony default export */ __webpack_exports__["a"] = (Footer);
+
+/***/ }),
+/* 29 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+
+class Body extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+
+    render() {
+        let month = new Date(this.props.year, this.props.month, 1),
+            monthFirstDay = month.getDay() || 7,
+            monthLength = new Date(this.props.year, this.props.month + 1, 0).getDate(),
+            prevMonthLength = new Date(this.props.year, this.props.month, 0).getDate(),
+            start_disabled_days = [],
+            days = [],
+            end_disabled_days = [],
+            i;
+
+        for (i = 0; i < monthFirstDay - 1; i++) {
+            start_disabled_days.push(prevMonthLength - i);
+        }
+        for (i = 0; i < monthLength; i++) {
+            days.push(i + 1);
+        }
+        for (i = 0; i < 42 - (monthFirstDay - 1) - monthLength; i++) {
+            end_disabled_days.push(i);
+        }
+
+        return [__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "calendar__body" },
+            "                                            ",
+            start_disabled_days.sort().map((s_dis_day, i) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                { className: "calendar__day calendar__day_disabled", key: `s_dis_day-${++i}` },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "span",
+                    null,
+                    s_dis_day
+                )
+            )),
+            days.map((day, j) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                { className: "calendar__day ", key: `day-${++j}` },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "span",
+                    null,
+                    day
+                )
+            )),
+            end_disabled_days.map((e_dis_day, k) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                { className: "calendar__day calendar__day_disabled", key: `e_dis_day-${++k}` },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "span",
+                    null,
+                    e_dis_day + 1
+                )
+            ))
+        )];
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Body);
 
 /***/ })
 /******/ ]);
