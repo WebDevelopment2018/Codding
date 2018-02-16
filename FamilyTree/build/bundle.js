@@ -949,14 +949,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 class HelloMessage extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     render() {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
+            "div",
             null,
-            'Hello World!'
+            "Hello"
         );
     }
 }
 
-__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(HelloMessage, null), document.getElementById('root'));
+__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(HelloMessage, null), document.getElementById("root"));
 
 /***/ }),
 /* 15 */
