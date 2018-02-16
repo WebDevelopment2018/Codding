@@ -7,5 +7,5 @@ ReactDOM.render(
     <div className="calendar">
         <Calendar/>
     </div>,
-    document.querySelector('.container')
+    document.getElementById("root")
 );
