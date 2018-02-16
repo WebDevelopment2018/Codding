@@ -1,17 +1,9 @@
-import React from "react"
-import ReactDOM from 'react-dom';
-
-class HelloMessage extends React.Component {
-    render() {
-        return (
-            <div>
-                Hello
-            </div>
-        );
-    }
-}
+import React from "react";
+import ReactDOM from "react-dom";
+import Layout from "./components/Layout";
+import "./styles/common.less"
 
 ReactDOM.render(
-    <HelloMessage />,
+    <Layout/>,
     document.getElementById("root")
 );

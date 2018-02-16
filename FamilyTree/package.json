@@ -13,8 +13,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "css-loader": "^0.28.9",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "style-loader": "^0.20.2"
   },
   "devDependencies": {
     "less": "^3.0.1",
