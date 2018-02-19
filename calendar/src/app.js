@@ -1,11 +1,9 @@
 import React from "react";
-import ReactDOM from 'react-dom';
-
-import Calendar from "./Calendar";
+import ReactDOM from "react-dom";
+import CalendarLayout from "./components/CalendarLayout";
+// import "./styles/common.less"
 
 ReactDOM.render(
-    <div className="calendar">
-        <Calendar/>
-    </div>,
+    <CalendarLayout/>,
     document.getElementById("root")
 );

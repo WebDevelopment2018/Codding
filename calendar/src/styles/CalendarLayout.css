@@ -1,47 +1,35 @@
-*{
-    box-sizing: border-box;
-}
-body, html {
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    font-family: 'Lato', sans-serif;
-}
-.calendar {
+
+.CalendarLayout {
     width: 350px;
     margin: 20px auto;
     border-radius: 5px;
 }
-.calendar__header {
+.CalendarLayout__header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60px;
+    height: 30px;
     padding: 20px;
     background-color: #fa5051;
-    color: #fff; }
-.calendar__header_title {
+    color: #fff;
+}
+.CalendarLayout__header_title {
     font-size: 25px;
     font-weight: 300;
     height: 50px;
     line-height: 56px;
 }
-.calendar__body{
-    width: 350px;
-    height: 280px;
-    margin-bottom: 20px;
-}
-.calendar__footer {
+.CalendarLayout__footer {
     border-top: 2px solid #fa5051;
     color: slategrey;
 }
-.calendar__footer_day{
+.CalendarLayout__footer_day{
     display: inline-block;
     width: 50px;
     text-align: center;
     margin-top: 5px;
 }
-.calendar__btn {
+.CalendarLayout__btn {
     width: 50px;
     height: 50px;
     border: none;
@@ -52,8 +40,4 @@ body, html {
     line-height: 50px;
     cursor: pointer;
     outline: none;
-
-}
-.calendarB{
-    display: none;
 }
