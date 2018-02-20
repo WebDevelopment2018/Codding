@@ -1,0 +1,68 @@
+{
+  "family":[
+    {
+      "name":"Марія",
+      "surname":"Романова",
+      "birthday":"01.04.1624",
+      "death":"13.03.1669",
+      "mother": "Unknown",
+      "father":"Unknown"
+    },
+    {
+      "name":"Олексій",
+      "surname":"Романов",
+      "birthday":"19.03.1629",
+      "death":"29.01.1676",
+      "mother": "Unknown",
+      "father":"Unknown"
+    },
+    {
+      "name":"Наталія",
+      "surname":"Романова",
+      "birthday":"22.08.1651",
+      "death":"25.01.1694",
+      "mother": "Unknown",
+      "father":"Unknown"
+    },
+    {
+      "name":"Іван V",
+      "surname":"Романов",
+      "birthday":"27.08.1666",
+      "death":"29.01.1696",
+      "mother": "Марія Романова",
+      "father":"Олексій Романов"
+    },
+    {
+      "name":"Прасковія",
+      "surname":"Романова",
+      "birthday":"12.10.1664",
+      "death":"13.10.1723",
+      "mother": "Unknown",
+      "father":"Unknown"
+    },
+    {
+      "name":"Катерина",
+      "surname":"Романова",
+      "birthday":"29.10.1691",
+      "death":"14.06.1733",
+      "mother": "Прасковія Романова",
+      "father":"Іван V Романов"
+    },
+    {
+      "name":"Анна",
+      "surname":"Романова",
+      "birthday":"28.01.1693",
+      "death":"17.10.1740",
+      "mother": "Прасковія Романова",
+      "father":"Іван V Романов"
+    },
+    {
+      "name":"Петро I",
+      "surname":"Романов",
+      "birthday":"30.05.1672",
+      "death":"28.01.1725",
+      "mother": "Наталія Романова",
+      "father":"Олексій Романов"
+    }
+  ]
+}
