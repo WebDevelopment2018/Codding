@@ -1,5 +1,6 @@
 import React from 'react'
 import "../styles/Layout.less";
+import TreeNode from "./TreeNode";
 
 class Layout extends React.Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class Layout extends React.Component {
     render() {
         return (
             <div className = "Layout">
-                Hello
+                <TreeNode/>
             </div>
         )
     }
