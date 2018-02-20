@@ -4,15 +4,18 @@ import "../styles/treeNode.less"
 class TreeNode extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            name: this.props.name,
+            surname: this.props.surname,
+            imgSrc: this.props.imgSrc,
+        }
     }
 
     render() {
         return (
             <div className="treeNode">
-                <img className="treeNode__img" src="https://cdn5.img.ria.ru/images/92088/17/920881710.jpg" alt=""/>
-                <h3 className="treeNode__name">Олексій</h3>
-                <h3 className="treeNode__surname">Романов</h3>
+                <img className="treeNode__img" src={this.state.imgSrc} alt=""/>
+                <h3 className="treeNode__name">{this.state.name} {this.state.surname}</h3>
             </div>
         )
     }
