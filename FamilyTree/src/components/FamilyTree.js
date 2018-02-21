@@ -25,8 +25,10 @@ class FamilyTree extends React.Component {
                     name={person.name}
                     surname={person.surname}
                     imgSrc={person.photo}
+                    birthday={person.birthday}
+                    death={person.death}
                 />)
-            })
+            });
 
             this.setState({tree: tree});
         })

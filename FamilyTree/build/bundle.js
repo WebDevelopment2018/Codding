@@ -1465,21 +1465,33 @@ class TreeNode extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
         this.state = {
             name: this.props.name,
             surname: this.props.surname,
-            imgSrc: this.props.imgSrc
+            imgSrc: this.props.imgSrc,
+            birthday: this.props.birthday,
+            death: this.props.death
         };
     }
 
     render() {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "div",
-            { className: "treeNode" },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { className: "treeNode__img", src: this.state.imgSrc, alt: "" }),
+            { className: "TreeNode" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { className: "TreeNode__img", src: this.state.imgSrc, alt: "" }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "h3",
-                { className: "treeNode__name" },
+                { className: "TreeNode__fullName" },
                 this.state.name,
                 " ",
                 this.state.surname
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "time",
+                { className: "TreeNode__birthday" },
+                this.state.birthday
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "time",
+                { className: "TreeNode__death" },
+                this.state.death
             )
         );
     }
@@ -18856,7 +18868,7 @@ exports = module.exports = __webpack_require__(15)(false);
 
 
 // module
-exports.push([module.i, ".Layout {\n  margin: auto;\n}\n", ""]);
+exports.push([module.i, ".Layout {\n  margin: auto;\n  background-color: #f8f7f3;\n}\n", ""]);
 
 // exports
 
@@ -19015,7 +19027,7 @@ exports = module.exports = __webpack_require__(15)(false);
 
 
 // module
-exports.push([module.i, ".treeNode {\n  width: 150px;\n  height: 200px;\n  background-color: gainsboro;\n}\n.treeNode__img {\n  width: 150px;\n  height: 100px;\n}\n", ""]);
+exports.push([module.i, ".TreeNode {\n  width: 100px;\n  height: 150px;\n  background-color: #ffffff;\n  font-family: \"Source Sans Pro\", \"Helvetica Neue\", Arial, sans-serif;\n  border-radius: 5px;\n  border: 1px solid #bdc3c7;\n  box-shadow: 3px 3px 3px #bdc3c7;\n  margin-bottom: 10px;\n}\n.TreeNode__img {\n  width: 100px;\n  height: 70px;\n}\n.TreeNode__fullName {\n  font-size: 16px;\n  color: #2c3e50;\n  padding-left: 10px;\n  margin: 0;\n}\n.TreeNode__birthday {\n  font-size: 10px;\n  color: #2c3e50;\n  padding-left: 10px;\n  margin-top: 5px;\n  display: block;\n}\n.TreeNode__death {\n  display: block;\n  font-size: 10px;\n  color: #2c3e50;\n  padding-left: 10px;\n}\n", ""]);
 
 // exports
 
@@ -19054,7 +19066,9 @@ class FamilyTree extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__TreeNode__["a" /* default */], {
                     name: person.name,
                     surname: person.surname,
-                    imgSrc: person.photo
+                    imgSrc: person.photo,
+                    birthday: person.birthday,
+                    death: person.death
                 });
             });
 

@@ -8,14 +8,18 @@ class TreeNode extends React.Component {
             name: this.props.name,
             surname: this.props.surname,
             imgSrc: this.props.imgSrc,
+            birthday: this.props.birthday,
+            death: this.props.death
         }
     }
 
     render() {
         return (
-            <div className="treeNode">
-                <img className="treeNode__img" src={this.state.imgSrc} alt=""/>
-                <h3 className="treeNode__name">{this.state.name} {this.state.surname}</h3>
+            <div className="TreeNode">
+                <img className="TreeNode__img" src={this.state.imgSrc} alt=""/>
+                <h3 className="TreeNode__fullName">{this.state.name} {this.state.surname}</h3>
+                <time className="TreeNode__birthday">{this.state.birthday}</time>
+                <time className="TreeNode__death">{this.state.death}</time>
             </div>
         )
     }
