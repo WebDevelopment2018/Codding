@@ -1510,6 +1510,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Layout__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_styles_common_less__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_styles_common_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__src_styles_common_less__);
+
 
 
 
@@ -18833,9 +18836,7 @@ module.exports = camelize;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__styles_Layout_less__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__styles_Layout_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__styles_Layout_less__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TreeNode__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FamilyTree__ = __webpack_require__(36);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FamilyTree__ = __webpack_require__(36);
 
 
 
@@ -18850,7 +18851,26 @@ class Layout extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "div",
             { className: "Layout" },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__FamilyTree__["a" /* default */], {
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "header",
+                { className: "Layout__header" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "Layout__authorization" },
+                    "Hello, admin"
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "Layout__logo" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { className: "Layout__logo-img", src: "https://www.nextadvisor.com/blog/wp-content/uploads/2015/04/bigstock-A-pictographic-image-of-a-gree-25125803.jpg", alt: "" }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "h1",
+                        { className: "Layout__logo-title" },
+                        "Family"
+                    )
+                )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__FamilyTree__["a" /* default */], {
                 familyName: "romanov"
             })
         );
@@ -18868,7 +18888,7 @@ exports = module.exports = __webpack_require__(15)(false);
 
 
 // module
-exports.push([module.i, ".Layout {\n  margin: auto;\n  background-color: #f8f7f3;\n}\n", ""]);
+exports.push([module.i, ".Layout {\n  background-color: #f8f7f3;\n}\n.Layout__header {\n  background-color: #333232;\n  padding: 20px;\n}\n.Layout__logo {\n  position: relative;\n  display: flex;\n  flex-direction: row;\n  width: 190px;\n  height: 70px;\n  background-color: #FFFFFF;\n  border-radius: 20px;\n}\n.Layout__logo-img {\n  width: 50px;\n  height: 55px;\n}\n.Layout__logo-title {\n  margin: 0;\n  font-size: 48px;\n  color: #BFD863;\n  font-family: Oleo Script, cursive;\n}\n.Layout__authorization {\n  float: right;\n  border-bottom: 2px solid #BFD863;\n  color: #BFD863;\n  font-size: 20px;\n  margin-top: 25px;\n}\n", ""]);
 
 // exports
 
@@ -19086,6 +19106,70 @@ class FamilyTree extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (FamilyTree);
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(38);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(16)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {
+	module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/less-loader/dist/cjs.js!./common.less", function() {
+		var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/less-loader/dist/cjs.js!./common.less");
+
+		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(15)(false);
+// imports
+
+
+// module
+exports.push([module.i, "body,\nhtml {\n  margin: 0;\n  padding: 0;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);
