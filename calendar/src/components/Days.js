@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/Days.less"
 
 class Days extends React.Component {
     constructor(props) {

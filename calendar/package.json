@@ -5,11 +5,19 @@
   "main": "index.js",
   "scripts": {
     "webpack": "webpack --watch",
-    "serve" : "serve",
+    "serve": "serve",
     "start": "npm run webpack | npm run serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "css-loader": "^0.28.9",
+    "style-loader": "^0.20.2"
+  },
+  "devDependencies": {
+    "less": "^3.0.1",
+    "less-loader": "^4.0.5"
+  }
 }
