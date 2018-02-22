@@ -2,6 +2,7 @@ import React from "react";
 import Days from "./Days";
 import {MONTHS} from "./consts";
 
+
 class CalendarHeader extends React.Component {
     constructor() {
         super();
