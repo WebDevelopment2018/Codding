@@ -9,12 +9,16 @@ class FamilyTree extends React.Component {
         const user = getUserById(this.props.id);
         console.log(user);
         if(!user){
-            return "no user";
+            return <div className="FamilyTree FamilyTree_empty">no user</div>;
         }
         return (
             <section className="FamilyTree">
-                <div><FamilyTree id={user.mother}/> <FamilyTree id={user.father}/></div>
                 <TreeNode {...user}/>
+                <div>
+                    <FamilyTree id={user.mother}/>
+                    <FamilyTree id={user.father}/>
+                </div>
+
             </section>
         )
     }
