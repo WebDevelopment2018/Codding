@@ -1,43 +1,20 @@
 import React from 'react'
-import "../styles/Layout.less";
+import "../styles/FamilyTree.less";
 import TreeNode from "./TreeNode";
+import users from "../../data/data.json"
+const getUserById = (id) => users.find(user => user.id === id);
 
 class FamilyTree extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            tree: []
-        }
-
-    }
-
-    componentDidMount() {
-        this.getData(this.props.familyName)
-    }
-
-    getData(familyName) {
-        fetch("http://localhost:3000/" + familyName)
-            .then((result) => {
-                return result.json();
-            }).then((data) => {
-            let tree = data.map(person => {
-                return (<TreeNode
-                    name={person.name}
-                    surname={person.surname}
-                    imgSrc={person.photo}
-                    birthday={person.birthday}
-                    death={person.death}
-                />)
-            });
-
-            this.setState({tree: tree});
-        })
-    }
-
     render() {
+        const user = getUserById(this.props.id);
+        console.log(user);
+        if(!user){
+            return "no user";
+        }
         return (
             <section className="FamilyTree">
-                {this.state.tree}
+                <div><FamilyTree id={user.mother}/> <FamilyTree id={user.father}/></div>
+                <TreeNode {...user}/>
             </section>
         )
     }

@@ -18,8 +18,9 @@ class Layout extends React.Component {
                         <h1 className="Layout__logo-title">Family</h1>
                     </div>
                 </header>
+
                 <FamilyTree
-                    familyName="romanov"
+                    id={7}
                 />
             </div>
         )
