@@ -6,7 +6,7 @@
   "scripts": {
     "webpack": "webpack --watch",
     "serve": "serve",
-    "json":"json-server --watch data/data.json",
+    "json": "json-server --watch data/data.json",
     "start": "npm run webpack | npm run serve | npm run json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
