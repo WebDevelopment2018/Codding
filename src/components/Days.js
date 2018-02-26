@@ -4,10 +4,6 @@ import "../styles/Days.less"
 class Days extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            year: this.props.year,
-            month: this.props.month
-        }
     }
 
     get_start_dis_days() {
@@ -44,23 +40,14 @@ class Days extends React.Component {
     render() {
         return [
             <div className="Days">
-                {this.get_start_dis_days().sort().map((s_dis_day) =>
-                    <div className="Days__day Days__day_disabled">
-                    <span>
-                    {s_dis_day}
-                    </span></div>
+                {this.get_start_dis_days().sort().map((s_dis_day,i) =>
+                    <div key={i} className="Days__day Days__day_disabled">{s_dis_day}</div>
                 )}
-                {this.get_active_days().map((day) =>
-                    <div className="Days__day">
-                    <span>
-                    {day}
-                    </span></div>
+                {this.get_active_days().map((day,i) =>
+                    <div key={i} className="Days__day">{day}</div>
                 )}
-                {this.get_end_dis_days().map((e_dis_day) =>
-                    <div className="Days__day Days__day_disabled">
-                    <span>
-                    {e_dis_day + 1}
-                    </span></div>
+                {this.get_end_dis_days().map((e_dis_day,i) =>
+                    <div key={i} className="Days__day Days__day_disabled">{e_dis_day + 1}</div>
                 )}
             </div>
         ];

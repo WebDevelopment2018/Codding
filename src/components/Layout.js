@@ -10,7 +10,7 @@ class Layout extends React.Component {
 
     render() {
         return (
-            <div className = "Layout">
+            <div className="Layout">
                 <header className="Layout__header">
                     <div className="Layout__authorization">Hello, admin</div>
                     <div className="Layout__logo">
@@ -18,7 +18,6 @@ class Layout extends React.Component {
                         <h1 className="Layout__logo-title">Family</h1>
                     </div>
                 </header>
-
                 <FamilyTree
                     id={7}
                 />
