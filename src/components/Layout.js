@@ -26,7 +26,6 @@ class Layout extends Component {
                         id={7}
                     />
                 </div>
-                <Calendar/>
             </Fragment>
         )
     }
