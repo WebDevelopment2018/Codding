@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {Component} from 'react'
 import "../styles/Person.less"
 
-class Person extends React.Component {
+
+
+class Person extends Component {
     constructor(props) {
         super(props);
     }
@@ -18,4 +20,4 @@ class Person extends React.Component {
     }
 }
 
-export default Person
+export default Person;

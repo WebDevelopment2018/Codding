@@ -78,5 +78,25 @@
     "mother": 3,
     "father": 2,
     "photo": "https://cdn5.img.ria.ru/images/92088/17/920881710.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Катя",
+    "surname": "Романова",
+    "birthday": "29.10.1691",
+    "death": "14.06.1733",
+    "mother": 5,
+    "father": 4,
+    "photo": "https://cdn5.img.ria.ru/images/92088/17/920881710.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Брат Івана",
+    "surname": "Романов",
+    "birthday": "27.08.1666",
+    "death": "29.01.1696",
+    "mother": 1,
+    "father": 2,
+    "photo": "https://cdn5.img.ria.ru/images/92088/17/920881710.jpg"
   }
 ]

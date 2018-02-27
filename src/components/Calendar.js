@@ -45,9 +45,9 @@ class Calendar extends Component {
 
     renderHeader() {
         return [
-            <button className="Calendar__btn" onClick={() => this.goToPrevMonth()}>&lt;</button>,
-            <h1 className="Calendar__header-title">{MONTHS[this.state.month]} {this.state.year}</h1>,
-            <button className="Calendar__btn" onClick={() => this.goToNextMonth()}>&gt;</button>
+            <button key="1" className="Calendar__btn" onClick={() => this.goToPrevMonth()}>&lt;</button>,
+            <h1 key="2" className="Calendar__header-title">{MONTHS[this.state.month]} {this.state.year}</h1>,
+            <button key="3" className="Calendar__btn" onClick={() => this.goToNextMonth()}>&gt;</button>
         ]
     }
 
