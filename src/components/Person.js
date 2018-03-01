@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import "../styles/Person.less"
 
+import "../styles/Person.less"
 
 
 class Person extends Component {
