@@ -12,5 +12,4 @@ ReactDOM.render(
         <Layout/>
     </Provider>,
 document.getElementById("root")
-)
-;
+);

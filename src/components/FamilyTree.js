@@ -3,6 +3,9 @@ import React, {Component} from 'react'
 import "../styles/FamilyTree.less";
 import Person from "./Person";
 import users from "../../data/data.json"
+import block from "../helpers/BEM";
+
+const b = block("FamilyTree");
 
 const getUserById = (id) => users.find(user => user.id === id);
 
@@ -20,7 +23,6 @@ const findBroAndSisters = (person) => {
     console.log("----------");
     return sistersBrothers;
 
-
 };
 
 class FamilyTree extends Component {
@@ -28,7 +30,7 @@ class FamilyTree extends Component {
         const user = getUserById(this.props.id);
         console.log(user);
         if (!user) {
-            return <div className="Person__unknown">
+            return <div className={b("unknown")}>
                 <img className="Person__img"
                      src="http://doctorwhite.md/wp-content/uploads/2015/05/facebook-profile-picture-unknown-facts-about-facebook.jpg"
                      alt=""/>

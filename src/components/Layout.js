@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react'
 
 import "../styles/Layout.less";
 import FamilyTree from "./FamilyTree";
+import D3Tree from "./D3Tree";
 
 
 class Layout extends Component {
@@ -23,9 +24,7 @@ class Layout extends Component {
                             <h1 className="Layout__logo-title">Family</h1>
                         </div>
                     </header>
-                    <FamilyTree
-                        id={7}
-                    />
+                    <D3Tree id={7}/>
                 </div>
             </Fragment>
         )

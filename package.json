@@ -13,10 +13,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ramda": "0.25.0",
+    "d3": "^4.13.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "redux": "^3.7.2",
-    "react-redux": "^5.0.7"
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
