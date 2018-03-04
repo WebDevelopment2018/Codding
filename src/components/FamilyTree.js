@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {Component} from 'react'
+
 import "../styles/FamilyTree.less";
 import Person from "./Person";
 import users from "../../data/data.json"
@@ -20,10 +21,9 @@ const findBroAndSisters = (person) => {
     return sistersBrothers;
 
 
-}
+};
 
-
-class FamilyTree extends React.Component {
+class FamilyTree extends Component {
     render() {
         const user = getUserById(this.props.id);
         console.log(user);
