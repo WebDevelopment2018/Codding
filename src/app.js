@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import * as d3 from "d3"
+import * as d3 from "d3";
 
 import Layout from "./components/Layout";
 import "../src/styles/common.less"
@@ -28,21 +28,21 @@ const buildTree = (id) => {
         };
     }
     return null;
-}
+};
 
 
 let treeData = buildTree(7);
 //console.log(treeData);
-var margin = {top: 40, right: 90, bottom: 50, left: 90},
+let margin = {top: 40, right: 90, bottom: 50, left: 90},
     width = 660 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 // declares a tree layout and assigns the size
-var treemap = d3.tree()
+let treemap = d3.tree()
     .size([width, height]);
 
 //  assigns the data to a hierarchy using parent-child relationships
-var nodes = d3.hierarchy(treeData);
+let nodes = d3.hierarchy(treeData);
 
 // maps the node data to the tree layout
 nodes = treemap(nodes);
@@ -50,7 +50,7 @@ nodes = treemap(nodes);
 // append the svg obgect to the body of the page
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
-var svg = d3.select("body").append("svg")
+let svg = d3.select("body").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom),
     g = svg.append("g")
@@ -59,7 +59,7 @@ var svg = d3.select("body").append("svg")
 
 
 // adds the links between the nodes
-var link = g.selectAll(".link")
+let link = g.selectAll(".link")
     .data( nodes.descendants().slice(1))
     .enter().append("path")
     .attr("class", "link")
@@ -71,7 +71,7 @@ var link = g.selectAll(".link")
     });
 
 // adds each node as a group
-var node = g.selectAll(".node")
+let node = g.selectAll(".node")
     .data(nodes.descendants())
     .enter().append("g")
     .attr("class", function(d) {
