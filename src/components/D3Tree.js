@@ -27,11 +27,15 @@ class D3Tree extends Component {
     }
 
     getSvg(){
-        return d3.select(".Layout").append("svg")
+        return d3.select("body").append("svg")
             .attr("width", 1000)
             .attr("height", 600)
             .append("g")
             .attr("transform", "translate(" + 120 + "," + 100 + ")");
+    }
+
+    componentDidMount () {
+        this.refs.root //SVG
     }
 
     buildTree(id){
@@ -101,9 +105,7 @@ class D3Tree extends Component {
     render() {
         let root = this.state.treeData[0];
         this.update(root);
-        return (
-            <div className="D3Tree">D3Tree</div>
-        )
+        return <svg ref="root"></svg>;
     }
 }
 
