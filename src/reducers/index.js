@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
-import family, * as fromFamily from './family';
+import Person, * as fromPerson from './Person';
 
 const FamilyApp = combineReducers({
-    family
+    Person
 });
 
 export default FamilyApp;
 
 
-export const getAllFamily = (state) => fromFamily.getAllFamily(state.family);
+export const getPerson = (state) => fromPerson.getPerson(state.family);

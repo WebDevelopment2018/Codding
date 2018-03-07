@@ -1,12 +1,12 @@
 import data from "../../data/data.json"
 
-const family = (state = {data}, action) => {
+const Person = (state = {data}, action) => {
     switch(action.type) {
         default:
             return state;
     }
 };
 
-export default family;
+export default Person;
 
-export const getAllFamily = (state) => state;
+export const getPerson = (personId, state) => state;

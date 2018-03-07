@@ -44,16 +44,16 @@ class D3Tree extends Component {
         }
     }
 
-    getPath(d) {
-        return "M" + d.x + "," + d.y
-            + "C" + d.x + "," + (d.y + d.parent.y) / 2
+    getPath(d) {                                                    //control ends and line of the path
+        return "M" + (d.x + 50) + "," + d.y
+            + "C" + (d.x + 50) + "," + (d.y + d.parent.y) / 2
             + " " + d.parent.x + "," + (d.y + d.parent.y) / 2
             + " " + d.parent.x + "," + d.parent.y;
     }
 
     renderNodes() {
         let treemap = d3.tree()
-            .size([500, 350]); //розміщення відносно svg
+            .size([500, 350]);                              //розміщення відносно svg
 
         let nodes = d3.hierarchy(this.state.treeData);
 
@@ -62,8 +62,8 @@ class D3Tree extends Component {
         nodes.each(function (d) {
             nodesMap.push({
                 "id": d.data["name"],
-                "x": d.x + 200,
-                "y": d.y + 60,
+                "x": d.x - 50 ,                     //control where to start through width of the block
+                "y": d.y - 150,                     //control where to start through height of the block
                 "children": d.children,
                 "parent": d.parent
             })
@@ -84,8 +84,8 @@ class D3Tree extends Component {
 
     render() {
         return (
-            <svg width="1000" height="710">
-                <g transform="translate(200,60)">
+            <svg width="1000" height="700">
+                <g transform="translate(200,210)">              /*size of path layer*/
                     {this.renderNodes()}
                 </g>
             </svg>
