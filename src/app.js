@@ -33,13 +33,13 @@ const buildTree = (id) => {
 
 let treeData = buildTree(7);
 //console.log(treeData);
-let margin = {top: 40, right: 90, bottom: 50, left: 90},
-    width = 660 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+let margin = {top: 60, right: 200, left: 200},
+    width = 600 + margin.left + margin.right,
+    height = 650 + margin.top;
 
 // declares a tree layout and assigns the size
 let treemap = d3.tree()
-    .size([width, height]);
+    .size([500, 350]); //розміщення відносно svg
 
 //  assigns the data to a hierarchy using parent-child relationships
 let nodes = d3.hierarchy(treeData);
@@ -51,8 +51,8 @@ nodes = treemap(nodes);
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
 let svg = d3.select("body").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom),
+        .attr("width", width)
+        .attr("height", height),
     g = svg.append("g")
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
@@ -67,7 +67,7 @@ let link = g.selectAll(".link")
         return "M" + d.x + "," + d.y
             + "C" + d.x + "," + (d.y + d.parent.y) / 2
             + " " + d.parent.x + "," +  (d.y + d.parent.y) / 2
-            + " " + d.parent.x + "," + d.parent.y;
+            + " " + d.parent.x + "," + d.parent.y;              
     });
 
 // adds each node as a group
