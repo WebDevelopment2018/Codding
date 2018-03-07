@@ -1,111 +1,95 @@
-import React, {Component} from 'react';
-//import * as d3 from "d3"
+import React, {Component, Fragment} from 'react';
+import * as d3 from "d3";
 
 import "../styles/D3Tree.less";
-import users from "../../data/data.json"
+import data from "../../data/data.json"
 import block from "../helpers/BEM";
-const getUserById = (id,data) => data.find(user => user.id === id);
+
+const getUserById = (id) => data.find(user => user.id === id);
 
 const b = block("D3Tree");
+
+const buildTree = (id) => {
+    if (id !== null) {
+        let user = getUserById(id);
+        let parents = [buildTree(user.father, name), buildTree(user.mother, name)];
+        return {
+            "name": user.id,
+            "children": parents.filter(n => n)
+        };
+    }
+    return null;
+};
 
 class D3Tree extends Component {
     constructor(props) {
         super(props);
-        let height = 500;
-        let width = 960;
         this.state = {
-            "treeData" : this.buildTree(this.props.id),
-            "margin" :{top: 100, right: 120, bottom: 20, left: 120},
-            width,
-            height,
-            "tree" : d3.layout.tree()
-                .size([height, width]),
-            "diagonal": d3.svg.diagonal()
-                .projection(function(d) { return [d.x + 50, d.y + 50]; }),
-            "svg": this.getSvg()
-        };
-    }
-
-    getSvg(){
-        return d3.select("body").append("svg")
-            .attr("width", 1000)
-            .attr("height", 600)
-            .append("g")
-            .attr("transform", "translate(" + 120 + "," + 100 + ")");
-    }
-
-    componentDidMount () {
-        this.refs.root //SVG
-    }
-
-    buildTree(id){
-        if(id !== null) {
-            let user = getUserById(id,users);
-            let parents = [this.buildTree(user.father), this.buildTree(user.mother)];
-            return {
-                "name": user.id,
-                "children": parents.filter(n => n)
-            };
+            "treeData": buildTree(this.props.id)
         }
-        return null;
     }
 
-    update(root) {
+    getClassName(node) {
+        return b("node") +
+            (node.children ? b("node-internal") : b("node-leaf"));
+    }
 
-        let nodes = this.state.tree.nodes(root).reverse(),
-            links = this.state.tree.links(nodes);
+    getTransform(node) {
+        return "translate(" + node.x + "," + node.y + ")";
+    }
 
-        let i = 0;
-        // Normalize for fixed-depth.
-        nodes.forEach(function(d) { d.y = d.depth * 190; });
+    renderPath(node) {
+        if (node.parent !== null) {
+            return (<path className={b("link")} d={this.getPath(node)}> </path>)
+        }
+    }
 
-        let coordinates = [];
-        nodes.forEach(function(d) {
-            coordinates.push({
-                "id": d.name,
-                "x" : d.x +  this.state.margin.left,
-                "y": d.y + this.state.margin.top
+    getPath(d) {
+        return "M" + d.x + "," + d.y
+            + "C" + d.x + "," + (d.y + d.parent.y) / 2
+            + " " + d.parent.x + "," + (d.y + d.parent.y) / 2
+            + " " + d.parent.x + "," + d.parent.y;
+    }
+
+    renderNodes() {
+        let treemap = d3.tree()
+            .size([500, 350]); //розміщення відносно svg
+
+        let nodes = d3.hierarchy(this.state.treeData);
+
+        nodes = treemap(nodes);
+        let nodesMap = [];
+        nodes.each(function (d) {
+            nodesMap.push({
+                "id": d.data["name"],
+                "x": d.x + 200,
+                "y": d.y + 60,
+                "children": d.children,
+                "parent": d.parent
             })
         });
-        console.log(coordinates);
-        // Declare the nodes…
-        let node = this.state.svg.selectAll("g.node")
-            .data(nodes, function(d) { return d.id || (d.id = ++i); });
 
-        // Enter the nodes.
-        let nodeEnter = node.enter().append("g")
-            .attr("class", "node")
-            .attr("transform", function(d) {
-                return "translate(" + d.x + "," + d.y + ")"; });
 
-        nodeEnter.append("rect")
-            .attr("width", 100)
-            .attr("height", 150)
-            .style("fill", "#fff");
-
-        nodeEnter.append("text")
-            .attr("y", function(d) {
-                return d.children || d._children ? -18 : 18; })
-            .attr("dy", ".35em")
-            .attr("text-anchor", "middle")
-            .text(function(d) { return d.name; })
-            .style("fill-opacity", 1);
-
-        // Declare the links…
-        var link = this.state.svg.selectAll("path.link")
-            .data(links, function(d) { return d.target.id; });
-
-        // Enter the links.
-        link.enter().insert("path", "g")
-            .attr("class", b("link"))
-            .attr("d", this.state.diagonal);
-
+        return (nodesMap.map((node) =>
+                <Fragment>
+                    <g key={node.id} className={this.getClassName(node)} transform={this.getTransform(node)}>
+                        <rect width="100" height="150" className={b("node-rect")}>
+                        </rect>
+                    </g>
+                    {this.renderPath(node)}
+                </Fragment>
+            )
+        )
     }
 
     render() {
-        let root = this.state.treeData[0];
-        this.update(root);
-        return <svg ref="root"></svg>;
+        return (
+            <svg width="1000" height="710">
+                <g transform="translate(200,60)">
+                    {this.renderNodes()}
+                </g>
+            </svg>
+        )
     }
 }
 

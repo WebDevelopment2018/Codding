@@ -24,6 +24,7 @@ class Layout extends Component {
                             <h1 className="Layout__logo-title">Family</h1>
                         </div>
                     </header>
+                    <D3Tree id={7}/>
                 </div>
             </Fragment>
         )
