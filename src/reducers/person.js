@@ -1,12 +1,12 @@
-import data from "../../data/data.json"
+const startId = 7;
 
-const Person = (state = {data}, action) => {
+const person = (state = {startId}, action) => {
     switch(action.type) {
         default:
             return state;
     }
 };
 
-export default Person;
+export default person;
 
 export const getPerson = (personId, state) => state;

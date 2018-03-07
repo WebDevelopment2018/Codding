@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import Person, * as fromPerson from './Person';
+import person, * as fromPerson from './person';
+import data from "../../data/data.json";
 
 const FamilyApp = combineReducers({
-    Person
+    person: person,
+    data: data
 });
 
 export default FamilyApp;

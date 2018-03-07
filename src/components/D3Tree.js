@@ -2,16 +2,16 @@ import React, {Component, Fragment} from 'react';
 import * as d3 from "d3";
 
 import "../styles/D3Tree.less";
-import data from "../../data/data.json"
+import data from "../../data/data.json";
 import block from "../helpers/BEM";
-
-const getUserById = (id) => data.find(user => user.id === id);
+import {getUserById} from "./consts";
+import Family from "./Family";
 
 const b = block("D3Tree");
 
 const buildTree = (id) => {
     if (id !== null) {
-        let user = getUserById(id);
+        let user = getUserById(id,data);
         let parents = [buildTree(user.father, name), buildTree(user.mother, name)];
         return {
             "name": user.id,
@@ -22,11 +22,30 @@ const buildTree = (id) => {
 };
 
 class D3Tree extends Component {
-    constructor(props) {
-        super(props);
+    constructor(props){
+        super(props)
         this.state = {
-            "treeData": buildTree(this.props.id)
+            "nodesMap": []
         }
+    }
+
+    componentWillMount(){
+        const treeData =  buildTree(this.props.id);
+        let treemap = d3.tree()
+            .size([500, 350]);                              //розміщення відносно svg
+        let nodes = d3.hierarchy(treeData);
+        nodes = treemap(nodes);
+        let nodesMap = [];
+        nodes.each(function (d) {
+            nodesMap.push({
+                "id": d.data["name"],
+                "x": d.x - 50 ,                     //control where to start through width of the block
+                "y": d.y - 150,                     //control where to start through height of the block
+                "children": d.children,
+                "parent": d.parent
+            })
+        });
+        this.setState({"nodesMap":nodesMap});
     }
 
     getClassName(node) {
@@ -52,25 +71,7 @@ class D3Tree extends Component {
     }
 
     renderNodes() {
-        let treemap = d3.tree()
-            .size([500, 350]);                              //розміщення відносно svg
-
-        let nodes = d3.hierarchy(this.state.treeData);
-
-        nodes = treemap(nodes);
-        let nodesMap = [];
-        nodes.each(function (d) {
-            nodesMap.push({
-                "id": d.data["name"],
-                "x": d.x - 50 ,                     //control where to start through width of the block
-                "y": d.y - 150,                     //control where to start through height of the block
-                "children": d.children,
-                "parent": d.parent
-            })
-        });
-
-
-        return (nodesMap.map((node) =>
+        return (this.state.nodesMap.map((node) =>
                 <Fragment>
                     <g key={node.id} className={this.getClassName(node)} transform={this.getTransform(node)}>
                         <rect width="100" height="150" className={b("node-rect")}>
@@ -84,11 +85,14 @@ class D3Tree extends Component {
 
     render() {
         return (
-            <svg width="1000" height="700">
-                <g transform="translate(200,210)">              /*size of path layer*/
-                    {this.renderNodes()}
-                </g>
-            </svg>
+            <Fragment>
+                <svg width="1000" height="700">
+                    <g transform="translate(200,210)">              /*size of path layer*/
+                        {this.renderNodes()}
+                    </g>
+                </svg>
+                <Family coordinates={this.state.nodesMap}/>
+            </Fragment>
         )
     }
 }

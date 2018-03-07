@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
-import rootReducer from './reducers';
+import FamilyApp from './reducers';
 
 export default () => {
-    return createStore(rootReducer)
+    return createStore(FamilyApp)
 }
