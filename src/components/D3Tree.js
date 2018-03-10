@@ -9,6 +9,8 @@ import Family from "./Family";
 
 const b = block("D3Tree");
 
+
+
 const buildTree = (id) => {
     if (id !== null) {
         let user = getUserById(id,data);
@@ -86,7 +88,7 @@ class D3Tree extends Component {
     render() {
         return (
             <Fragment>
-                <svg width="1000" height="700">
+                <svg className={b()} width="1000" height="700">
                     <g transform="translate(200,210)">              /*size of path layer*/
                         {this.renderNodes()}
                     </g>

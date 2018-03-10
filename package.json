@@ -13,7 +13,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@most/dom-event": "^2.0.0",
     "d3": "^4.13.0",
+    "most": "^1.7.3",
     "ramda": "^0.25.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
