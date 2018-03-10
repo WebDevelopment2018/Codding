@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 
-import "../styles/CalendarDays.less"
+import "../styles/CalendarDays.less";
+import block from "../helpers/BEM";
+
+const b = block("CalendarDays");
 
 const CALENDARCELLSNUMBER = 42;
 
@@ -8,7 +11,7 @@ const getAllMonthDays = (monthLength) => {
     return Array(monthLength).fill(null).map(
         (el,i) => i+1
     )
-}
+};
 
 class CalendarDays extends Component {
     constructor(props) {
@@ -60,15 +63,15 @@ class CalendarDays extends Component {
 
     render() {
         return (
-            <main className="Days">
+            <main className={b()}>
                 {this.state.previousDays.sort().map((s_dis_day, i) =>
-                    <div key={i} className="CalendarDays__day CalendarDays__day_disabled">{s_dis_day}</div>
+                    <div key={i} className={b("day CalendarDays__day_disabled")}>{s_dis_day}</div>
                 )}
                 {this.state.currentDays.map((day, i) =>
-                    <div key={i} className="CalendarDays__day">{day}</div>
+                    <div key={i} className={b("day")}>{day}</div>
                 )}
                 {this.state.nextDays.map((e_dis_day, i) =>
-                    <div key={i} className="CalendarDays__day CalendarDays__day_disabled">{e_dis_day + 1}</div>
+                    <div key={i} className={b("day CalendarDays__day_disabled")}>{e_dis_day + 1}</div>
                 )}
             </main>
         )

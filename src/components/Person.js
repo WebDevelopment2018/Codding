@@ -3,6 +3,9 @@ import React, {Component} from 'react'
 import "../styles/Person.less"
 import {getUserById} from "./consts";
 import users from "../../data/data.json"
+import block from "../helpers/BEM";
+
+const b = block("Person");
 
 class Person extends Component {
     constructor(props) {
@@ -24,11 +27,11 @@ class Person extends Component {
 
     render() {
         return (
-            <div className="Person" style={this.getMargins()}>
-                <img className="Person__img" src={this.state.user.photo} alt=""/>
-                <h3 className="Person__fullName">{this.state.user.name} {this.state.user.surname}</h3>
-                <time className="Person__birthday">{this.state.user.birthday}</time>
-                <time className="Person__death">{this.state.user.death}</time>
+            <div className={b()} style={this.getMargins()}>
+                <img className={b("img")} src={this.state.user.photo} alt=""/>
+                <h3 className={b("fullName")}>{this.state.user.name} {this.state.user.surname}</h3>
+                <time className={b("birthday")}>{this.state.user.birthday}</time>
+                <time className={b("death")}>{this.state.user.death}</time>
             </div>
         )
     }

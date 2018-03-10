@@ -3,7 +3,9 @@ import React, {Component} from 'react';
 import "../styles/Calendar.less";
 import CalendarDays from "./CalendarDays";
 import {DAYNAMES, MONTHS} from "./consts"
+import block from "../helpers/BEM";
 
+const b = block("Calendar");
 
 class Calendar extends Component {
     constructor() {
@@ -46,26 +48,26 @@ class Calendar extends Component {
 
     renderHeader() {
         return [
-            <button key="1" className="Calendar__btn" onClick={() => this.goToPrevMonth()}>&lt;</button>,
-            <h1 key="2" className="Calendar__header-title">{MONTHS[this.state.month]} {this.state.year}</h1>,
-            <button key="3" className="Calendar__btn" onClick={() => this.goToNextMonth()}>&gt;</button>
+            <button key="1" className={b("btn")} onClick={() => this.goToPrevMonth()}>&lt;</button>,
+            <h1 key="2" className={b("header-title")}>{MONTHS[this.state.month]} {this.state.year}</h1>,
+            <button key="3" className={b("btn")} onClick={() => this.goToNextMonth()}>&gt;</button>
         ]
     }
 
     renderFooter() {
-        return DAYNAMES.map((day,i) => <div key={i} className="Calendar__footer-day">
+        return DAYNAMES.map((day,i) => <div key={i} className={b("footer-day")}>
                     {day}
                 </div>)
     }
 
     render() {
         return (
-            <div className="Calendar">
-                <header className="Calendar__header">{this.renderHeader()}</header>
+            <div className={b()}>
+                <header className={b("header")}>{this.renderHeader()}</header>
                 <CalendarDays
                     year={this.state.year}
                     month={this.state.month}/>
-                <footer className="Calendar__footer">{this.renderFooter()}</footer>
+                <footer className={b("footer")}>{this.renderFooter()}</footer>
             </div>
         )
     }

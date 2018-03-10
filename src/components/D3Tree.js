@@ -23,7 +23,7 @@ const buildTree = (id) => {
 
 class D3Tree extends Component {
     constructor(props){
-        super(props)
+        super(props);
         this.state = {
             "nodesMap": []
         }

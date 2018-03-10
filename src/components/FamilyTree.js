@@ -5,7 +5,8 @@ import Person from "./Person";
 import users from "../../data/data.json"
 import block from "../helpers/BEM";
 
-const b = block("FamilyTree");
+const b = block("Person");
+const bl = block("FamilyTree");
 
 const getUserById = (id) => users.find(user => user.id === id);
 
@@ -31,10 +32,10 @@ class FamilyTree extends Component {
         console.log(user);
         if (!user) {
             return <div className={b("unknown")}>
-                <img className="Person__img"
+                <img className={b("img")}
                      src="http://doctorwhite.md/wp-content/uploads/2015/05/facebook-profile-picture-unknown-facts-about-facebook.jpg"
                      alt=""/>
-                <h3 className="Person__fullName">Unknown</h3>
+                <h3 className={b("fullName")}>Unknown</h3>
             </div>;
         }
 
@@ -44,7 +45,7 @@ class FamilyTree extends Component {
             htmlBroSisters = broSisters.map((person,i)=> <Person key={i} {...person}/>)
         }
         return (
-            <section className="FamilyTree">
+            <section className={bl()}>
                 <Person {...user}/>
                 {htmlBroSisters}
                 <div>
