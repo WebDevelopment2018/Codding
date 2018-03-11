@@ -1,15 +1,13 @@
 import React, {Component, Fragment} from 'react';
 import * as d3 from "d3";
 
-import "../styles/D3Tree.less";
+import "../styles/Parents.less";
 import data from "../../data/data.json";
 import block from "../helpers/BEM";
 import {getUserById} from "./consts";
 import Family from "./Family";
 
-const b = block("D3Tree");
-
-
+const b = block("Parents");
 
 const buildTree = (id) => {
     if (id !== null) {
@@ -23,20 +21,28 @@ const buildTree = (id) => {
     return null;
 };
 
-class D3Tree extends Component {
+class Parents extends Component {
     constructor(props){
         super(props);
         this.state = {
-            "nodesMap": []
+            "nodesMap": [],
+            "height": 350
         }
     }
 
     componentWillMount(){
+        const height = this.state.height;
         const treeData =  buildTree(this.props.id);
         let treemap = d3.tree()
-            .size([500, 350]);                              //розміщення відносно svg
+            .size([500, height]);                              //розміщення відносно svg
+        console.log(treemap);
         let nodes = d3.hierarchy(treeData);
         nodes = treemap(nodes);
+        console.log(nodes);
+        nodes.each(function(d){
+            d.y += ((nodes.height - d.depth - 1)* height);
+            console.log(d.y);
+        });
         let nodesMap = [];
         nodes.each(function (d) {
             nodesMap.push({
@@ -99,4 +105,4 @@ class D3Tree extends Component {
     }
 }
 
-export default D3Tree;
+export default Parents;

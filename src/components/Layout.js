@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 
 import "../styles/Layout.less";
-import D3Tree from "./D3Tree";
+import Parents from "./Parents";
 import block from "../helpers/BEM";
 
 const b = block("Layout");
@@ -15,7 +15,7 @@ class Layout extends Component {
         return (
             <Fragment>
                 <div className={b()}>
-                    <D3Tree id={7}/>
+                    <Parents id={7}/>
                 </div>
             </Fragment>
         )
