@@ -18,9 +18,8 @@ class Person extends Component {
     }
 
     getMargins(){
-        console.log(this.props.person);
         return {
-            "marginLeft": this.state.x + 200,
+            "marginLeft": this.state.x + 400,
             "marginTop": this.state.y - 500
         }
     }

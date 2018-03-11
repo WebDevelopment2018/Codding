@@ -1,45 +1,49 @@
 import React, {Component, Fragment} from 'react';
 import * as d3 from "d3";
 
-import "../styles/Parents.less";
+import "../styles/Children.less";
 import data from "../../data/data.json";
 import block from "../helpers/BEM";
 import {getUserById} from "./consts";
 import Family from "./Family";
 
-const b = block("Parents");
+const b = block("Children");
 
 const buildTree = (id) => {
     if (id !== null) {
         let user = getUserById(id,data);
-        let parents = [buildTree(user.father, name), buildTree(user.mother, name)];
+
         return {
             "name": user.id,
-            "children": parents.filter(n => n)
+            "children": getChildren(id)
         };
     }
     return null;
 };
 
-class Parents extends Component {
-    constructor(props){
+const getChildren = (id) => {
+    let children = [];
+    data.map( user => {
+        if(user.mother === id || user.father === id){
+            children.push(buildTree(user.id));
+        }
+    })
+    return children;
+}
+
+class Children extends Component {
+    constructor(props) {
         super(props);
         this.state = {
-            "nodesMap": [],
-            "height": 350
-        }
+            "nodesMap":[]
+        };
     }
-
     componentWillMount(){
-        const height = this.state.height;
-        const treeData =  buildTree(this.props.id);
+        const treeData = buildTree(this.props.id);
         let treemap = d3.tree()
-            .size([500, height]);                              //розміщення відносно svg
+            .size([500, 700]);                              //розміщення відносно svg
         let nodes = d3.hierarchy(treeData);
-        nodes = treemap(nodes)
-        nodes.each(function(d){
-            d.y += ((nodes.height - d.depth - 1)* height);
-        });
+        nodes = treemap(nodes);
         let nodesMap = [];
         nodes.each(function (d) {
             nodesMap.push({
@@ -91,8 +95,8 @@ class Parents extends Component {
     render() {
         return (
             <Fragment>
-                <svg className={b()} width="100%" height={this.state.height*2}>
-                    <g transform="translate(400,210)">              /*size of path layer*/
+                <svg className={b()} width="100%" height="700">
+                    <g transform="translate(400,210)">
                         {this.renderNodes()}
                     </g>
                 </svg>
@@ -102,4 +106,4 @@ class Parents extends Component {
     }
 }
 
-export default Parents;
+export default Children;
