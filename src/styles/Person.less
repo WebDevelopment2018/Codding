@@ -8,16 +8,39 @@
   border: 1px solid #bdc3c7;
   box-shadow: 3px 3px 3px #bdc3c7;
   &__fullName {
-    font-size: 16px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all .2s linear;
+    font-size: 14px;
     color: #2c3e50;
-    padding-left: 10px;
-    margin: 0;
+  }
+  &__fullName:focus, &__fullName:hover {
+    color:transparent;
+  }
+  &__fullName:focus:after,&__fullName:hover:after{
+    content:attr(data-text);
+    overflow: visible;
+    text-overflow: inherit;
+    background: #fff;
+    position: absolute;
+    left:auto;
+    top:auto;
+    width: auto;
+    max-width: 20rem;
+    padding: 0;
+    white-space: normal;
+    word-wrap: break-word;
+    display:block;
+    color: #2c3e50;
+    margin-top:-1.25rem;
   }
   &__birthday {
     font-size: 10px;
     color: #2c3e50;
     padding-left: 10px;
-    margin-top: 5px;
+    margin-top: 15px;
     display: block;
   }
   &__death {
