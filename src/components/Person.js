@@ -15,6 +15,7 @@ class Person extends Component {
             "x": this.props.person.x,
             "y": this.props.person.y
         }
+        this.handleClick = this.handleClick.bind(this);
     }
     getMargins(){
         return {
@@ -22,10 +23,13 @@ class Person extends Component {
             "marginTop": this.state.y - 500
         }
     }
+    handleClick() {
+        console.log(this.state.user.id)
+    }
     render() {
         const fullName = this.state.user.name + " " + this.state.user.surname;
         return (
-            <div className={b()} style={this.getMargins()}>
+            <div className={b()} onClick={this.handleClick} style={this.getMargins()}>
                 <img className={b("img")} src={this.state.user.photo} alt=""/>
                 <h3 className={b("fullName")} data-text={fullName}>{this.state.user.name} {this.state.user.surname}</h3>
                 <time className={b("birthday")}>{this.state.user.birthday}</time>
