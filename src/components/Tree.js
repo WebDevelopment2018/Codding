@@ -2,46 +2,11 @@ import React, {Component, Fragment} from 'react';
 import * as d3 from "d3";
 
 import "../styles/Tree.less";
-import data from "../../data/data.json";
 import block from "../helpers/BEM";
-import {getUserById} from "./consts";
+import {buildChildrenTree, buildParentsTree} from "./consts";
 import Family from "./Family";
 
 const b = block("Tree");
-
-const buildParentsTree = (id) => {
-    if (id !== null) {
-        let user = getUserById(id, data);
-        let parents = [buildParentsTree(user.father, name), buildParentsTree(user.mother, name)];
-        return {
-            "name": user.id,
-            "children": parents.filter(n => n)
-        };
-    }
-    return null;
-};
-
-const buildChildrenTree = (id) => {
-    if (id !== null) {
-        let user = getUserById(id, data);
-
-        return {
-            "name": user.id,
-            "children": getChildren(id)
-        };
-    }
-    return null;
-};
-
-const getChildren = (id) => {
-    let children = [];
-    data.map(user => {
-        if (user.mother === id || user.father === id) {
-            children.push(buildChildrenTree(user.id));
-        }
-    })
-    return children;
-}
 
 class Tree extends Component {
     constructor(props) {
@@ -52,7 +17,6 @@ class Tree extends Component {
             "height": 350
         }
     }
-
     componentWillMount() {
         const height = this.state.height;
         const treeDataParents = buildParentsTree(this.props.id);
@@ -72,7 +36,6 @@ class Tree extends Component {
         this.setState({"parentsCoordinates": this.buildTree(parentsNodes)});
         this.setState({"childrenCoordinates": this.buildTree(childrenNodes)});
     }
-
     initTree(treeData){
         let treemap = d3.tree()
             .size([500, this.state.height]);                              //розміщення відносно svg
@@ -80,7 +43,6 @@ class Tree extends Component {
         nodes = treemap(nodes);
         return nodes;
     }
-
     buildTree(nodes){
         let nodesMap = [];
         nodes.each(function (d) {
@@ -94,8 +56,6 @@ class Tree extends Component {
         });
         return nodesMap;
     }
-
-
     getClassName(node) {
         return b("node") +
             (node.children ? b("node-internal") : b("node-leaf"));
@@ -104,20 +64,17 @@ class Tree extends Component {
     getTransform(node) {
         return "translate(" + node.x + "," + node.y + ")";
     }
-
     renderPath(node) {
         if (node.parent !== null) {
-            return (<path className={b("link")} d={this.getPath(node)}></path>)
+            return (<path className={b("link")} d={this.getPath(node)}/>)
         }
     }
-
     getPath(d) {                                                    //control ends and line of the path
         return "M" + (d.x + 50) + "," + d.y
             + "C" + (d.x + 50) + "," + (d.y + d.parent.y) / 2
             + " " + d.parent.x + "," + (d.y + d.parent.y) / 2
             + " " + d.parent.x + "," + d.parent.y;
     }
-
     renderTrees() {
         return (
             <Fragment>
@@ -127,7 +84,6 @@ class Tree extends Component {
         )
 
     }
-
     renderNode(node) {
         return (
             <Fragment>
@@ -139,7 +95,6 @@ class Tree extends Component {
             </Fragment>
         )
     }
-
     render() {
         return (
             <Fragment>
@@ -155,5 +110,4 @@ class Tree extends Component {
         )
     }
 }
-
 export default Tree;
