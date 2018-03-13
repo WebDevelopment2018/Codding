@@ -10,4 +10,4 @@ const FamilyApp = combineReducers({
 export default FamilyApp;
 
 
-export const getPerson = (state) => fromPerson.getPerson(state.family);
+export const getPerson = (state) => fromPerson.getPerson(state.person);

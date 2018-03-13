@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "webpack": "webpack --watch",
-    "serve": "serve",
+    "serve": "serve --single",
     "start": "npm run webpack | npm run serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -30,6 +30,7 @@
     "css-loader": "^0.28.9",
     "less": "^3.0.1",
     "less-loader": "^4.0.5",
+    "react-router-dom": "^4.2.2",
     "style-loader": "^0.20.2"
   }
 }

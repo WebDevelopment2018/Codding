@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {fromEvent} from "most";
 
 import * as d3 from "d3";
+import {connect} from "react-redux";
 
 import "../styles/Tree.less";
 import block from "../helpers/BEM";
@@ -35,8 +36,9 @@ class Tree extends Component {
 
     }
     componentWillMount() {
+        const id = parseInt(this.props.person);
         const height = this.state.height;
-        const treeDataParents = buildParentsTree(this.props.id);
+        const treeDataParents = buildParentsTree(id);
         const parentsNodes = this.initTree(treeDataParents);
         parentsNodes.each(function (d) {
             if (d.depth === 0) {
@@ -45,7 +47,7 @@ class Tree extends Component {
                 d.y += ((parentsNodes.height - d.depth - 1) * height);
             }
         });
-        const treeDataChildren = buildChildrenTree(this.props.id);
+        const treeDataChildren = buildChildrenTree(id);
         const childrenNodes = this.initTree(treeDataChildren);
         childrenNodes.each(function (d) {
                 d.y += height;
@@ -127,4 +129,11 @@ class Tree extends Component {
         )
     }
 }
-export default Tree;
+
+export default connect((state, {match}) => {
+        console.log(state, "PROPS ", match.params.person);
+        return {
+            person: match.params.person
+        }
+    }
+)(Tree);
