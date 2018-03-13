@@ -6,7 +6,6 @@ import "../styles/Person.less"
 import {getUserById} from "./consts";
 import users from "../../data/data.json"
 import block from "../helpers/BEM";
-import {changePersonId} from '../actions/index';
 
 const b = block("Person");
 

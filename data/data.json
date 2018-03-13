@@ -106,7 +106,7 @@
     "birthday": "17.08.1714",
     "death": "04.05.1774",
     "mother": null,
-    "father": 8,
+    "father": null,
     "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520245313/Anton_Ulrich_dhqc6p.jpg"
   }
 ]
