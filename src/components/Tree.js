@@ -1,4 +1,6 @@
 import React, {Component, Fragment} from 'react';
+import {fromEvent} from "most";
+
 import * as d3 from "d3";
 
 import "../styles/Tree.less";
@@ -16,6 +18,22 @@ class Tree extends Component {
             "childrenCoordinates": [],
             "height": 350
         }
+    }
+    componentDidMount() {
+        const mouseDown = fromEvent("mousedown", this.refs.root);
+        const mouseMove = fromEvent("mousemove", this.refs.root);
+        const mouseUp = fromEvent("mouseup", this.refs.root);
+
+        const click = fromEvent("click", this.refs.root);
+        mouseDown
+            .filter(({target}) => target.matches(".Tree"))
+            .observe(ev => console.log("down"));
+            mouseMove
+                .filter(({ target }) => target.matches(".Tree"))
+                .tap(ev => console.log("mousemove"))
+                .observe(ev => ev);
+            return mouseMove.until(mouseUp).observe(ev => console.log("up"))
+        
     }
     componentWillMount() {
         const height = this.state.height;
@@ -98,7 +116,7 @@ class Tree extends Component {
     render() {
         return (
             <Fragment>
-                <svg className={b()} width="100%" height={this.state.height * 2}>
+                <svg ref="root" className={b()} width="100%" height={this.state.height * 2}>
                     <image className="Layout__logo" href="https://www.nextadvisor.com/blog/wp-content/uploads/2015/04/bigstock-A-pictographic-image-of-a-gree-25125803.jpg" x="200" y="50" height="80px" width="100px"/>
                     <g transform="translate(400,210)">              /*size of path layer*/
                         {this.renderTrees()}
