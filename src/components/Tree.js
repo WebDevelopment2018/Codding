@@ -28,12 +28,11 @@ class Tree extends Component {
         mouseDown
             .filter(({target}) => target.matches(".Tree"))
             .observe(ev => console.log("down"));
-            mouseMove
+            mouseUp
                 .filter(({ target }) => target.matches(".Tree"))
-                .tap(ev => console.log("mousemove"))
+                .tap(ev => console.log("up"))
                 .observe(ev => ev);
-            return mouseMove.until(mouseUp).observe(ev => console.log("up"))
-        
+
     }
     componentWillMount() {
         const height = this.state.height;
