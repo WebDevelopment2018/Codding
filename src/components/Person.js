@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
+import { NavLink } from 'react-router-dom'
 
 import "../styles/Person.less"
 import {getUserById} from "./consts";
@@ -30,30 +31,20 @@ class Person extends Component {
 
     }
     render() {
-        const {onPersonClick} = this.props;
         const fullName = this.state.user.name + " " + this.state.user.surname;
+        const id = "/" + this.state.user.id;
         return (
-            <div className={b()} onClick={() => onPersonClick(this.state.user.id)} style={this.getMargins()}>
-                <img className={b("img")} src={this.state.user.photo} alt=""/>
-                <h3 className={b("fullName")} data-text={fullName}>{this.state.user.name} {this.state.user.surname}</h3>
-                <time className={b("birthday")}>{this.state.user.birthday}</time>
-                <time className={b("death")}>{this.state.user.death}</time>
-            </div>
+            <NavLink to={id}>
+                <div className={b()} style={this.getMargins()}>
+                    <img className={b("img")} src={this.state.user.photo} alt=""/>
+                    <h3 className={b("fullName")} data-text={fullName}>{this.state.user.name} {this.state.user.surname}</h3>
+                    <time className={b("birthday")}>{this.state.user.birthday}</time>
+                    <time className={b("death")}>{this.state.user.death}</time>
+                </div>
+            </NavLink>
         )
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onPersonClick: (id) => {
-            dispatch(changePersonId(id))
-        }
-    }
-};
-
-
-export default Person = connect(
-    null,
-    mapDispatchToProps
-)(Person);
+export default Person;
 
