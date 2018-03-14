@@ -40,6 +40,7 @@ class Tree extends Component {
         const id = parseInt(this.props.person);
         const height = this.state.height;
         const treeDataParents = buildParentsTree(id);
+        console.log(treeDataParents);
         const parentsNodes = this.initTree(treeDataParents);
         parentsNodes.each(function (d) {
             if (d.depth === 0) {

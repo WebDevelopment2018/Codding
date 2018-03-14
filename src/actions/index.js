@@ -5,3 +5,10 @@ export const changePersonId = (id) => {
         person: id
     }
 };
+
+export const setData = (data) => {
+    return {
+        type: 'SET_DATA',
+        data
+    }
+}

@@ -1,18 +1,27 @@
 import React, {Component, Fragment} from 'react';
+import {connect} from 'react-redux';
+import {Switch, Route, withRouter} from 'react-router-dom';
 
 import "../styles/Layout.less";
 import Tree from "./Tree";
 import block from "../helpers/BEM";
-import {Switch, Route} from 'react-router-dom'
 import Header from "./Header";
+import {setData} from '../actions/index'
 
 const b = block("Layout");
 
 class Layout extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {}
+    constructor() {
+        super();
     }
+    // componentWillMount() {
+    //     fetch('http://localhost:3000/Romanov')
+    //         .then(results => {return results.json()})
+    //         .then(data => {
+    //             this.props.onSetData(data);
+    //             }
+    //         );
+    // }
     render() {
         return (
             <Fragment>
@@ -27,4 +36,11 @@ class Layout extends Component {
     }
 }
 
+// x
+
+// Layout = withRouter(connect(state =>
+//         () => ({}),
+//     mapDispatchToProps
+// )(Layout));
+//
 export default Layout;
