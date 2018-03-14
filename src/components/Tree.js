@@ -16,7 +16,8 @@ class Tree extends Component {
         this.state = {
             "parentsCoordinates": [],
             "childrenCoordinates": [],
-            "height": 350
+            "height": 350,
+            "data":[]
         }
     }
     componentDidMount() {
