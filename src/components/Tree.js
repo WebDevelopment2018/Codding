@@ -117,23 +117,23 @@ class Tree extends Component {
     render() {
         return (
             <Fragment>
-                <svg ref="root" className={b()} width="100%" height={this.state.height * 2}>
+                <svg ref="root" className={b()} width="100%" height={this.state.height * 2} key="1">
                     <image className="Layout__logo" href="https://www.nextadvisor.com/blog/wp-content/uploads/2015/04/bigstock-A-pictographic-image-of-a-gree-25125803.jpg" x="200" y="50" height="80px" width="100px"/>
                     <g transform="translate(400,210)">              /*size of path layer*/
                         {this.renderTrees()}
                     </g>
                 </svg>
-                <Family coordinates={this.state.parentsCoordinates}/>
-                <Family coordinates={this.state.childrenCoordinates.slice(1,this.state.childrenCoordinates.length)}/>
+                <Family coordinates={this.state.parentsCoordinates} key="2"/>
+                <Family coordinates={this.state.childrenCoordinates.slice(1,this.state.childrenCoordinates.length)} key="3"/>
             </Fragment>
         )
     }
 }
 
-export default connect((state, {match}) => {
-        console.log(state, "PROPS ", match.params.person);
+export default connect((state, props) => {
+        console.log(state, "PROPS ", props.match.params.person);
         return {
-            person: match.params.person
+            person: props.match.params.person
         }
     }
 )(Tree);

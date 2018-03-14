@@ -7,8 +7,8 @@ class Family extends Component {
 
     render() {
         return (
-            this.props.coordinates.map( (person) =>
-                <Person person={person}/>
+            this.props.coordinates.map( (person,i) =>
+                <Person person={person} key={i}/>
             )
         )
     }

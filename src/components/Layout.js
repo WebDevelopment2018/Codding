@@ -4,6 +4,7 @@ import "../styles/Layout.less";
 import Tree from "./Tree";
 import block from "../helpers/BEM";
 import {Switch, Route} from 'react-router-dom'
+import Header from "./Header";
 
 const b = block("Layout");
 
@@ -17,6 +18,7 @@ class Layout extends Component {
             <Fragment>
                 <div className={b()}>
                     <Switch>
+                        <Route exact path='/' render={() => <Header/>}/>
                         <Route path='/:person' component={Tree}/>
                     </Switch>
                 </div>
