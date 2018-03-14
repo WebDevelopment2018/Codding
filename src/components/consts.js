@@ -1,4 +1,7 @@
-import data from "../../data/data.json";
+
+// import {getData} from "../api/getData";
+// const data = getData();
+console.log(data);
 export const MONTHS = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
 
