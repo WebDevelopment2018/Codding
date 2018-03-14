@@ -118,7 +118,7 @@ class Tree extends Component {
         return (
             <Fragment>
                 <svg ref="root" className={b()} width="100%" height={this.state.height * 2} key="1">
-                    <image className="Layout__logo" href="https://www.nextadvisor.com/blog/wp-content/uploads/2015/04/bigstock-A-pictographic-image-of-a-gree-25125803.jpg" x="200" y="50" height="80px" width="100px"/>
+                    <image className="Layout__logo" href="http://res.cloudinary.com/csucu/image/upload/q_100/v1521035030/logo_iflxie.jpg" x="200" y="50" height="80px" width="100px"/>
                     <g transform="translate(400,210)">              /*size of path layer*/
                         {this.renderTrees()}
                     </g>
