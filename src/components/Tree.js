@@ -152,7 +152,7 @@ class Tree extends Component {
 export default connect((state, props) => {
         console.log(state, "PROPS ", props.match.params.person);
         return {
-            person: props.match.params.person
+            person: props.match.params.person || 6
         }
     }
 )(Tree);
