@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {fromEvent} from "most";
 
 import * as d3 from "d3";
+import {connect} from "react-redux";
 
 import "../styles/Tree.less";
 import block from "../helpers/BEM";
@@ -36,8 +37,9 @@ class Tree extends Component {
 
     }
     componentWillMount() {
+        const id = parseInt(this.props.person);
         const height = this.state.height;
-        const treeDataParents = buildParentsTree(this.props.id);
+        const treeDataParents = buildParentsTree(id);
         const parentsNodes = this.initTree(treeDataParents);
         parentsNodes.each(function (d) {
             if (d.depth === 0) {
@@ -46,7 +48,7 @@ class Tree extends Component {
                 d.y += ((parentsNodes.height - d.depth - 1) * height);
             }
         });
-        const treeDataChildren = buildChildrenTree(this.props.id);
+        const treeDataChildren = buildChildrenTree(id);
         const childrenNodes = this.initTree(treeDataChildren);
         childrenNodes.each(function (d) {
                 d.y += height;
@@ -116,16 +118,23 @@ class Tree extends Component {
     render() {
         return (
             <Fragment>
-                <svg ref="root" className={b()} width="100%" height={this.state.height * 2}>
+                <svg ref="root" className={b()} width="100%" height={this.state.height * 2} key="1">
                     <image className="Layout__logo" href="https://www.nextadvisor.com/blog/wp-content/uploads/2015/04/bigstock-A-pictographic-image-of-a-gree-25125803.jpg" x="200" y="50" height="80px" width="100px"/>
                     <g transform="translate(400,210)">              /*size of path layer*/
                         {this.renderTrees()}
                     </g>
                 </svg>
-                <Family coordinates={this.state.parentsCoordinates}/>
-                <Family coordinates={this.state.childrenCoordinates.slice(1,this.state.childrenCoordinates.length)}/>
+                <Family coordinates={this.state.parentsCoordinates} key="2"/>
+                <Family coordinates={this.state.childrenCoordinates.slice(1,this.state.childrenCoordinates.length)} key="3"/>
             </Fragment>
         )
     }
 }
-export default Tree;
+
+export default connect((state, props) => {
+        console.log(state, "PROPS ", props.match.params.person);
+        return {
+            person: props.match.params.person
+        }
+    }
+)(Tree);

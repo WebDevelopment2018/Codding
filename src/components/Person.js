@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import {connect} from "react-redux";
+import { NavLink } from 'react-router-dom'
 
 import "../styles/Person.less"
 import {getUserById} from "./consts";
@@ -14,7 +16,7 @@ class Person extends Component {
             "user" : getUserById(this.props.person.id, users),
             "x": this.props.person.x,
             "y": this.props.person.y
-        }
+        };
         this.handleClick = this.handleClick.bind(this);
     }
     getMargins(){
@@ -24,19 +26,24 @@ class Person extends Component {
         }
     }
     handleClick() {
-        console.log(this.state.user.id)
+        console.log(this.state.user.id);
+
     }
     render() {
         const fullName = this.state.user.name + " " + this.state.user.surname;
+        const id = "/" + this.state.user.id;
         return (
-            <div className={b()} onClick={this.handleClick} style={this.getMargins()}>
-                <img className={b("img")} src={this.state.user.photo} alt=""/>
-                <h3 className={b("fullName")} data-text={fullName}>{this.state.user.name} {this.state.user.surname}</h3>
-                <time className={b("birthday")}>{this.state.user.birthday}</time>
-                <time className={b("death")}>{this.state.user.death}</time>
-            </div>
+            <NavLink to={id}>
+                <div className={b()} style={this.getMargins()}>
+                    <img className={b("img")} src={this.state.user.photo} alt=""/>
+                    <h3 className={b("fullName")} data-text={fullName}>{this.state.user.name} {this.state.user.surname}</h3>
+                    <time className={b("birthday")}>{this.state.user.birthday}</time>
+                    <time className={b("death")}>{this.state.user.death}</time>
+                </div>
+            </NavLink>
         )
     }
 }
 
 export default Person;
+
