@@ -1,5 +1,4 @@
-{
-  "Romanov": [
+[
     {
       "id": 1,
       "name": "Марія",
@@ -111,4 +110,3 @@
       "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520245313/Anton_Ulrich_dhqc6p.jpg"
     }
   ]
-}
