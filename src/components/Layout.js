@@ -36,8 +36,6 @@ class Layout extends Component {
     }
 }
 
-// x
-
 // Layout = withRouter(connect(state =>
 //         () => ({}),
 //     mapDispatchToProps

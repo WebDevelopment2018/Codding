@@ -30,6 +30,21 @@ export const buildChildrenTree = (id) => {
     }
     return null;
 };
+export const findSiblings = (id) => {
+    const person = getUserById(id,data);
+    let mother = person.mother,
+        father = person.father,
+        sistersBrothers = [];
+    data.map((user) => {
+            if (mother !== null && father !== null && person !== user && user.mother === mother && user.father === father) {
+                sistersBrothers.push(user);
+            }
+        }
+    );
+    return sistersBrothers;
+
+
+};
 
 export const getChildren = (id) => {
     let children = [];

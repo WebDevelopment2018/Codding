@@ -6,8 +6,9 @@ import {connect} from "react-redux";
 
 import "../styles/Tree.less";
 import block from "../helpers/BEM";
-import {buildChildrenTree, buildParentsTree} from "./consts";
+import {buildChildrenTree, buildParentsTree, findSiblings} from "./consts";
 import Family from "./Family";
+
 
 const b = block("Tree");
 
@@ -17,6 +18,7 @@ class Tree extends Component {
         this.state = {
             "parentsCoordinates": [],
             "childrenCoordinates": [],
+            "siblingsCoordinates":[],
             "height": 350,
             "data":[]
         }
@@ -40,7 +42,6 @@ class Tree extends Component {
         const id = parseInt(this.props.person);
         const height = this.state.height;
         const treeDataParents = buildParentsTree(id);
-        console.log(treeDataParents);
         const parentsNodes = this.initTree(treeDataParents);
         parentsNodes.each(function (d) {
             if (d.depth === 0) {
@@ -56,6 +57,21 @@ class Tree extends Component {
         });
         this.setState({"parentsCoordinates": this.buildTree(parentsNodes)});
         this.setState({"childrenCoordinates": this.buildTree(childrenNodes)});
+        const siblings = findSiblings(id);
+        console.log(siblings);
+        let siblingsCoordinates = [];
+        siblings.map((s,i) =>{
+            siblingsCoordinates.push({
+                "id": s.id,
+                "x": parentsNodes.x + 200*(i+1),
+                "y": parentsNodes.y -150
+            })
+            }
+        );
+        console.log(siblingsCoordinates);
+        console.log(parentsNodes);
+        this.setState({"siblingsCoordinates": siblingsCoordinates});
+
     }
     initTree(treeData){
         let treemap = d3.tree()
@@ -127,6 +143,7 @@ class Tree extends Component {
                 </svg>
                 <Family coordinates={this.state.parentsCoordinates} key="2"/>
                 <Family coordinates={this.state.childrenCoordinates.slice(1,this.state.childrenCoordinates.length)} key="3"/>
+                <Family coordinates={this.state.siblingsCoordinates} key="4"/>
             </Fragment>
         )
     }
