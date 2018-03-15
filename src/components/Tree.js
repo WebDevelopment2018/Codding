@@ -8,7 +8,8 @@ import "../styles/Tree.less";
 import block from "../helpers/BEM";
 import {buildChildrenTree, buildParentsTree, findSiblings, findRelationships} from "./consts";
 import Family from "./Family";
-
+import {fetchPerson} from "../actions";
+import {getPersonById, isPersonFetching} from "../reducers";
 
 const b = block("Tree");
 
@@ -39,54 +40,62 @@ class Tree extends Component {
     //
     // }
     componentWillMount() {
-        this.calculateTree(this.props.person);
+        this.calculateTree(this.props.activePersonId);
+
     }
     componentWillReceiveProps(nextProps){
-        this.calculateTree(nextProps.person);
+        this.calculateTree(nextProps.activePersonId);
     }
     calculateTree(props){
-        const id = parseInt(props);
-        const height = this.state.height;
-        const treeDataParents = buildParentsTree(id);
-        const parentsNodes = this.initTree(treeDataParents);
-        parentsNodes.each(function (d) {
-            if (d.depth === 0) {
-                d.y = height;
-            } else {
-                d.y += ((parentsNodes.height - d.depth - 1) * height);
-            }
-        });
-        const treeDataChildren = buildChildrenTree(id);
-        const childrenNodes = this.initTree(treeDataChildren);
-        childrenNodes.each(function (d) {
-            d.y += height;
-        });
-        const siblings = findSiblings(id);
-        let siblingsCoordinates = [];
-        siblings.map((s,i) =>{
-                siblingsCoordinates.push({
-                    "id": s.id,
-                    "x": parentsNodes.x + 200*(i+1),
-                    "y": parentsNodes.y -150
-                })
-            }
-        );
-        const relationship = findRelationships(id);
-        let relationshipCoordinates = [];
-        relationship.map((s,i) =>{
-                relationshipCoordinates.push({
-                    "id": s,
-                    "x": parentsNodes.x - 200*(i+1),
-                    "y": parentsNodes.y -150
-                })
-            }
-        );
-        this.setState({
-            relationshipCoordinates,
-            siblingsCoordinates,
-            "childrenCoordinates": this.buildTree(childrenNodes),
-            "parentsCoordinates": this.buildTree(parentsNodes)
-        });
+        const {fetchPerson, isPersonFetching, person, activePersonId} = this.props;
+
+        if(!person && !isPersonFetching){
+            fetchPerson(activePersonId)
+        }
+        if(person) {
+            const id = parseInt(props);
+            const height = this.state.height;
+            const treeDataParents = buildParentsTree(id);
+            const parentsNodes = this.initTree(treeDataParents);
+            parentsNodes.each(function (d) {
+                if (d.depth === 0) {
+                    d.y = height;
+                } else {
+                    d.y += ((parentsNodes.height - d.depth - 1) * height);
+                }
+            });
+            const treeDataChildren = buildChildrenTree(id);
+            const childrenNodes = this.initTree(treeDataChildren);
+            childrenNodes.each(function (d) {
+                d.y += height;
+            });
+            const siblings = findSiblings(id);
+            let siblingsCoordinates = [];
+            siblings.map((s, i) => {
+                    siblingsCoordinates.push({
+                        "id": s.id,
+                        "x": parentsNodes.x + 200 * (i + 1),
+                        "y": parentsNodes.y - 150
+                    })
+                }
+            );
+            const relationship = findRelationships(id);
+            let relationshipCoordinates = [];
+            relationship.map((s, i) => {
+                    relationshipCoordinates.push({
+                        "id": s,
+                        "x": parentsNodes.x - 200 * (i + 1),
+                        "y": parentsNodes.y - 150
+                    })
+                }
+            );
+            this.setState({
+                relationshipCoordinates,
+                siblingsCoordinates,
+                "childrenCoordinates": this.buildTree(childrenNodes),
+                "parentsCoordinates": this.buildTree(parentsNodes)
+            });
+        }
     }
 
     initTree(treeData){
@@ -166,9 +175,16 @@ class Tree extends Component {
     }
 }
 
+
+
 export default connect((state, props) => {
         return {
-            person: props.match.params.person || 6
+            activePersonId: props.match.params.person || 6,
+            person: getPersonById(props.match.params.person || 6,state),
+            isPersonFetching: isPersonFetching(props.match.params.person || 6,state)
         }
+    },
+    {
+        fetchPerson
     }
 )(Tree);

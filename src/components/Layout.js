@@ -14,14 +14,7 @@ class Layout extends Component {
     constructor() {
         super();
     }
-    // componentWillMount() {
-    //     fetch('http://localhost:3000/Romanov')
-    //         .then(results => {return results.json()})
-    //         .then(data => {
-    //             this.props.onSetData(data);
-    //             }
-    //         );
-    // }
+
     render() {
         return (
             <Fragment>

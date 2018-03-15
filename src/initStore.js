@@ -1,6 +1,11 @@
-import { createStore } from 'redux';
+import { createStore,applyMiddleware } from 'redux';
 import FamilyApp from './reducers';
 
+import thunk from 'redux-thunk'
+import logger from 'redux-logger'
+
 export default () => {
-    return createStore(FamilyApp)
+    return createStore(FamilyApp,
+        applyMiddleware(thunk,logger)
+    );
 }
