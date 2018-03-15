@@ -41,8 +41,19 @@ export const findSiblings = (id) => {
         }
     );
     return sistersBrothers;
+};
 
-
+export const findRelationships = (id) => {
+    let relationship = [];
+    data.map((user) => {
+            if (user.mother === id && user.father !== null) {
+                relationship.push(user.father);
+            }else if(user.father === id && user.mother !== null){
+                relationship.push(user.mother);
+            }
+        }
+    );
+    return relationship;
 };
 
 export const getChildren = (id) => {

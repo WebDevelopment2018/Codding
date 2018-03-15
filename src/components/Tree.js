@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 
 import "../styles/Tree.less";
 import block from "../helpers/BEM";
-import {buildChildrenTree, buildParentsTree, findSiblings} from "./consts";
+import {buildChildrenTree, buildParentsTree, findSiblings, findRelationships} from "./consts";
 import Family from "./Family";
 
 
@@ -19,6 +19,7 @@ class Tree extends Component {
             "parentsCoordinates": [],
             "childrenCoordinates": [],
             "siblingsCoordinates":[],
+            "relationshipCoordinates": [],
             "height": 350,
             "data":[]
         }
@@ -68,10 +69,19 @@ class Tree extends Component {
             })
             }
         );
-        console.log(siblingsCoordinates);
-        console.log(parentsNodes);
         this.setState({"siblingsCoordinates": siblingsCoordinates});
 
+        const relationship = findRelationships(id);
+        let relationshipCoordinates = [];
+        relationship.map((s,i) =>{
+            relationshipCoordinates.push({
+                    "id": s,
+                    "x": parentsNodes.x - 200*(i+1),
+                    "y": parentsNodes.y -150
+                })
+            }
+        );
+        this.setState({"relationshipCoordinates": relationshipCoordinates});
     }
     initTree(treeData){
         let treemap = d3.tree()
@@ -144,6 +154,7 @@ class Tree extends Component {
                 <Family coordinates={this.state.parentsCoordinates} key="2"/>
                 <Family coordinates={this.state.childrenCoordinates.slice(1,this.state.childrenCoordinates.length)} key="3"/>
                 <Family coordinates={this.state.siblingsCoordinates} key="4"/>
+                <Family coordinates={this.state.relationshipCoordinates} key="5"/>
             </Fragment>
         )
     }
