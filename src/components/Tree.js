@@ -24,23 +24,28 @@ class Tree extends Component {
             "data":[]
         }
     }
-    componentDidMount() {
-        const mouseDown = fromEvent("mousedown", this.refs.root);
-        const mouseMove = fromEvent("mousemove", this.refs.root);
-        const mouseUp = fromEvent("mouseup", this.refs.root);
-
-        const click = fromEvent("click", this.refs.root);
-        mouseDown
-            .filter(({target}) => target.matches(".Tree"))
-            .observe(ev => console.log("down"));
-            mouseUp
-                .filter(({ target }) => target.matches(".Tree"))
-                .tap(ev => console.log("up"))
-                .observe(ev => ev);
-
-    }
+    // componentDidMount() {
+    //     const mouseDown = fromEvent("mousedown", this.refs.root);
+    //     const mouseMove = fromEvent("mousemove", this.refs.root);
+    //     const mouseUp = fromEvent("mouseup", this.refs.root);
+    //
+    //     const click = fromEvent("click", this.refs.root);
+    //     mouseDown
+    //         .filter(({target}) => target.matches(".Tree"))
+    //         .observe(ev => console.log("down"));
+    //         mouseUp
+    //             .filter(({ target }) => target.matches(".Tree"))
+    //             .observe(ev => ev);
+    //
+    // }
     componentWillMount() {
-        const id = parseInt(this.props.person);
+        this.calculateTree(this.props.person);
+    }
+    componentWillReceiveProps(nextProps){
+        this.calculateTree(nextProps.person);
+    }
+    calculateTree(props){
+        const id = parseInt(props);
         const height = this.state.height;
         const treeDataParents = buildParentsTree(id);
         const parentsNodes = this.initTree(treeDataParents);
@@ -54,35 +59,36 @@ class Tree extends Component {
         const treeDataChildren = buildChildrenTree(id);
         const childrenNodes = this.initTree(treeDataChildren);
         childrenNodes.each(function (d) {
-                d.y += height;
+            d.y += height;
         });
-        this.setState({"parentsCoordinates": this.buildTree(parentsNodes)});
-        this.setState({"childrenCoordinates": this.buildTree(childrenNodes)});
         const siblings = findSiblings(id);
-        console.log(siblings);
         let siblingsCoordinates = [];
         siblings.map((s,i) =>{
-            siblingsCoordinates.push({
-                "id": s.id,
-                "x": parentsNodes.x + 200*(i+1),
-                "y": parentsNodes.y -150
-            })
+                siblingsCoordinates.push({
+                    "id": s.id,
+                    "x": parentsNodes.x + 200*(i+1),
+                    "y": parentsNodes.y -150
+                })
             }
         );
-        this.setState({"siblingsCoordinates": siblingsCoordinates});
-
         const relationship = findRelationships(id);
         let relationshipCoordinates = [];
         relationship.map((s,i) =>{
-            relationshipCoordinates.push({
+                relationshipCoordinates.push({
                     "id": s,
                     "x": parentsNodes.x - 200*(i+1),
                     "y": parentsNodes.y -150
                 })
             }
         );
-        this.setState({"relationshipCoordinates": relationshipCoordinates});
+        this.setState({
+            relationshipCoordinates,
+            siblingsCoordinates,
+            "childrenCoordinates": this.buildTree(childrenNodes),
+            "parentsCoordinates": this.buildTree(parentsNodes)
+        });
     }
+
     initTree(treeData){
         let treemap = d3.tree()
             .size([500, this.state.height]);                              //розміщення відносно svg
@@ -133,8 +139,8 @@ class Tree extends Component {
     }
     renderNode(node) {
         return (
-            <Fragment>
-                <g key={node.id} className={this.getClassName(node)} transform={this.getTransform(node)}>
+            <Fragment key={node.id}>
+                <g className={this.getClassName(node)} transform={this.getTransform(node)} >
                     <rect width="100" height="150" className={b("node-rect")}>
                     </rect>
                 </g>
@@ -161,7 +167,6 @@ class Tree extends Component {
 }
 
 export default connect((state, props) => {
-        console.log(state, "PROPS ", props.match.params.person);
         return {
             person: props.match.params.person || 6
         }

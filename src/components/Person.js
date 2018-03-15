@@ -12,22 +12,23 @@ const b = block("Person");
 class Person extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            "user" : getUserById(this.props.person.id, users),
-            "x": this.props.person.x,
-            "y": this.props.person.y
+        this.state = this.mapPropsToState(props);
+    }
+    componentWillReceiveProps(newProps){
+        this.setState(this.mapPropsToState(newProps));
+    }
+    mapPropsToState(props){
+        return {
+            "user" : getUserById(props.person.id, users),
+            "x": props.person.x,
+            "y": props.person.y
         };
-        this.handleClick = this.handleClick.bind(this);
     }
     getMargins(){
         return {
             "marginLeft": this.state.x + 400,
             "marginTop": this.state.y - 500
         }
-    }
-    handleClick() {
-        console.log(this.state.user.id);
-
     }
     render() {
         const fullName = this.state.user.name + " " + this.state.user.surname;

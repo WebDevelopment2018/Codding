@@ -1,3 +1,4 @@
+import {uniq} from "ramda";
 import data from "../../data/data.json";
 export const MONTHS = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
@@ -53,7 +54,7 @@ export const findRelationships = (id) => {
             }
         }
     );
-    return relationship;
+    return uniq(relationship);
 };
 
 export const getChildren = (id) => {
