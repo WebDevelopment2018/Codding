@@ -14,8 +14,8 @@ class TreePathes extends Component {
         return { "childrenCoordinates": props.childrenCoordinates ,
             "parentsCoordinates" : props.parentsCoordinates};
     }
-    componentWillMount() {
-        this.initState(this.props);
+    componentWillReceiveProps(nextProps) {
+        this.setState(this.initState(nextProps));
 
     }
     getClassName(node) {
@@ -58,6 +58,7 @@ class TreePathes extends Component {
         )
     }
     render() {
+        console.log("dscsc");
         return (
             <g transform="translate(400,210)">              /*size of path layer*/
                 {this.renderTrees()}

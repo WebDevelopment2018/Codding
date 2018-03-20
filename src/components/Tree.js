@@ -50,16 +50,13 @@ class Tree extends Component {
     // };
 
     calculateTree(props) {
-        const {fetchPerson, isPersonFetching, person, activePersonId,state} = this.props;
+        const {fetchPerson, isPersonFetching, person, activePersonId} = this.props;
 
         if (!person && !isPersonFetching) {
             fetchPerson(activePersonId)
         }
 
         if (person) {
-            console.log(person, person.father);
-            //console.log(getPersonById(person.father, state));
-            //console.log(fetchPerson(person.father));
             const id = parseInt(props);
             const height = this.state.height;
             const treeDataParents = buildParentsTree(id);
@@ -152,8 +149,7 @@ export default connect((state, props) => {
         return {
             activePersonId: props.match.params.person || 6,
             person: getPersonById(props.match.params.person || 6, state),
-            isPersonFetching: isPersonFetching(props.match.params.person || 6, state),
-            state
+            isPersonFetching: isPersonFetching(props.match.params.person || 6, state)
         }
     },
     {
