@@ -58,11 +58,15 @@ class TreePathes extends Component {
         )
     }
     render() {
-        console.log("dscsc");
         return (
-            <g transform="translate(400,210)">              /*size of path layer*/
-                {this.renderTrees()}
-            </g>
+            <Fragment>
+                <g transform="translate(400,210)" key="1">              /*size of path layer*/
+                    {this.state.parentsCoordinates.map((node) => this.renderNode(node))}
+                </g>
+                <g transform="translate(400,210)" key="2">              /*size of path layer*/
+                    {this.state.childrenCoordinates.map((node) => this.renderNode(node))}
+                </g>
+            </Fragment>
         )
     }
 }

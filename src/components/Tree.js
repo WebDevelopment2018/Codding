@@ -50,7 +50,7 @@ class Tree extends Component {
     // };
 
     calculateTree(props) {
-        const {fetchPerson, isPersonFetching, person, activePersonId} = this.props;
+        const {fetchPerson, isPersonFetching, person, activePersonId,state} = this.props;
 
         if (!person && !isPersonFetching) {
             fetchPerson(activePersonId)
@@ -61,17 +61,14 @@ class Tree extends Component {
             const height = this.state.height;
             const treeDataParents = buildParentsTree(id);
             const parentsNodes = this.initTree(treeDataParents);
+            const parentHeight = parentsNodes.height*200;
             parentsNodes.each(function (d) {
-                if (d.depth === 0) {
-                    d.y = height;
-                } else {
-                    d.y += ((parentsNodes.height - d.depth - 1) * height);
-                }
+                d.y = parentHeight - d.depth*200;
             });
             const treeDataChildren = buildChildrenTree(id);
             const childrenNodes = this.initTree(treeDataChildren);
             childrenNodes.each(function (d) {
-                d.y += height;
+                d.y = parentHeight + 200*d.depth;
             });
             const siblings = findSiblings(id);
             let siblingsCoordinates = [];
@@ -149,7 +146,8 @@ export default connect((state, props) => {
         return {
             activePersonId: props.match.params.person || 6,
             person: getPersonById(props.match.params.person || 6, state),
-            isPersonFetching: isPersonFetching(props.match.params.person || 6, state)
+            isPersonFetching: isPersonFetching(props.match.params.person || 6, state),
+            state
         }
     },
     {
