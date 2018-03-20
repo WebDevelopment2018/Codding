@@ -1,16 +1,18 @@
 import {uniq} from "ramda";
-import data from "../../data/data.json";
+//import data from "../../data/data.json";
 export const MONTHS = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
 
 export const DAYNAMES = ["Mon","Tue","Wed","Thu","Fr","Sat","Su"];
 
-export const getUserById = (id,data) => data.find(user => user.id === id);
+export const getUserById = (id,data) => {
+    return data.find(user => user.id === id);
+}
 
-export const buildParentsTree = (id) => {
+export const buildParentsTree = (id,data) => {
     if (id !== null) {
         let user = getUserById(id, data);
-        let parents = [buildParentsTree(user.father, name), buildParentsTree(user.mother, name)];
+        let parents = [buildParentsTree(user.father, data), buildParentsTree(user.mother, data)];
         return {
             "name": user.id,
             "children": parents.filter(n => n)
@@ -19,18 +21,18 @@ export const buildParentsTree = (id) => {
     return null;
 };
 
-export const buildChildrenTree = (id) => {
+export const buildChildrenTree = (id,data) => {
     if (id !== null) {
         let user = getUserById(id, data);
 
         return {
             "name": user.id,
-            "children": getChildren(id)
+            "children": getChildren(id,data)
         };
     }
     return null;
 };
-export const findSiblings = (id) => {
+export const findSiblings = (id,data) => {
     const person = getUserById(id,data);
     let mother = person.mother,
         father = person.father,
@@ -44,7 +46,7 @@ export const findSiblings = (id) => {
     return sistersBrothers;
 };
 
-export const findRelationships = (id) => {
+export const findRelationships = (id,data) => {
     let relationship = [];
     data.map((user) => {
             if (user.mother === id && user.father !== null) {
@@ -57,11 +59,11 @@ export const findRelationships = (id) => {
     return uniq(relationship);
 };
 
-export const getChildren = (id) => {
+export const getChildren = (id,data) => {
     let children = [];
     data.map(user => {
         if (user.mother === id || user.father === id) {
-            children.push(buildChildrenTree(user.id));
+            children.push(buildChildrenTree(user.id,data));
         }
     });
     return children;

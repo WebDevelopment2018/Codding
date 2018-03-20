@@ -2,15 +2,15 @@ import React, {Component, Fragment} from 'react';
 
 import * as d3 from "d3";
 import {connect} from "react-redux";
+import {isEmpty} from "ramda";
 
 import "../styles/Tree.less";
 import block from "../helpers/BEM";
 import {buildChildrenTree, buildParentsTree, findSiblings, findRelationships} from "./consts";
 import Family from "./Family";
-import {fetchPerson} from "../actions";
-import {getPersonById, isPersonFetching} from "../reducers";
+import {fetchFamily} from "../api";
+import {getFamily, isFamilyFetching} from "../reducers";
 import TreePathes from "./TreePathes";
-import person from "../reducers/person";
 
 const b = block("Tree");
 
@@ -22,8 +22,7 @@ class Tree extends Component {
             "childrenCoordinates": [],
             "siblingsCoordinates": [],
             "relationshipCoordinates": [],
-            "height": 350,
-            "data": []
+            "height": 350
         }
     }
 
@@ -35,42 +34,26 @@ class Tree extends Component {
     componentWillReceiveProps(nextProps) {
         this.calculateTree(nextProps.activePersonId);
     }
-
-    // buildParentsTree(id,props){
-    //     if (id !== null) {
-    //         let user = getPersonById(id, props);
-    //         console.log(user);
-    //         let parents = [buildParentsTree(user.father, props), buildParentsTree(user.mother, props)];
-    //         return {
-    //             "name": user.id,
-    //             "children": parents.filter(n => n)
-    //         };
-    //     }
-    //     return null;
-    // };
-
     calculateTree(props) {
-        const {fetchPerson, isPersonFetching, person, activePersonId,state} = this.props;
-
-        if (!person && !isPersonFetching) {
-            fetchPerson(activePersonId)
+        const {fetchFamily, family,isFamilyFetching} = this.props;
+        if (isEmpty(family) && isEmpty(isFamilyFetching)) {
+            fetchFamily();
         }
-
-        if (person) {
+        if (!isEmpty(family)) {
+            const data = family.data;
             const id = parseInt(props);
-            const height = this.state.height;
-            const treeDataParents = buildParentsTree(id);
+            const treeDataParents = buildParentsTree(id,data);
             const parentsNodes = this.initTree(treeDataParents);
             const parentHeight = parentsNodes.height*200;
             parentsNodes.each(function (d) {
                 d.y = parentHeight - d.depth*200;
             });
-            const treeDataChildren = buildChildrenTree(id);
+            const treeDataChildren = buildChildrenTree(id, data);
             const childrenNodes = this.initTree(treeDataChildren);
             childrenNodes.each(function (d) {
                 d.y = parentHeight + 200*d.depth;
             });
-            const siblings = findSiblings(id);
+            const siblings = findSiblings(id,data);
             let siblingsCoordinates = [];
             siblings.map((s, i) => {
                     siblingsCoordinates.push({
@@ -80,7 +63,7 @@ class Tree extends Component {
                     })
                 }
             );
-            const relationship = findRelationships(id);
+            const relationship = findRelationships(id, data);
             let relationshipCoordinates = [];
             relationship.map((s, i) => {
                     relationshipCoordinates.push({
@@ -145,12 +128,13 @@ class Tree extends Component {
 export default connect((state, props) => {
         return {
             activePersonId: props.match.params.person || 6,
-            person: getPersonById(props.match.params.person || 6, state),
-            isPersonFetching: isPersonFetching(props.match.params.person || 6, state),
-            state
+            family: getFamily(state),
+            isFamilyFetching: isFamilyFetching(state),
+            // person: getPersonById(props.match.params.person || 6, state),
+            // isPersonFetching: isPersonFetching(props.match.params.person || 6, state),
         }
     },
     {
-        fetchPerson
+        fetchFamily
     }
 )(Tree);

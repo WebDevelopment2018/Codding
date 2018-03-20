@@ -6,7 +6,6 @@ export const changePersonId = (id) => {
     }
 };
 
-
 const fetchPersonStart = (id) =>{
     return {
         type: "FETCH_PERSON",
