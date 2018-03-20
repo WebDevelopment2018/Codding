@@ -3,8 +3,7 @@ import person, * as fromPerson from './person';
 import data from "./data";
 
 const FamilyApp = combineReducers({
-    person: person,
-    data: data
+    person: person
 });
 
 

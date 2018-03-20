@@ -19,7 +19,7 @@ const persons = (state = {}, action) => {
         default:
             return state;
     }
-}
+};
 
 const fetching = (state = {}, action) => {
     switch (action.type) {
@@ -31,7 +31,7 @@ const fetching = (state = {}, action) => {
         default:
             return state;
     }
-}
+};
 
 
 export default combineReducers({

@@ -28,10 +28,4 @@ class Layout extends Component {
         )
     }
 }
-
-// Layout = withRouter(connect(state =>
-//         () => ({}),
-//     mapDispatchToProps
-// )(Layout));
-//
 export default Layout;

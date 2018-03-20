@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from 'react';
-import {fromEvent} from "most";
 
 import * as d3 from "d3";
 import {connect} from "react-redux";
@@ -10,6 +9,8 @@ import {buildChildrenTree, buildParentsTree, findSiblings, findRelationships} fr
 import Family from "./Family";
 import {fetchPerson} from "../actions";
 import {getPersonById, isPersonFetching} from "../reducers";
+import TreePathes from "./TreePathes";
+import person from "../reducers/person";
 
 const b = block("Tree");
 
@@ -19,40 +20,46 @@ class Tree extends Component {
         this.state = {
             "parentsCoordinates": [],
             "childrenCoordinates": [],
-            "siblingsCoordinates":[],
+            "siblingsCoordinates": [],
             "relationshipCoordinates": [],
             "height": 350,
-            "data":[]
+            "data": []
         }
     }
-    // componentDidMount() {
-    //     const mouseDown = fromEvent("mousedown", this.refs.root);
-    //     const mouseMove = fromEvent("mousemove", this.refs.root);
-    //     const mouseUp = fromEvent("mouseup", this.refs.root);
-    //
-    //     const click = fromEvent("click", this.refs.root);
-    //     mouseDown
-    //         .filter(({target}) => target.matches(".Tree"))
-    //         .observe(ev => console.log("down"));
-    //         mouseUp
-    //             .filter(({ target }) => target.matches(".Tree"))
-    //             .observe(ev => ev);
-    //
-    // }
+
     componentWillMount() {
         this.calculateTree(this.props.activePersonId);
 
     }
-    componentWillReceiveProps(nextProps){
+
+    componentWillReceiveProps(nextProps) {
         this.calculateTree(nextProps.activePersonId);
     }
-    calculateTree(props){
-        const {fetchPerson, isPersonFetching, person, activePersonId} = this.props;
 
-        if(!person && !isPersonFetching){
+    // buildParentsTree(id,props){
+    //     if (id !== null) {
+    //         let user = getPersonById(id, props);
+    //         console.log(user);
+    //         let parents = [buildParentsTree(user.father, props), buildParentsTree(user.mother, props)];
+    //         return {
+    //             "name": user.id,
+    //             "children": parents.filter(n => n)
+    //         };
+    //     }
+    //     return null;
+    // };
+
+    calculateTree(props) {
+        const {fetchPerson, isPersonFetching, person, activePersonId,state} = this.props;
+
+        if (!person && !isPersonFetching) {
             fetchPerson(activePersonId)
         }
-        if(person) {
+
+        if (person) {
+            console.log(person, person.father);
+            //console.log(getPersonById(person.father, state));
+            //console.log(fetchPerson(person.father));
             const id = parseInt(props);
             const height = this.state.height;
             const treeDataParents = buildParentsTree(id);
@@ -98,14 +105,15 @@ class Tree extends Component {
         }
     }
 
-    initTree(treeData){
+    initTree(treeData) {
         let treemap = d3.tree()
             .size([500, this.state.height]);                              //розміщення відносно svg
         let nodes = d3.hierarchy(treeData);
         nodes = treemap(nodes);
         return nodes;
     }
-    buildTree(nodes){
+
+    buildTree(nodes) {
         let nodesMap = [];
         nodes.each(function (d) {
             nodesMap.push({
@@ -118,56 +126,20 @@ class Tree extends Component {
         });
         return nodesMap;
     }
-    getClassName(node) {
-        return b("node") +
-            (node.children ? b("node-internal") : b("node-leaf"));
-    }
 
-    getTransform(node) {
-        return "translate(" + node.x + "," + node.y + ")";
-    }
-    renderPath(node) {
-        if (node.parent !== null) {
-            return (<path className={b("link")} d={this.getPath(node)}/>)
-        }
-    }
-    getPath(d) {                                                    //control ends and line of the path
-        return "M" + (d.x + 50) + "," + d.y
-            + "C" + (d.x + 50) + "," + (d.y + d.parent.y) / 2
-            + " " + d.parent.x + "," + (d.y + d.parent.y) / 2
-            + " " + d.parent.x + "," + d.parent.y;
-    }
-    renderTrees() {
-        return (
-            <Fragment>
-                {this.state.parentsCoordinates.map((node) => this.renderNode(node))}
-                {this.state.childrenCoordinates.map((node) => this.renderNode(node))}
-            </Fragment>
-        )
-
-    }
-    renderNode(node) {
-        return (
-            <Fragment key={node.id}>
-                <g className={this.getClassName(node)} transform={this.getTransform(node)} >
-                    <rect width="100" height="150" className={b("node-rect")}>
-                    </rect>
-                </g>
-                {this.renderPath(node)}
-            </Fragment>
-        )
-    }
     render() {
         return (
             <Fragment>
                 <svg ref="root" className={b()} width="100%" height={this.state.height * 2} key="1">
-                    <image className="Layout__logo" href="http://res.cloudinary.com/csucu/image/upload/q_100/v1521035030/logo_iflxie.jpg" x="200" y="50" height="80px" width="100px"/>
-                    <g transform="translate(400,210)">              /*size of path layer*/
-                        {this.renderTrees()}
-                    </g>
+                    <image className="Layout__logo"
+                           href="http://res.cloudinary.com/csucu/image/upload/q_100/v1521035030/logo_iflxie.jpg" x="200"
+                           y="50" height="80px" width="100px"/>
+                    <TreePathes parentsCoordinates={this.state.parentsCoordinates}
+                                childrenCoordinates={this.state.childrenCoordinates}/>
                 </svg>
                 <Family coordinates={this.state.parentsCoordinates} key="2"/>
-                <Family coordinates={this.state.childrenCoordinates.slice(1,this.state.childrenCoordinates.length)} key="3"/>
+                <Family coordinates={this.state.childrenCoordinates.slice(1, this.state.childrenCoordinates.length)}
+                        key="3"/>
                 <Family coordinates={this.state.siblingsCoordinates} key="4"/>
                 <Family coordinates={this.state.relationshipCoordinates} key="5"/>
             </Fragment>
@@ -176,12 +148,12 @@ class Tree extends Component {
 }
 
 
-
 export default connect((state, props) => {
         return {
             activePersonId: props.match.params.person || 6,
-            person: getPersonById(props.match.params.person || 6,state),
-            isPersonFetching: isPersonFetching(props.match.params.person || 6,state)
+            person: getPersonById(props.match.params.person || 6, state),
+            isPersonFetching: isPersonFetching(props.match.params.person || 6, state),
+            state
         }
     },
     {
