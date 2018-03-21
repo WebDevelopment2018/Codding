@@ -21,8 +21,7 @@ class Tree extends Component {
             "parentsCoordinates": [],
             "childrenCoordinates": [],
             "siblingsCoordinates": [],
-            "relationshipCoordinates": [],
-            "height": 350
+            "relationshipCoordinates": []
         }
     }
 
@@ -105,20 +104,20 @@ class Tree extends Component {
     }
 
     render() {
+        const all = this.state.relationshipCoordinates.concat(this.state.siblingsCoordinates,
+            this.state.childrenCoordinates.slice(1, this.state.childrenCoordinates.length),
+            this.state.parentsCoordinates);
+        console.log(all);
         return (
             <Fragment>
-                <svg ref="root" className={b()} width="100%" height={this.state.height * 2} key="1">
+                <svg ref="root" className={b()} width="100%" height="700" key="1">
                     <image className="Layout__logo"
                            href="http://res.cloudinary.com/csucu/image/upload/q_100/v1521035030/logo_iflxie.jpg" x="200"
                            y="50" height="80px" width="100px"/>
                     <TreePathes parentsCoordinates={this.state.parentsCoordinates}
                                 childrenCoordinates={this.state.childrenCoordinates}/>
                 </svg>
-                <Family coordinates={this.state.parentsCoordinates} key="2"/>
-                <Family coordinates={this.state.childrenCoordinates.slice(1, this.state.childrenCoordinates.length)}
-                        key="3"/>
-                <Family coordinates={this.state.siblingsCoordinates} key="4"/>
-                <Family coordinates={this.state.relationshipCoordinates} key="5"/>
+                <Family coordinates={all} key="2"/>
             </Fragment>
         )
     }
