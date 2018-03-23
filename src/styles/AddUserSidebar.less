@@ -1,0 +1,30 @@
+.AddUserSidebar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  &__input-name, &__input-surname, &__input-birthday,&__input-death{
+    border:0;
+    outline:0;
+    padding: 0.7rem;
+    border-radius: 8px;
+    display: block;
+    width: 80%;
+    margin-top: 1em;
+    box-shadow: 0 1px 1px 1px #669644;
+    resize: none;
+  }
+  &__bday, &__dday{
+    display: flex;
+    align-items: center;
+    height: 4em;
+    flex-direction: row;
+    position: relative;
+    width: 85%;
+    margin-top: 1em;
+  }
+  &__text{
+    width: 15%;
+  }
+}
