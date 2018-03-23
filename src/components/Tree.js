@@ -6,7 +6,7 @@ import {isEmpty} from "ramda";
 
 import "../styles/Tree.less";
 import block from "../helpers/BEM";
-import {buildChildrenTree, buildParentsTree, findSiblings, findRelationships} from "./consts";
+import {buildChildrenTree, buildParentsTree, findSiblings, findRelationships} from "../helpers/buildTree";
 import Family from "./Family";
 import {fetchFamily} from "../api";
 import {getFamily, isFamilyFetching} from "../reducers";
@@ -27,32 +27,32 @@ class Tree extends Component {
 
     componentWillMount() {
         this.calculateTree(this.props.activePersonId);
-
     }
 
     componentWillReceiveProps(nextProps) {
         this.calculateTree(nextProps.activePersonId);
     }
+
     calculateTree(props) {
-        const {fetchFamily, family,isFamilyFetching} = this.props;
+        const {fetchFamily, family, isFamilyFetching} = this.props;
         if (isEmpty(family) && isEmpty(isFamilyFetching)) {
             fetchFamily();
         }
         if (!isEmpty(family)) {
             const data = family.data;
             const id = parseInt(props);
-            const treeDataParents = buildParentsTree(id,data);
+            const treeDataParents = buildParentsTree(id, data);
             const parentsNodes = this.initTree(treeDataParents);
-            const parentHeight = parentsNodes.height*200;
+            const parentHeight = parentsNodes.height * 200;
             parentsNodes.each(function (d) {
-                d.y = parentHeight - d.depth*200;
+                d.y = parentHeight - d.depth * 200;
             });
             const treeDataChildren = buildChildrenTree(id, data);
             const childrenNodes = this.initTree(treeDataChildren);
             childrenNodes.each(function (d) {
-                d.y = parentHeight + 200*d.depth;
+                d.y = parentHeight + 200 * d.depth;
             });
-            const siblings = findSiblings(id,data);
+            const siblings = findSiblings(id, data);
             let siblingsCoordinates = [];
             siblings.map((s, i) => {
                     siblingsCoordinates.push({
@@ -107,13 +107,10 @@ class Tree extends Component {
         const all = this.state.relationshipCoordinates.concat(this.state.siblingsCoordinates,
             this.state.childrenCoordinates.slice(1, this.state.childrenCoordinates.length),
             this.state.parentsCoordinates);
-        console.log(all);
+        // console.log(all);
         return (
             <Fragment>
                 <svg ref="root" className={b()} width="100%" height="700" key="1">
-                    <image className="Layout__logo"
-                           href="http://res.cloudinary.com/csucu/image/upload/q_100/v1521035030/logo_iflxie.jpg" x="200"
-                           y="50" height="80px" width="100px"/>
                     <TreePathes parentsCoordinates={this.state.parentsCoordinates}
                                 childrenCoordinates={this.state.childrenCoordinates}/>
                 </svg>
@@ -123,14 +120,11 @@ class Tree extends Component {
     }
 }
 
-
 export default connect((state, props) => {
         return {
             activePersonId: props.match.params.person || 6,
             family: getFamily(state),
-            isFamilyFetching: isFamilyFetching(state),
-            // person: getPersonById(props.match.params.person || 6, state),
-            // isPersonFetching: isPersonFetching(props.match.params.person || 6, state),
+            isFamilyFetching: isFamilyFetching(state)
         }
     },
     {

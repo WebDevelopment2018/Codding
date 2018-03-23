@@ -15,8 +15,8 @@ const fetching = (state = {}, action) => {
     switch (action.type) {
         case "FETCH_FAMILY":
             return assoc('fetched',true, state);
-        case "FETCH_PERSON_SUCCESS":
-        case "FETCH_PERSON_FAIL":
+        case "FETCH_FAMILY_SUCCESS":
+        case "FETCH_FAMILY_FAIL":
             return assoc('fetched',false, state);
         default:
             return state;
