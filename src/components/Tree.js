@@ -24,12 +24,9 @@ class Tree extends Component {
             "relationshipCoordinates": []
         }
     }
-
     componentWillMount() {
         this.calculateTree(this.props.activePersonId);
-
     }
-
     componentWillReceiveProps(nextProps) {
         this.calculateTree(nextProps.activePersonId);
     }
@@ -82,8 +79,7 @@ class Tree extends Component {
     }
 
     initTree(treeData) {
-        let treemap = d3.tree()
-            .size([500, this.state.height]);                              //розміщення відносно svg
+        let treemap = d3.tree().size([500, this.state.height]);                              //розміщення відносно svg
         let nodes = d3.hierarchy(treeData);
         nodes = treemap(nodes);
         return nodes;
@@ -123,17 +119,12 @@ class Tree extends Component {
     }
 }
 
-
 export default connect((state, props) => {
         return {
             activePersonId: props.match.params.person || 6,
             family: getFamily(state),
-            isFamilyFetching: isFamilyFetching(state),
-            // person: getPersonById(props.match.params.person || 6, state),
-            // isPersonFetching: isPersonFetching(props.match.params.person || 6, state),
+            isFamilyFetching: isFamilyFetching(state)
         }
     },
-    {
-        fetchFamily
-    }
+    {fetchFamily}
 )(Tree);
