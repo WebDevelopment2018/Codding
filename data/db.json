@@ -8,6 +8,8 @@
       "death": "13.03.1669",
       "mother": null,
       "father": null,
+      "relationship": [2],
+      "children":[4],
       "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520238626/maria_romanova_x0sjf2.jpg"
     },
     {
@@ -18,6 +20,8 @@
       "death": "29.01.1676",
       "mother": null,
       "father": null,
+      "relationship": [1,3],
+      "children":[4,8],
       "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520238626/olexii_romanov_fqgs4z.jpg"
     },
     {
@@ -28,6 +32,8 @@
       "death": "25.01.1694",
       "mother": null,
       "father": null,
+      "children":[8],
+      "relationship": [2],
       "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520238626/Natalia_romanova_bdwert.jpg"
     },
     {
@@ -38,6 +44,8 @@
       "death": "29.01.1696",
       "mother": 1,
       "father": 2,
+      "relationship": [5],
+      "children":[6,7],
       "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520238626/Ivan_V_imwgqd.jpg"
     },
     {
@@ -46,6 +54,8 @@
       "surname": "Романова",
       "birthday": "12.10.1664",
       "death": "13.10.1723",
+      "relationship": [4],
+      "children":[6,7],
       "mother": null,
       "father": null,
       "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520238627/Praskovia_romanova_ivm43u.jpg"
@@ -58,6 +68,8 @@
       "death": "14.06.1733",
       "mother": 5,
       "father": 4,
+      "children":[10],
+      "relationship": [9],
       "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520238626/Catherine_romanova_d9zt6o.jpg"
     },
     {
@@ -68,6 +80,8 @@
       "death": "17.10.1740",
       "mother": 5,
       "father": 4,
+      "relationship": [],
+      "children":[],
       "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520238626/Anna_romanova_c4d7ip.jpg"
     },
     {
@@ -78,6 +92,8 @@
       "death": "28.01.1725",
       "mother": 3,
       "father": 2,
+      "relationship": [],
+      "children":[],
       "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520238627/Petro_1_bkft4n.jpg"
     },
     {
@@ -88,6 +104,8 @@
       "death": "28.11.1747",
       "mother": null,
       "father": null,
+      "relationship": [6],
+      "children":[10],
       "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520244788/Karol_Leopold_Meklemburski_vatvps.jpg"
     },
     {
@@ -98,17 +116,9 @@
       "death": "19.03.1746",
       "mother": 6,
       "father": 9,
+      "relationship": [],
+      "children":[],
       "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520245251/Anna_Leopoldovna_fougnw.jpg"
-    },
-    {
-      "id": 11,
-      "name": "Антон Ульріх",
-      "surname": "Брауншвейзький",
-      "birthday": "17.08.1714",
-      "death": "04.05.1774",
-      "mother": null,
-      "father": null,
-      "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520245313/Anton_Ulrich_dhqc6p.jpg"
     }
   ]
 }
