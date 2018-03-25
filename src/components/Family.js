@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 
-import "../styles/Family.less";
 import Person from "./Person";
 
 class Family extends Component {

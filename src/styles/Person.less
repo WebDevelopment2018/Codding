@@ -1,63 +1,42 @@
 .Person {
-  width: 100px;
-  height: 150px;
+  width: 10em;
+  height: 15em;
   position: absolute;
   background-color: #ffffff;
   font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
   border-radius: 5px;
   border: 1px solid #bdc3c7;
   box-shadow: 3px 3px 3px #bdc3c7;
-  &__fullName {
+  &__info{
+    text-align: center;
+    margin:0.5em;
+  }
+  &__name, &__surname{
     display: block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     transition: all .2s linear;
-    font-size: 14px;
+    font-size: 0.8rem;
     color: #2c3e50;
+    margin: 0;
   }
-  &__fullName:focus, &__fullName:hover {
-    color:transparent;
-  }
-  &__fullName:focus:after,&__fullName:hover:after{
+  &__name:focus, &__name:hover, &__surname:focus,&__surname:hover {
+    color:#2c3e50;
+    white-space: nowrap;
     content:attr(data-text);
+    word-wrap: break-word;
     overflow: visible;
     text-overflow: inherit;
-    background: #fff;
-    position: absolute;
-    left:auto;
-    top:auto;
-    width: auto;
-    max-width: 20rem;
-    white-space: normal;
-    word-wrap: break-word;
-    display:block;
-    color: #2c3e50;
-    margin-top:-1.5rem;
-    padding-left: 10px;
+    font-size: 0.9rem;
+    display: block;
   }
   &__birthday {
-    font-size: 10px;
-    color: #2c3e50;
-    padding-left: 10px;
-    margin-top: 15px;
-    display: block;
+    margin-top: 0.5em;
   }
-  &__death {
+  &__death, &__birthday  {
     display: block;
-    font-size: 10px;
+    font-size: 0.7rem;
     color: #2c3e50;
-    padding-left: 10px;
-  }
-  &__unknown{
-    width: 100px;
-    height: 100px;
-    display: inline-block;
-    background-color: #ffffff;
-    border-radius: 5px;
-    border: 1px solid #bdc3c7;
-    box-shadow: 3px 3px 3px #bdc3c7;
-    margin-bottom: 10px;
-    margin-right: 5px;
   }
 }

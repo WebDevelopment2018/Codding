@@ -1,0 +1,29 @@
+.ToggleSidebar {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  &__action-button {
+    margin-top:3.4em;
+    transition: all 0.1s;
+    position: relative;
+    padding: 1em 2em;
+    height: 2em;
+    width: 9em;
+    line-height: 0.5em;
+    border-radius: 0.5em;
+    color: #FFF;
+    font-size: 1.5em;
+    text-decoration: none;
+    background-color: #82BF56;
+    border-bottom: 0.5em solid #669644;
+    &__action-button:active {
+      transform: translate(0px, 5px);
+      border-bottom: 1px solid;
+    }
+  }
+}

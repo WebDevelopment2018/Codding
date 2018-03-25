@@ -33,9 +33,9 @@ class TreePathes extends Component {
     }
     getPath(d) {                                                    //control ends and line of the path
         return "M" + (d.x + 50) + "," + d.y
-            + "C" + (d.x + 50) + "," + (d.y + d.parent.y) / 2
-            + " " + d.parent.x + "," + (d.y + d.parent.y) / 2
-            + " " + d.parent.x + "," + d.parent.y;
+            + "C" + (d.x + 50) + "," + (d.y + d.parent.y) /2
+            + " " + d.parent.x + "," + (d.y + d.parent.y) /2
+            + " " + d.parent.x  + "," + d.parent.y;
     }
     renderTrees() {
         return (
