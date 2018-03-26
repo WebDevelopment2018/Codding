@@ -30,7 +30,9 @@ const fetchPersonFail = (id, data) =>{
 }
 
 export const fetchPerson = (id) => async (dispatch) => {
+    console.log("fvd");
     dispatch(fetchPersonStart(id));
     const person = await ((await fetch(`http://localhost:3000/persons/${id}`)).json());
+
     dispatch(fetchPersonSuccess(id,person));
 }

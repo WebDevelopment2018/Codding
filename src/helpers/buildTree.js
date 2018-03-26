@@ -1,10 +1,10 @@
 import {uniq} from "ramda";
 
-export const getUserById = (id,data) => {
+export const getUserById = (id, data) => {
     return data.find(user => user.id === id);
 };
 
-export const buildParentsTree = (id,data) => {
+export const buildParentsTree = (id, data) => {
     if (id !== null) {
         let user = getUserById(id, data);
         let parents = [buildParentsTree(user.father, data), buildParentsTree(user.mother, data)];
@@ -16,50 +16,42 @@ export const buildParentsTree = (id,data) => {
     return null;
 };
 
-export const buildChildrenTree = (id,data) => {
+export const buildChildrenTree = (id, data) => {
     if (id !== null) {
         let user = getUserById(id, data);
-
+        if (user.children !== []) {
+            let children = [];
+            user.children.map(i => children.push(buildChildrenTree(i, data)));
+            return {
+                "name": user.id,
+                children
+            };
+        }
         return {
             "name": user.id,
-            "children": getChildren(id,data)
+            "children": []
         };
     }
     return null;
 };
-export const findSiblings = (id,data) => {
-    const person = getUserById(id,data);
-    let mother = person.mother,
-        father = person.father,
-        sistersBrothers = [];
-    data.map((user) => {
-            if (mother !== null && father !== null && person !== user && user.mother === mother && user.father === father) {
-                sistersBrothers.push(user);
-            }
-        }
-    );
-    return sistersBrothers;
+export const findSiblings = (id, data) => {
+    const person = getUserById(id, data);
+    let siblings = [];
+    if (person.mother !== null) {
+        const mother_children = getUserById(person.mother, data).children;
+        mother_children.map(child => {child !== id ? siblings.push(getUserById(child,data)): child});
+    }
+    if (person.father !== null) {
+        const father_children = getUserById(person.father, data).children;
+        father_children.map(child => {child !== id ? siblings.push(getUserById(child,data)): child});
+    }
+    return uniq(siblings);
 };
 
-export const findRelationships = (id,data) => {
-    let relationship = [];
-    data.map((user) => {
-            if (user.mother === id && user.father !== null) {
-                relationship.push(user.father);
-            }else if(user.father === id && user.mother !== null){
-                relationship.push(user.mother);
-            }
-        }
-    );
-    return uniq(relationship);
-};
-
-export const getChildren = (id,data) => {
-    let children = [];
-    data.map(user => {
-        if (user.mother === id || user.father === id) {
-            children.push(buildChildrenTree(user.id,data));
-        }
-    });
-    return children;
+export const findRelationships = (id, data) => {
+    if (id !== null) {
+        const user = getUserById(id, data);
+        return user.relationship;
+    }
+    return [];
 };
