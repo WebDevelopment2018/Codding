@@ -4,13 +4,24 @@
   align-items: center;
   width: 100%;
 
-  &__input-name, &__input-surname, &__input-birthday,&__input-death{
+  &__input-name, &__input-surname{
     border:0;
     outline:0;
     padding: 0.7rem;
     border-radius: 8px;
     display: block;
     width: 80%;
+    margin-top: 1em;
+    box-shadow: 0 1px 1px 1px #669644;
+    resize: none;
+  }
+  &__input-birthday,&__input-death{
+    border:0;
+    outline:0;
+    padding: 0.7rem;
+    border-radius: 8px;
+    display: block;
+    width: 60%;
     margin-top: 1em;
     box-shadow: 0 1px 1px 1px #669644;
     resize: none;
@@ -25,6 +36,18 @@
     margin-top: 1em;
   }
   &__text{
-    width: 15%;
+    width: 40%;
+    font-size: 1.5em;
+    color: #2c3e50;
   }
+}
+.button {
+  color: #fff;
+  padding: 10px 30px;
+  display: inline-block;
+  font-size: 14px;
+  text-decoration: none;
+}
+.buttonInfo {
+  background-color: #00a2d3;
 }
