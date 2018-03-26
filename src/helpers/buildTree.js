@@ -45,7 +45,6 @@ export const findSiblings = (id, data) => {
         const father_children = getUserById(person.father, data).children;
         father_children.map(child => {child !== id ? siblings.push(getUserById(child,data)): child});
     }
-    console.log(siblings);
     return uniq(siblings);
 };
 

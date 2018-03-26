@@ -9,7 +9,7 @@ import block from "../helpers/BEM";
 import {buildChildrenTree, buildParentsTree, findSiblings, findRelationships} from "../helpers/buildTree";
 import Family from "./Family";
 import {fetchFamily} from "../api";
-import {getFamily, isFamilyFetching} from "../reducers";
+import {getFamilyByPersonId, isFamilyFetching} from "../reducers";
 import TreePathes from "./TreePathes";
 
 const b = block("Tree");
@@ -24,59 +24,61 @@ class Tree extends Component {
             "relationshipCoordinates": []
         }
     }
+
     componentWillMount() {
-        this.calculateTree(this.props.activePersonId);
+        this.calculateTree(this.props);
     }
+
     componentWillReceiveProps(nextProps) {
-        this.calculateTree(nextProps.activePersonId);
+        this.calculateTree(nextProps);
     }
 
     calculateTree(props) {
-        const {fetchFamily, family, isFamilyFetching} = this.props;
-        if (isEmpty(family) && isEmpty(isFamilyFetching)) {
-            fetchFamily();
+        const {fetchFamily, isFamilyFetching, family, activePersonId, state} = props;
+        if (!family && !isFamilyFetching) {
+            fetchFamily(activePersonId, state);
         }
-        if (!isEmpty(family)) {
-            const data = family.data;
-            const id = parseInt(props);
-            const treeDataParents = buildParentsTree(id, data);
-            const parentsNodes = this.initTree(treeDataParents);
-            const parentHeight = parentsNodes.height * 200;
-            parentsNodes.each(function (d) {
-                d.y = parentHeight - d.depth * 200;
-            });
-            const treeDataChildren = buildChildrenTree(id, data);
-            const childrenNodes = this.initTree(treeDataChildren);
-            childrenNodes.each(function (d) {
-                d.y = parentHeight + 200 * d.depth;
-            });
-            const siblings = findSiblings(id, data);
-            let siblingsCoordinates = [];
-            siblings.map((s, i) => {
-                    siblingsCoordinates.push({
-                        "id": s.id,
-                        "x": parentsNodes.x + 200 * (i + 1),
-                        "y": parentsNodes.y - 150
-                    })
-                }
-            );
-            const relationship = findRelationships(id, data);
-            let relationshipCoordinates = [];
-            relationship.map((s, i) => {
-                    relationshipCoordinates.push({
-                        "id": s,
-                        "x": parentsNodes.x - 200 * (i + 1),
-                        "y": parentsNodes.y - 150
-                    })
-                }
-            );
-            this.setState({
-                relationshipCoordinates,
-                siblingsCoordinates,
-                "childrenCoordinates": this.buildTree(childrenNodes),
-                "parentsCoordinates": this.buildTree(parentsNodes)
-            });
-        }
+        // if (family) {
+        //     const data = family;
+        //     const id = parseInt(activePersonId);
+        //     const treeDataParents = buildParentsTree(id, data);
+        //     const parentsNodes = this.initTree(treeDataParents);
+        //     const parentHeight = parentsNodes.height * 200;
+        //     parentsNodes.each(function (d) {
+        //         d.y = parentHeight - d.depth * 200;
+        //     });
+        //     const treeDataChildren = buildChildrenTree(id, data);
+        //     const childrenNodes = this.initTree(treeDataChildren);
+        //     childrenNodes.each(function (d) {
+        //         d.y = parentHeight + 200 * d.depth;
+        //     });
+        //     const siblings = findSiblings(id, data);
+        //     let siblingsCoordinates = [];
+        //     siblings.map((s, i) => {
+        //             siblingsCoordinates.push({
+        //                 "id": s.id,
+        //                 "x": parentsNodes.x + 200 * (i + 1),
+        //                 "y": parentsNodes.y - 150
+        //             })
+        //         }
+        //     );
+        //     const relationship = findRelationships(id, data);
+        //     let relationshipCoordinates = [];
+        //     relationship.map((s, i) => {
+        //             relationshipCoordinates.push({
+        //                 "id": s,
+        //                 "x": parentsNodes.x - 200 * (i + 1),
+        //                 "y": parentsNodes.y - 150
+        //             })
+        //         }
+        //     );
+        //     this.setState({
+        //         relationshipCoordinates,
+        //         siblingsCoordinates,
+        //         "childrenCoordinates": this.buildTree(childrenNodes),
+        //         "parentsCoordinates": this.buildTree(parentsNodes)
+        //     });
+        // }
     }
 
     initTree(treeData) {
@@ -104,7 +106,6 @@ class Tree extends Component {
         const all = this.state.relationshipCoordinates.concat(this.state.siblingsCoordinates,
             this.state.childrenCoordinates.slice(1, this.state.childrenCoordinates.length),
             this.state.parentsCoordinates);
-        // console.log(all);
         return (
             <Fragment>
                 <svg ref="root" className={b()} width="100%" height="700" key="1">
@@ -120,8 +121,9 @@ class Tree extends Component {
 export default connect((state, props) => {
         return {
             activePersonId: props.match.params.person || 6,
-            family: getFamily(state),
-            isFamilyFetching: isFamilyFetching(state)
+            family: getFamilyByPersonId(props.match.params.person || 6, state),
+            isFamilyFetching: isFamilyFetching(props.match.params.person || 6, state),
+            state
         }
     },
     {fetchFamily}
