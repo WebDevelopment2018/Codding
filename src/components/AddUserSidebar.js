@@ -20,21 +20,25 @@ class AddUserSidebar extends Component {
         const father = this.refs.father.value;
         const mother = this.refs.mother.value;
         const children = this.refs.children.value;
+        const relationship = [];
+        const photo = "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520238627/Praskovia_romanova_ivm43u.jpg";
 
         const person = {
-            name: name,
-            surname: surname,
-            birthday: birthday,
-            death: death,
-            father: father,
-            mother: mother,
-            children: children,
+            name,
+            surname,
+            birthday,
+            death,
+            father,
+            mother,
+            children,
+            relationship,
+            photo
         };
         if (mother==="" || father==="" || children==="" || death===""){
             person.mother = null;
             person.father = null;
-            person.children = null;
             person.death = null;
+            person.children = [];
         }
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
