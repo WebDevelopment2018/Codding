@@ -3,9 +3,11 @@ import {connect} from "react-redux";
 import {NavLink} from 'react-router-dom'
 
 import "../styles/Person.less"
-import {getUserById} from "../helpers/buildTree";
 import users from "../../data/data.json"
 import block from "../helpers/BEM";
+import {getPersonById} from "../reducers";
+import {fetchPerson} from "../actions/index";
+import {isPersonFetching} from "../reducers/index";
 
 const b = block("Person");
 
@@ -21,7 +23,7 @@ class Person extends Component {
 
     mapPropsToState(props) {
         return {
-            "user": getUserById(props.person.id, users),
+            "user": props.user,
             "x": props.person.x,
             "y": props.person.y
         };
@@ -52,7 +54,13 @@ class Person extends Component {
             </NavLink>
         )
     }
-}
 
-export default Person;
+}
+export default connect((state, props) => {
+        return {
+            user: getPersonById(props.person.id, state)
+        }
+    },
+    null
+)(Person);
 

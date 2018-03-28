@@ -6,9 +6,9 @@ import {isEmpty} from "ramda";
 
 import "../styles/Tree.less";
 import block from "../helpers/BEM";
-import {buildChildrenTree, buildParentsTree, findSiblings, findRelationships} from "../helpers/buildTree";
+//import {buildChildrenTree, buildParentsTree, findSiblings, findRelationships} from "../helpers/buildTree";
 import Family from "./Family";
-import {fetchFamily} from "../api";
+import {fetchUserFamily} from "../actions/index";
 import {getFamilyByPersonId, isFamilyFetching} from "../reducers";
 import TreePathes from "./TreePathes";
 
@@ -34,51 +34,45 @@ class Tree extends Component {
     }
 
     calculateTree(props) {
-        const {fetchFamily, isFamilyFetching, family, activePersonId, state} = props;
+        const {fetchUserFamily, isFamilyFetching, family, activePersonId} = props;
         if (!family && !isFamilyFetching) {
-            fetchFamily(activePersonId, state);
+            fetchUserFamily(activePersonId);
         }
-        // if (family) {
-        //     const data = family;
-        //     const id = parseInt(activePersonId);
-        //     const treeDataParents = buildParentsTree(id, data);
-        //     const parentsNodes = this.initTree(treeDataParents);
-        //     const parentHeight = parentsNodes.height * 200;
-        //     parentsNodes.each(function (d) {
-        //         d.y = parentHeight - d.depth * 200;
-        //     });
-        //     const treeDataChildren = buildChildrenTree(id, data);
-        //     const childrenNodes = this.initTree(treeDataChildren);
-        //     childrenNodes.each(function (d) {
-        //         d.y = parentHeight + 200 * d.depth;
-        //     });
-        //     const siblings = findSiblings(id, data);
-        //     let siblingsCoordinates = [];
-        //     siblings.map((s, i) => {
-        //             siblingsCoordinates.push({
-        //                 "id": s.id,
-        //                 "x": parentsNodes.x + 200 * (i + 1),
-        //                 "y": parentsNodes.y - 150
-        //             })
-        //         }
-        //     );
-        //     const relationship = findRelationships(id, data);
-        //     let relationshipCoordinates = [];
-        //     relationship.map((s, i) => {
-        //             relationshipCoordinates.push({
-        //                 "id": s,
-        //                 "x": parentsNodes.x - 200 * (i + 1),
-        //                 "y": parentsNodes.y - 150
-        //             })
-        //         }
-        //     );
-        //     this.setState({
-        //         relationshipCoordinates,
-        //         siblingsCoordinates,
-        //         "childrenCoordinates": this.buildTree(childrenNodes),
-        //         "parentsCoordinates": this.buildTree(parentsNodes)
-        //     });
-        // }
+        if (family) {
+            const parentsNodes = this.initTree(family.parents);
+            const parentHeight = parentsNodes.height * 200;
+            parentsNodes.each(function (d) {
+                d.y = parentHeight - d.depth * 200;
+            });
+            const childrenNodes = this.initTree(family.children);
+            childrenNodes.each(function (d) {
+                d.y = parentHeight + 200 * d.depth;
+            });
+            let relationshipCoordinates = [];
+            family.relationship.map((s, i) => {
+                    relationshipCoordinates.push({
+                        "id": s,
+                        "x": parentsNodes.x - 200 * (i + 1),
+                        "y": parentsNodes.y - 150
+                    })
+                }
+            );
+            let siblingsCoordinates = [];
+            family.siblings.map((s, i) => {
+                    siblingsCoordinates.push({
+                        "id": s,
+                        "x": parentsNodes.x + 200 * (i + 1),
+                        "y": parentsNodes.y - 150
+                    })
+                }
+            );
+            this.setState({
+                relationshipCoordinates,
+                siblingsCoordinates,
+                "childrenCoordinates": this.buildTree(childrenNodes),
+                "parentsCoordinates": this.buildTree(parentsNodes)
+            });
+        }
     }
 
     initTree(treeData) {
@@ -126,5 +120,5 @@ export default connect((state, props) => {
             state
         }
     },
-    {fetchFamily}
+    {fetchUserFamily}
 )(Tree);
