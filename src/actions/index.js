@@ -1,11 +1,13 @@
 import {getPersonById} from "../reducers/index";
 import {uniq} from "ramda";
-// export const changePersonId = (id) => {
-//     return {
-//         type: 'CHANGE_ID',
-//         person: id
-//     }
-// };
+
+export const changePersonId = (id) => {
+    console.log(id);
+    return {
+        type: 'CHANGE_ID',
+        id
+    }
+};
 
 const fetchPersonStart = (id) => {
     return {

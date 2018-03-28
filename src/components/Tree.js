@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import "../styles/Tree.less";
 import block from "../helpers/BEM";
 import Family from "./Family";
-import {fetchUserFamily} from "../actions/index";
+import {changePersonId, fetchUserFamily} from "../actions/index";
 import {getFamilyByPersonId, isFamilyFetching} from "../reducers";
 import TreePathes from "./TreePathes";
 import {makeDraggable, moveElement, stopMoving} from "../helpers/drugAndDrop";
@@ -107,7 +107,7 @@ class Tree extends Component {
                     <TreePathes parentsCoordinates={this.state.parentsCoordinates}
                                 childrenCoordinates={this.state.childrenCoordinates}/>
                 </svg>
-                <Family coordinates={all} key="2"/>
+                <Family coordinates={all} activeId={this.props.activePersonId} key="2"/>
             </Fragment>
         )
     }

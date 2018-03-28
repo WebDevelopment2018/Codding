@@ -8,7 +8,7 @@ class Family extends Component {
         return (
             <div className="Family">
                 {this.props.coordinates.map( (person,i) =>
-                <Person person={person} key={i}/>
+                <Person person={person} activeId={this.props.activeId} key={i}/>
                 )}
             </div>
         )

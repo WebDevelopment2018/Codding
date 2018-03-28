@@ -22,10 +22,15 @@ class Person extends Component {
     }
 
     mapPropsToState(props) {
+        let className = "Person";
+        if (props.user.id === parseInt(props.activeId)){
+            className += " Person_active";
+        }
         return {
             "user": props.user,
             "x": props.person.x,
-            "y": props.person.y
+            "y": props.person.y,
+            className
         };
     }
 
@@ -40,7 +45,7 @@ class Person extends Component {
         const id = "/" + this.state.user.id;
         return (
             <NavLink to={id}>
-                <div className={this.state.user.id === this.state.user.id ? "Person" : "test"}
+                <div className={this.state.className}
                      style={this.getMargins()}>
                     <img className={b("img")} src={this.state.user.photo} alt=""/>
                     <div className={b("info")}>

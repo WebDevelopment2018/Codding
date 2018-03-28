@@ -4,12 +4,11 @@ let element = 0,
     currentY = 0,
     mousedown = false,
     left = 0,
-    top = 700,
+    top = 710,
     currentMatrix = 0;
 
 export const makeDraggable = (ev) =>{
     family = document.querySelector(".Family");
-    console.log(left,top);
     element = ev.target;
     currentX = ev.clientX;
     currentY = ev.clientY;

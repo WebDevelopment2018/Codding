@@ -1,12 +1,11 @@
 import {combineReducers} from "redux";
 import {assoc} from "ramda";
 
-const Id = 7;
 
-const activePersonId = (state = {Id}, action) => {
+const activePersonId = (state = {}, action) => {
     switch (action.type) {
         case "CHANGE_ID":
-            return {person: action.person};
+            return {id: action.person};
         default:
             return state;
     }
