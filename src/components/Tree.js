@@ -1,16 +1,14 @@
 import React, {Component, Fragment} from 'react';
-
 import * as d3 from "d3";
 import {connect} from "react-redux";
-import {isEmpty} from "ramda";
 
 import "../styles/Tree.less";
 import block from "../helpers/BEM";
-//import {buildChildrenTree, buildParentsTree, findSiblings, findRelationships} from "../helpers/buildTree";
 import Family from "./Family";
 import {fetchUserFamily} from "../actions/index";
 import {getFamilyByPersonId, isFamilyFetching} from "../reducers";
 import TreePathes from "./TreePathes";
+import {makeDraggable, moveElement, stopMoving} from "../helpers/drugAndDrop";
 
 const b = block("Tree");
 
@@ -102,7 +100,10 @@ class Tree extends Component {
             this.state.parentsCoordinates);
         return (
             <Fragment>
-                <svg ref="root" className={b()} width="100%" height="700" key="1">
+                <svg onMouseDown={makeDraggable}
+                     onMouseMove={moveElement}
+                     onMouseUp={stopMoving}
+                     ref="root" className={b()} width="100%" height="700" key="1" transform="matrix(1 0 0 1 0 0)">
                     <TreePathes parentsCoordinates={this.state.parentsCoordinates}
                                 childrenCoordinates={this.state.childrenCoordinates}/>
                 </svg>
