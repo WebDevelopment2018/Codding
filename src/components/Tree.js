@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import "../styles/Tree.less";
 import block from "../helpers/BEM";
 import Family from "./Family";
-import {changePersonId, fetchUserFamily} from "../actions/index";
+import {fetchUserFamily} from "../actions/index";
 import {getFamilyByPersonId, isFamilyFetching} from "../reducers";
 import TreePathes from "./TreePathes";
 import {makeDraggable, moveElement, stopMoving} from "../helpers/drugAndDrop";
