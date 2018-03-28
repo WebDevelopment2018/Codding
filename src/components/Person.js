@@ -45,10 +45,10 @@ class Person extends Component {
                     <img className={b("img")} src={this.state.user.photo} alt=""/>
                     <div className={b("info")}>
                         <h3 className={b("name")} data-text={this.state.user.name}>{this.state.user.name}</h3>
+                        <button className={b("edit-button")}><img className={b("edit-button__img")} src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Feedbin-Icon-home-edit.svg/2000px-Feedbin-Icon-home-edit.svg.png" alt=""/></button>
                         <h3 className={b("surname")} data-text={this.state.user.surname}>{this.state.user.surname}</h3>
                         <time className={b("birthday")}>{this.state.user.birthday}</time>
                         <time className={b("death")}>{this.state.user.death}</time>
-                        <button className={b("edit-button")}>Edit</button>
                     </div>
                 </div>
             </NavLink>

@@ -40,13 +40,31 @@
     color: #2c3e50;
   }
   &__edit-button{
-    display: none;
+    opacity: 0;
+    transition:opacity 0.5s linear;
+    background: none;
+    width: 2.5em;
+    height: 2.5em;
     padding: 0;
-    width: 5em;
-    height: 1em;
-    margin: 1em auto auto;
+    border: none;
+    position: absolute;
+    left: 105px;
+    top: 60px;
+  }
+  &__edit-button:hover{
+    width: 2.5em;
+    height: 2.5em;
+    background-color: #BFD863;
+    transition: 0.5s;
+    top: 60px;
+    border-radius: 2px;
+    opacity: 1;
+  }
+  &__edit-button__img{
+    width: 1.5em;
+    height: 1.5em;
   }
 }
 .Person:hover .Person__edit-button{
-  display: block;
+  opacity: 1;
 }
