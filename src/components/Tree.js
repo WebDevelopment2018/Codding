@@ -115,9 +115,9 @@ class Tree extends Component {
 
 export default connect((state, props) => {
         return {
-            activePersonId: props.match.params.person || 6,
-            family: getFamilyByPersonId(props.match.params.person || 6, state),
-            isFamilyFetching: isFamilyFetching(props.match.params.person || 6, state),
+            activePersonId: props.match.params.person || 4,
+            family: getFamilyByPersonId(props.match.params.person || 4, state),
+            isFamilyFetching: isFamilyFetching(props.match.params.person || 4, state),
             state
         }
     },
