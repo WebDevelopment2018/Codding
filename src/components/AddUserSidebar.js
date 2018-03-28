@@ -16,10 +16,10 @@ class AddUserSidebar extends Component {
         const name = this.refs.name.value;
         const surname = this.refs.surname.value;
         const birthday = this.refs.birthday.value;
-        const death = this.refs.death.value;
-        const father = this.refs.father.value;
-        const mother = this.refs.mother.value;
-        const children = this.refs.children.value;
+        const death = this.refs.death.value === "" ? null : this.refs.death.value;
+        const father = this.refs.father.value === "" ? null : parseInt(this.refs.father.value);
+        const mother = this.refs.mother.value === "" ? null : parseInt(this.refs.mother.value);
+        const children = [];
         const relationship = [];
         const photo = "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520238627/Praskovia_romanova_ivm43u.jpg";
 
@@ -34,15 +34,9 @@ class AddUserSidebar extends Component {
             relationship,
             photo
         };
-        if (mother==="" || father==="" || children==="" || death===""){
-            person.mother = null;
-            person.father = null;
-            person.death = null;
-            person.children = [];
-        }
+
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-
         fetch('http://localhost:3000/persons', {
             method: 'POST',
             headers: headers,
