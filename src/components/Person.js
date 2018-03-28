@@ -3,11 +3,8 @@ import {connect} from "react-redux";
 import {NavLink} from 'react-router-dom'
 
 import "../styles/Person.less"
-import users from "../../data/data.json"
 import block from "../helpers/BEM";
 import {getPersonById} from "../reducers";
-import {fetchPerson} from "../actions/index";
-import {isPersonFetching} from "../reducers/index";
 
 const b = block("Person");
 

@@ -1,5 +1,6 @@
 import {combineReducers} from "redux";
 import {assoc} from "ramda";
+import * as expect from "expect";
 
 
 const activePersonId = (state = {}, action) => {
@@ -47,3 +48,15 @@ export const getPersonById = (id, state) => state.persons[id];
 export const isPersonFetching = (id, state) => state.fetching[id];
 
 
+// tests
+expect(
+    activePersonId({}, {type: "CHANGE_ID"})
+).toEqual({});
+
+expect(
+    persons({}, {type: "FETCH_PERSON_SUCCESS"})
+).toEqual({});
+
+expect(
+    fetching(undefined, {})
+).toEqual({});
