@@ -9,14 +9,14 @@ export const changePersonId = (id) => {
     }
 };
 
-const fetchPersonStart = (id) => {
+export const fetchPersonStart = (id) => {
     return {
         type: "FETCH_PERSON",
         id
     }
 }
 
-const fetchPersonSuccess = (id, data) => {
+export const fetchPersonSuccess = (id, data) => {
     return {
         type: "FETCH_PERSON_SUCCESS",
         id,
@@ -24,7 +24,7 @@ const fetchPersonSuccess = (id, data) => {
     }
 }
 
-const fetchPersonFail = (id, data) => {
+export const fetchPersonFail = (id, data) => {
     return {
         type: "FETCH_PERSON_FAIL",
         id,

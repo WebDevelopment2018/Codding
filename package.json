@@ -8,13 +8,15 @@
     "serve": "serve --single",
     "json": "json-server --watch data/db.json",
     "start": "npm run webpack | npm run serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@most/dom-event": "^2.0.0",
+    "babel-polyfill": "^6.26.0",
     "d3": "^4.13.0",
     "json-server": "^0.12.1",
     "most": "^1.7.3",
@@ -29,11 +31,13 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "babel-jest": "^22.4.3",
+    "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.9",
     "expect": "^22.4.3",
+    "jest": "^22.4.3",
     "less": "^3.0.1",
     "less-loader": "^4.0.5",
     "style-loader": "^0.20.2"

@@ -1,9 +1,8 @@
 import {combineReducers} from "redux";
 import {assoc} from "ramda";
-import * as expect from "expect";
 
 
-const activePersonId = (state = {}, action) => {
+export const activePersonId = (state = {}, action) => {
     switch (action.type) {
         case "CHANGE_ID":
             return {id: action.person};
@@ -12,7 +11,7 @@ const activePersonId = (state = {}, action) => {
     }
 };
 
-const persons = (state = {}, action) => {
+export const persons = (state = {}, action) => {
     switch (action.type) {
         case "FETCH_PERSON_SUCCESS":
             return assoc(action.id, action.data, state);
@@ -21,7 +20,7 @@ const persons = (state = {}, action) => {
     }
 };
 
-const fetching = (state = {}, action) => {
+export const fetching = (state = {}, action) => {
     switch (action.type) {
         case "FETCH_PERSON":
             return assoc(action.id, true, state);
@@ -47,16 +46,3 @@ export const getPerson = (personId, state) => state.activePersonId;
 export const getPersonById = (id, state) => state.persons[id];
 export const isPersonFetching = (id, state) => state.fetching[id];
 
-
-// tests
-expect(
-    activePersonId({}, {type: "CHANGE_ID"})
-).toEqual({});
-
-expect(
-    persons({}, {type: "FETCH_PERSON_SUCCESS"})
-).toEqual({});
-
-expect(
-    fetching(undefined, {})
-).toEqual({});
