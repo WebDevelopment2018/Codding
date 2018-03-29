@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
 import {assoc} from "ramda";
 
-const families = (state = {}, action) => {
+export const families = (state = {}, action) => {
     switch (action.type) {
         case "FETCH_FAMILY_SUCCESS":
             return assoc(action.id, action.family , state);
@@ -10,7 +10,7 @@ const families = (state = {}, action) => {
     }
 };
 
-const fetching = (state = {}, action) => {
+export const fetching = (state = {}, action) => {
     switch (action.type) {
         case "FETCH_FAMILY":
             return assoc(action.id, true, state);

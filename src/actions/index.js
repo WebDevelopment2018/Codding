@@ -14,7 +14,7 @@ export const fetchPersonStart = (id) => {
         type: "FETCH_PERSON",
         id
     }
-}
+};
 
 export const fetchPersonSuccess = (id, data) => {
     return {
@@ -22,7 +22,7 @@ export const fetchPersonSuccess = (id, data) => {
         id,
         data
     }
-}
+};
 
 export const fetchPersonFail = (id, data) => {
     return {
@@ -30,37 +30,37 @@ export const fetchPersonFail = (id, data) => {
         id,
         data
     }
-}
+};
 
 export const fetchPerson = (id) => async (dispatch) => {
     dispatch(fetchPersonStart(id));
     const person = await ((await fetch(`http://localhost:3000/persons/${id}`)).json());
     dispatch(fetchPersonSuccess(id, person));
     return person;
-}
+};
 
-const fetchFamilyStart = (id) => {
+export const fetchFamilyStart = (id) => {
     return {
         type: "FETCH_FAMILY",
         id
     }
-}
+};
 
-const fetchFamilySuccess = (family, id) => {
+export const fetchFamilySuccess = (family, id) => {
     return {
         type: "FETCH_FAMILY_SUCCESS",
         family,
         id
     }
-}
+};
 
-const fetchFamilyFail = (family, id) => {
+export const fetchFamilyFail = (family, id) => {
     return {
         type: "FETCH_FAMILY_FAIL",
         family,
         id
     }
-}
+};
 
 const getParents = (id) => async (dispatch, getState) => {
     if (id) {
@@ -77,7 +77,7 @@ const getParents = (id) => async (dispatch, getState) => {
         };
     }
     return null;
-}
+};
 const getRelationship = (id) => async (dispatch, getState) => {
     let person = getPersonById(id, getState());
     if (!person) {
@@ -87,7 +87,7 @@ const getRelationship = (id) => async (dispatch, getState) => {
         person.relationship.map(i => !getPersonById(i, getState()) ? dispatch(fetchPerson(i)) : i)
     );
     return person.relationship;
-}
+};
 const getSiblings = (id) => async (dispatch, getState) => {
     let person = getPersonById(id, getState());
     if (!person) {
@@ -117,7 +117,7 @@ const getSiblings = (id) => async (dispatch, getState) => {
         siblings.map(i => !getPersonById(i, getState()) ? dispatch(fetchPerson(i)) : i)
     );
     return siblings;
-}
+};
 const getChildren = (id) => async (dispatch, getState) => {
     if (id) {
         let person = getPersonById(id, getState());
@@ -142,7 +142,7 @@ const getChildren = (id) => async (dispatch, getState) => {
         };
     }
     return null;
-}
+};
 
 
 export const fetchUserFamily = (id) => async (dispatch) => {
@@ -152,9 +152,9 @@ export const fetchUserFamily = (id) => async (dispatch) => {
         "children": await dispatch(getChildren(id)),
         "relationship": await dispatch(getRelationship(id)),
         "siblings": await dispatch(getSiblings(id))
-    }
+    };
     dispatch(fetchFamilySuccess(family, id));
-}
+};
 const editPersonParents = (data, id) => async (dispatch) => {
     await fetch("http://localhost:3000/persons/" + id, {
         method: 'PATCH',
@@ -163,7 +163,7 @@ const editPersonParents = (data, id) => async (dispatch) => {
         },
         body: JSON.stringify(data)
     });
-}
+};
 
 const editPersonChildren = (id, child) => async (dispatch, getState) => {
     let person = getPersonById(id, getState());
@@ -179,7 +179,7 @@ const editPersonChildren = (id, child) => async (dispatch, getState) => {
         },
         body: JSON.stringify({children})
     });
-}
+};
 
 export const addUser = (data) => async (dispatch) => {
     const id = await fetch('http://localhost:3000/persons', {
@@ -199,4 +199,4 @@ export const addUser = (data) => async (dispatch) => {
         });
     return id;
 
-}
+};
