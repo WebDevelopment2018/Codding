@@ -18,6 +18,8 @@
     "@most/dom-event": "^2.0.0",
     "babel-polyfill": "^6.26.0",
     "d3": "^4.13.0",
+    "fluxible": "^1.4.0",
+    "fluxible-router": "^1.5.1",
     "json-server": "^0.12.1",
     "most": "^1.7.3",
     "ramda": "^0.25.0",
