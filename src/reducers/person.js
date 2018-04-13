@@ -42,7 +42,6 @@ export default combineReducers({
 
 
 export const getPerson = (personId, state) => state.activePersonId;
-
 export const getPersonById = (id, state) => state.persons[id];
 export const isPersonFetching = (id, state) => state.fetching[id];
 

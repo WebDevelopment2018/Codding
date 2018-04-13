@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import "../styles/Calendar.less";
 import CalendarDays from "./CalendarDays";
-import {DAYNAMES, MONTHS} from "./consts"
+import {DAYNAMES, MONTHS} from "../helpers/consts"
 import block from "../helpers/BEM";
 
 const b = block("Calendar");

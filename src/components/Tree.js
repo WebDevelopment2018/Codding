@@ -117,8 +117,7 @@ export default connect((state, props) => {
         return {
             activePersonId: props.match.params.person || 4,
             family: getFamilyByPersonId(props.match.params.person || 4, state),
-            isFamilyFetching: isFamilyFetching(props.match.params.person || 4, state),
-            state
+            isFamilyFetching: isFamilyFetching(props.match.params.person || 4, state)
         }
     },
     {fetchUserFamily}
