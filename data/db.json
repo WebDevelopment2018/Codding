@@ -120,8 +120,15 @@
       "death": "28.01.1725",
       "mother": 3,
       "father": 2,
-      "relationship": [],
-      "children": [],
+      "relationship": [
+        11,
+        12
+      ],
+      "children": [
+        13,
+        14,
+        15
+      ],
       "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520238627/Petro_1_bkft4n.jpg"
     },
     {
@@ -148,9 +155,340 @@
       "death": "19.03.1746",
       "mother": 6,
       "father": 9,
+      "relationship": [
+        29
+      ],
+      "children": [
+        30
+      ],
+      "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520245251/Anna_Leopoldovna_fougnw.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Євдокія",
+      "surname": "Лопухіна",
+      "birthday": "30.07.1669",
+      "death": "27.08.1731",
+      "mother": null,
+      "father": null,
+      "relationship": [
+        8
+      ],
+      "children": [
+        13
+      ],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1523862748/u9bc1h8ikd3iahf2pf7d.jpg"
+    },
+    {
+      "id": 12,
+      "name": "Катерина I",
+      "surname": "Романова",
+      "birthday": "15.04.1684",
+      "death": "17.05.1727",
+      "mother": null,
+      "father": null,
+      "relationship": [
+        8
+      ],
+      "children": [
+        14,
+        15
+      ],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1523862824/stjrrna5grc7damtwtls.jpg"
+    },
+    {
+      "id": 13,
+      "name": "Олексій",
+      "surname": "Петрович",
+      "birthday": "18.02.1690",
+      "death": "28.06.1718",
+      "mother": 11,
+      "father": 8,
+      "relationship": [
+        16
+      ],
+      "children": [
+        17
+      ],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523863481/qufombfhgce5beiptygq.jpg"
+    },
+    {
+      "id": 14,
+      "name": "Анна",
+      "surname": "Петрівна",
+      "birthday": "27.01.1708",
+      "death": "4.03.1728",
+      "mother": 12,
+      "father": 8,
+      "relationship": [
+        18
+      ],
+      "children": [
+        19
+      ],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523863673/afu1xeq2cssj4tsnycri.jpg"
+    },
+    {
+      "id": 15,
+      "name": "Єлизавета",
+      "surname": "Петрівна",
+      "birthday": "18.12.1709",
+      "death": "25.12.1761",
+      "mother": 12,
+      "father": 8,
       "relationship": [],
       "children": [],
-      "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520245251/Anna_Leopoldovna_fougnw.jpg"
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523863803/kpyeq0r0zhlm4z41aoky.jpg"
+    },
+    {
+      "id": 16,
+      "name": "Шарлотта",
+      "surname": "Брауншвейг",
+      "birthday": "28.08.1694",
+      "death": "1.11.1715",
+      "mother": null,
+      "father": null,
+      "relationship": [
+        13
+      ],
+      "children": [
+        17
+      ],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523863803/kpyeq0r0zhlm4z41aoky.jpg"
+    },
+    {
+      "id": 17,
+      "name": "Петро II",
+      "surname": "Олексійович",
+      "birthday": "12.10.1715",
+      "death": "18.01.1730",
+      "mother": 16,
+      "father": 13,
+      "relationship": [],
+      "children": [],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523864189/dolozrxlgdnbsgfktqp2.jpg"
+    },
+    {
+      "id": 18,
+      "name": "Карл",
+      "surname": "Фрідріх",
+      "birthday": "30.04.1700",
+      "death": "18.06.1739",
+      "mother": null,
+      "father": null,
+      "relationship": [
+        14
+      ],
+      "children": [
+        19
+      ],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523864397/ye7xxskvb9ulkqkqgyh5.jpg"
+    },
+    {
+      "id": 19,
+      "name": "Петро III",
+      "surname": "Романов",
+      "birthday": "10.02.1728",
+      "death": "6.07.1762",
+      "mother": 14,
+      "father": 18,
+      "relationship": [
+        20
+      ],
+      "children": [
+        21
+      ],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523864547/alpmkbeozxziovhpsf1d.jpg"
+    },
+    {
+      "id": 20,
+      "name": "Катерина II",
+      "surname": "Романова",
+      "birthday": "21.04.1729",
+      "death": "6.11.1796",
+      "mother": null,
+      "father": null,
+      "relationship": [
+        19
+      ],
+      "children": [
+        21
+      ],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523864692/vowamsscuhvyc4isab2j.jpg"
+    },
+    {
+      "id": 21,
+      "name": "Павло I",
+      "surname": "Романов",
+      "birthday": "20.09.1754",
+      "death": "12.03.1801",
+      "mother": 20,
+      "father": 19,
+      "relationship": [
+        22
+      ],
+      "children": [
+        23,
+        24
+      ],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523864833/hp2x55rxjqa33rinlwi1.jpg"
+    },
+    {
+      "id": 22,
+      "name": "Марія",
+      "surname": "Федорівна",
+      "birthday": "14.10.1759",
+      "death": "24.10.1828",
+      "mother": null,
+      "father": null,
+      "relationship": [
+        21
+      ],
+      "children": [
+        23,
+        24
+      ],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523864963/pfihv5g28ykf8y9ijy3w.jpg"
+    },
+    {
+      "id": 23,
+      "name": "Микола I",
+      "surname": "Романов",
+      "birthday": "25.06.1796",
+      "death": "8.02.1855",
+      "mother": 22,
+      "father": 21,
+      "relationship": [
+        25
+      ],
+      "children": [
+        26
+      ],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523865067/jm9kbuxy5rzu2z4fi903.jpg"
+    },
+    {
+      "id": 24,
+      "name": "Олександр I",
+      "surname": "Романов",
+      "birthday": "23.12.1777",
+      "death": "1.12.1825",
+      "mother": 22,
+      "father": 21,
+      "relationship": [],
+      "children": [],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523865148/i9gugropslxbxqpsixrk.png"
+    },
+    {
+      "id": 25,
+      "name": "Олександра",
+      "surname": "Федорівна",
+      "birthday": "13.07.1798",
+      "death": "20.10.1860",
+      "mother": null,
+      "father": null,
+      "relationship": [
+        23
+      ],
+      "children": [
+        26
+      ],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523865323/howedjwk2s4ctua55raq.jpg"
+    },
+    {
+      "id": 26,
+      "name": "Олександр II",
+      "surname": "Романов",
+      "birthday": "17.04.1818",
+      "death": "1.03.1881",
+      "mother": 25,
+      "father": 23,
+      "relationship": [
+        27
+      ],
+      "children": [
+        28
+      ],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523865485/b3mx3rqafwaqix54bz8b.jpg"
+    },
+    {
+      "id": 27,
+      "name": "Марія",
+      "surname": "Олександрівна",
+      "birthday": "27.07.1824",
+      "death": "22.05.1880",
+      "mother": null,
+      "father": null,
+      "relationship": [
+        26
+      ],
+      "children": [
+        28
+      ],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523865610/mhlfcwlskf4e6ftou1du.jpg"
+    },
+    {
+      "id": 28,
+      "name": "Олександр III",
+      "surname": "Романов",
+      "birthday": "26.02.1845",
+      "death": "20.10.1894",
+      "mother": 27,
+      "father": 26,
+      "relationship": [31],
+      "children": [32],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523865704/iqgcbowdf3uh3klutewh.jpg"
+    },
+    {
+      "id": 29,
+      "name": "Антон-Ульріх",
+      "surname": "Брауншвейг",
+      "birthday": "17.08.1714",
+      "death": "4.05.1774",
+      "mother": null,
+      "father": null,
+      "relationship": [
+        10
+      ],
+      "children": [
+        30
+      ],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523866238/dtygjgclrtnagmvvocgo.jpg"
+    },
+    {
+      "id": 30,
+      "name": "Іван VI",
+      "surname": "Антонович",
+      "birthday": "23.08.1740",
+      "death": "16.07.1764",
+      "mother": 10,
+      "father": 29,
+      "relationship": [],
+      "children": [],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523866210/pydbwi7nc6uu9rv0zpyv.jpg"
+    },
+    {
+      "id": 31,
+      "name": "Марія",
+      "surname": "Федорівна",
+      "birthday": "26.11.1847",
+      "death": "13.10.1928",
+      "mother": null,
+      "father": null,
+      "relationship": [28],
+      "children": [32],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523866561/by8vfdbvlvnxqbyjgub6.jpg"
+    },
+    {
+      "id": 32,
+      "name": "Микола II",
+      "surname": "Романов",
+      "birthday": "6.05.1868",
+      "death": "17.07.1918",
+      "mother": 31,
+      "father": 28,
+      "relationship": [],
+      "children": [],
+      "photo": "https://res.cloudinary.com/csucu/image/upload/v1523866580/xmsq6xh02rdyf1mwmh3q.jpg"
     }
   ]
 }
