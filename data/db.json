@@ -99,7 +99,8 @@
       "father": 4,
       "gender": "female",
       "children": [
-        10
+        10,
+        33
       ],
       "relationship": [
         9
@@ -444,7 +445,7 @@
       "death": "22.05.1880",
       "mother": null,
       "father": null,
-      "gender": "male",
+      "gender": "female",
       "relationship": [
         26
       ],
