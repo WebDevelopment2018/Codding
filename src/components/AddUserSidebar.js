@@ -10,6 +10,12 @@ import {addUser} from "../actions/index";
 const b = block("AddUserSidebar");
 const CLOUDINARY_UPLOAD_PRESET = 'redgw5c9';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/csucu/upload';
+const dropzoneStyle = {
+    width  : "150px",
+    margin : "auto",
+    height : "150px",
+    border : "2px dashed #82BF56"
+};
 
 class AddUserSidebar extends Component {
     constructor() {
@@ -93,23 +99,21 @@ class AddUserSidebar extends Component {
                 <input ref='mother' type="text" className={b("input-surname")} placeholder="Мама"/>
                 <input ref='children' type="text" className={b("input-surname")} placeholder="Діти"/>
                 <div className={b("fileUpload")}>
+                    <div className={b("dropzone-text")}>Drop an image or click to select a file to upload.</div>
                     <Dropzone
                         onDrop={this.onImageDrop.bind(this)}
                         multiple={false}
+                        style={dropzoneStyle}
                         accept="image/*">
-                        <div>Drop an image or click to select a file to upload.</div>
-                        <div>
+                        <div className={b("preview")}>
                             {this.state.uploadedFileCloudinaryUrl === '' ? null :
-                                <div>
-                                    <p>{this.state.uploadedFile.name}</p>
-                                    <img className={b("img")} src={this.state.uploadedFileCloudinaryUrl}/>
-                                </div>}
+                                    <img className={b("preview-img")} src={this.state.uploadedFileCloudinaryUrl}/>
+                            }
                         </div>
                     </Dropzone>
                 </div>
                 <button type='submit' className="ToggleSidebar__action-button">Submit</button>
             </form>
-
         )
     }
 }
