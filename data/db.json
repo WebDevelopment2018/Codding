@@ -462,8 +462,12 @@
       "mother": 27,
       "father": 26,
       "gender": "male",
-      "relationship": [31],
-      "children": [32],
+      "relationship": [
+        31
+      ],
+      "children": [
+        32
+      ],
       "photo": "https://res.cloudinary.com/csucu/image/upload/v1523865704/iqgcbowdf3uh3klutewh.jpg"
     },
     {
@@ -505,8 +509,12 @@
       "mother": null,
       "father": null,
       "gender": "female",
-      "relationship": [28],
-      "children": [32],
+      "relationship": [
+        28
+      ],
+      "children": [
+        32
+      ],
       "photo": "https://res.cloudinary.com/csucu/image/upload/v1523866561/by8vfdbvlvnxqbyjgub6.jpg"
     },
     {
@@ -521,6 +529,19 @@
       "relationship": [],
       "children": [],
       "photo": "https://res.cloudinary.com/csucu/image/upload/v1523866580/xmsq6xh02rdyf1mwmh3q.jpg"
+    },
+    {
+      "name": "f",
+      "surname": "f",
+      "gender": "female",
+      "birthday": "2018-04-10",
+      "death": null,
+      "father": null,
+      "mother": null,
+      "children": [],
+      "relationship": [],
+      "photo": "",
+      "id": 33
     }
   ]
 }

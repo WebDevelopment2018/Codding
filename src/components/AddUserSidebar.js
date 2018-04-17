@@ -11,10 +11,10 @@ const b = block("AddUserSidebar");
 const CLOUDINARY_UPLOAD_PRESET = 'redgw5c9';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/csucu/upload';
 const dropzoneStyle = {
-    width  : "150px",
-    margin : "auto",
-    height : "150px",
-    border : "2px dashed #82BF56"
+    width: "150px",
+    margin: "auto",
+    height: "150px",
+    border: "2px dashed #82BF56"
 };
 
 class AddUserSidebar extends Component {
@@ -56,6 +56,7 @@ class AddUserSidebar extends Component {
         e.preventDefault();
         const name = this.refs.name.value;
         const surname = this.refs.surname.value;
+        const gender = document.querySelector('input[name=gender]:checked').value;
         const birthday = this.refs.birthday.value;
         const death = this.refs.death.value === "" ? null : this.refs.death.value;
         const father = this.refs.father.value === "" ? null : parseInt(this.refs.father.value);
@@ -67,6 +68,7 @@ class AddUserSidebar extends Component {
         const person = {
             name,
             surname,
+            gender,
             birthday,
             death,
             father,
@@ -87,6 +89,10 @@ class AddUserSidebar extends Component {
                   href={this.props.href}>{this.props.children}
                 <input ref='name' type="text" className={b("input-name")} placeholder="Ім'я" required/>
                 <input ref='surname' type="text" className={b("input-surname")} placeholder="Прізвище" required/>
+                <div className={b("gender")}>
+                    <input type="radio" name="gender" value="male"/> Male
+                    <input type="radio" name="gender" value="female"/> Female
+                </div>
                 <div className={b("bday")}>
                     <h4 className={b("text")}>День народження:</h4>
                     <input ref='birthday' type="date" className={b("input-birthday")} name="bday" required/>
@@ -107,7 +113,7 @@ class AddUserSidebar extends Component {
                         accept="image/*">
                         <div className={b("preview")}>
                             {this.state.uploadedFileCloudinaryUrl === '' ? null :
-                                    <img className={b("preview-img")} src={this.state.uploadedFileCloudinaryUrl}/>
+                                <img className={b("preview-img")} src={this.state.uploadedFileCloudinaryUrl}/>
                             }
                         </div>
                     </Dropzone>
@@ -117,6 +123,7 @@ class AddUserSidebar extends Component {
         )
     }
 }
+
 export default connect(
     null,
     {addUser}
