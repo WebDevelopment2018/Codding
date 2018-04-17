@@ -80,7 +80,6 @@ class AddUserSidebar extends Component {
         const {addUser} = this.props;
         const id = addUser(person);
         this.setState({"href": "/" + id});
-        //this.context.executeAction(navigateAction, { method: 'get', url: "/"+id } );
     };
 
     render() {
