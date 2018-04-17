@@ -7,14 +7,14 @@
   border-radius: 5px;
   border: 1px solid #bdc3c7;
   box-shadow: 3px 3px 3px #bdc3c7;
-  &__info{
+  &__info {
     text-align: center;
-    margin:0.5em;
+    margin: 0.5em;
   }
-  &_active{
+  &_active {
     box-shadow: 2px 2px 2px #BFD863;
   }
-  &_active:after{
+  &_active:after {
     content: "Sibling";
     width: 12em;
     position: absolute;
@@ -26,7 +26,7 @@
     color: #2c3e50;
     z-index: -1;
   }
-  &_active:before{
+  &_active:before {
     content: "Love";
     width: 4em;
     position: absolute;
@@ -38,7 +38,7 @@
     color: #2c3e50;
     z-index: -1;
   }
-  &__name, &__surname{
+  &__name, &__surname {
     display: block;
     white-space: nowrap;
     overflow: hidden;
@@ -48,10 +48,10 @@
     color: #2c3e50;
     margin: 0;
   }
-  &__name:focus, &__name:hover, &__surname:focus,&__surname:hover {
-    color:#2c3e50;
+  &__name:focus, &__name:hover, &__surname:focus, &__surname:hover {
+    color: #2c3e50;
     white-space: nowrap;
-    content:attr(data-text);
+    content: attr(data-text);
     word-wrap: break-word;
     overflow: visible;
     text-overflow: inherit;
@@ -61,14 +61,14 @@
   &__birthday {
     margin-top: 0.5em;
   }
-  &__death, &__birthday  {
+  &__death, &__birthday {
     display: block;
     font-size: 0.7rem;
     color: #2c3e50;
   }
-  &__edit-button{
+  &__edit-button {
     opacity: 0;
-    transition:opacity 0.5s linear;
+    transition: opacity 0.5s linear;
     background: none;
     width: 2.5em;
     height: 2.5em;
@@ -76,22 +76,50 @@
     border: none;
     position: absolute;
     left: 105px;
-    top: 60px;
+    top: 50px;
   }
-  &__edit-button:hover{
+  &__edit-button:hover {
     width: 2.5em;
     height: 2.5em;
     background-color: #BFD863;
     transition: 0.5s;
-    top: 60px;
+    top: 50px;
     border-radius: 2px;
     opacity: 1;
   }
   &__edit-button__img {
+    transition: opacity 0.5s linear;
     width: 1.5em;
     height: 1.5em;
   }
+  &__addParents {
+    top: -20px;
+    left: 38px;
+  }
+  &__addSibling {
+    left: 102px;
+    top: 73px;
+  }
+  &__addLove {
+    left: -25px;
+    top: 73px;
+  }
+  &__addChildren {
+    left: 38px;
+    top: 153px;
+  }
+  &__addParents, &__addSibling, &__addLove, &__addChildren{
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s linear;
+    padding: 0;
+    width: 25px;
+  }
+  &__wrapper:hover .Person__addParents{opacity: 1;}
+  &__wrapper:hover .Person__addSibling{opacity: 1;}
+  &__wrapper:hover .Person__addLove{opacity: 1;}
+  &__wrapper:hover .Person__addChildren{opacity: 1;}
 }
-.Person:hover .Person__edit-button{
+.Person:hover .Person__edit-button {
   opacity: 1;
 }
