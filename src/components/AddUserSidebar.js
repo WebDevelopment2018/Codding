@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 
 import block from "../helpers/BEM";
 import "../styles/AddUserSidebar.less";
-import {addUser} from "../actions/index";
+import {addUser} from "../actions/addUser";
 
 const b = block("AddUserSidebar");
 const CLOUDINARY_UPLOAD_PRESET = 'redgw5c9';
