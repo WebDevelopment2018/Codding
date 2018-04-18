@@ -87,7 +87,11 @@ class AddUserSidebar extends Component {
         const death = this.refs.death.value === "" ? null : this.refs.death.value;
         const father = parseInt(this.refs.father.value) === "" ? null : parseInt(this.refs.father.value);
         const mother = parseInt(this.refs.mother.value) === "" ? null : parseInt(this.refs.mother.value);
-        const children = parseInt(this.refs.children.value) === "" ? null : parseInt(this.refs.children.value);
+        let children = [];
+        if(parseInt(this.refs.children.value)){
+            children = [parseInt(this.refs.children.value)];
+        }
+        console.log(children);
         const relationship = [];
         const photo = this.state.uploadedFileCloudinaryUrl;
 
