@@ -57,7 +57,6 @@ class AddUserSidebar extends Component {
             }
         }
     }
-
     chooseFromList(e) {
         console.log("click ",e.target);
     }
@@ -110,7 +109,6 @@ class AddUserSidebar extends Component {
         alert("Done!");
         document.querySelector(".AddUserSidebar").reset()
     };
-
 
     render() {
         return (
