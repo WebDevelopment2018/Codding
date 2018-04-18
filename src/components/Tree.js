@@ -43,7 +43,7 @@ class Tree extends Component {
                 d.y = parentHeight - d.depth * 200;
             });
             const childrenNodes = this.initTree(family.children);
-            console.log("nodes: ",childrenNodes);
+            //console.log("nodes: ",childrenNodes);
             childrenNodes.each(function (d) {
                 d.y = parentHeight + 200 * d.depth;
             });
@@ -99,7 +99,7 @@ class Tree extends Component {
         const all = this.state.relationshipCoordinates.concat(this.state.siblingsCoordinates,
             this.state.childrenCoordinates.slice(1, this.state.childrenCoordinates.length),
             this.state.parentsCoordinates);
-        console.log("children: ",this.state.childrenCoordinates);
+        //console.log("children: ",this.state.childrenCoordinates);
         return (
             <Fragment>
                 <svg onMouseDown={makeDraggable}
