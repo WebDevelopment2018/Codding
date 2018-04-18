@@ -99,8 +99,7 @@
       "father": 4,
       "gender": "female",
       "children": [
-        10,
-        33
+        10
       ],
       "relationship": [
         9
@@ -530,6 +529,19 @@
       "relationship": [],
       "children": [],
       "photo": "https://res.cloudinary.com/csucu/image/upload/v1523866580/xmsq6xh02rdyf1mwmh3q.jpg"
+    },
+    {
+      "name": "fr",
+      "surname": "fr",
+      "gender": "female",
+      "birthday": "2018-04-10",
+      "death": null,
+      "father": null,
+      "mother": null,
+      "children": [],
+      "relationship": [],
+      "photo": "",
+      "id": 33
     }
   ]
 }
