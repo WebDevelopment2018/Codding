@@ -23,6 +23,12 @@ class Person extends Component {
         if (props.user.id === parseInt(props.activeId)) {
             className += " Person_active";
         }
+        if(props.relationship.includes(props.user.id)){
+            className += " Person__love";
+        }
+        if(props.siblings.includes(props.user.id)){
+            className += " Person__sibling";
+        }
         return {
             "user": props.user,
             "x": props.person.x,
@@ -67,8 +73,13 @@ class Person extends Component {
 }
 
 export default connect((state, props) => {
+        //console.log("family state ",state.family.families[props.activeId]);
+        const relationship = state.family.families[props.activeId].relationship;
+        const siblings = state.family.families[props.activeId].siblings;
         return {
-            user: getPersonById(props.person.id, state)
+            user: getPersonById(props.person.id, state),
+            relationship,
+            siblings
         }
     },
     null
