@@ -104,7 +104,7 @@ class Tree extends Component {
                 <svg onMouseDown={makeDraggable}
                      onMouseMove={moveElement}
                      onMouseUp={stopMoving}
-                     ref="root" className={b()} width="100%" height="700" key="1" transform="matrix(1 0 0 1 0 0)">
+                     ref="root" className={b()} width="70%" height="700" key="1" transform="matrix(1 0 0 1 0 0)">
                     <TreePathes parentsCoordinates={this.state.parentsCoordinates}
                                 childrenCoordinates={this.state.childrenCoordinates}/>
                 </svg>
