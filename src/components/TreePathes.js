@@ -49,10 +49,7 @@ class TreePathes extends Component {
     renderNode(node) {
         return (
             <Fragment key={node.id}>
-                <g className={this.getClassName(node)} transform={this.getTransform(node)} >
-                    <rect width="100" height="150" className={b("node-rect")}>
-                    </rect>
-                </g>
+                <g className={this.getClassName(node)} transform={this.getTransform(node)}/>
                 {this.renderPath(node)}
             </Fragment>
         )
