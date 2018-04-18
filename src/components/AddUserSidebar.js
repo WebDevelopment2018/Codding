@@ -93,7 +93,7 @@ class AddUserSidebar extends Component {
         }
         console.log(children);
         const relationship = [];
-        const photo = this.state.uploadedFileCloudinaryUrl;
+        const photo = this.state.uploadedFileCloudinaryUrl === "" ? "https://res.cloudinary.com/csucu/image/upload/v1524057401/av97c7rihdxzy7apnjaj.jpg" : this.state.uploadedFileCloudinaryUrl;
 
         const person = {
             name,
