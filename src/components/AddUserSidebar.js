@@ -80,8 +80,10 @@ class AddUserSidebar extends Component {
         const {addUser} = this.props;
         const id = addUser(person);
         this.setState({"href": "/" + id});
-    };
+        alert("Done!");
+        document.querySelector(".AddUserSidebar").reset()
 
+    };
     render() {
         return (
             <form className={b()} onSubmit={this.addPersonToData.bind(this)}
@@ -89,8 +91,8 @@ class AddUserSidebar extends Component {
                 <input ref='name' type="text" className={b("input-name")} placeholder="Ім'я" required/>
                 <input ref='surname' type="text" className={b("input-surname")} placeholder="Прізвище" required/>
                 <div className={b("gender")}>
-                    <input type="radio" name="gender" value="male"/> Male
-                    <input type="radio" name="gender" value="female"/> Female
+                    <input type="radio" name="gender" value="male" required/> Male
+                    <input type="radio" name="gender" value="female" required/> Female
                 </div>
                 <div className={b("bday")}>
                     <h4 className={b("text")}>День народження:</h4>
