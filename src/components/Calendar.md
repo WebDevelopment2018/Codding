@@ -1,0 +1,5 @@
+## Calendar example:
+
+```js
+<Calendar />
+```

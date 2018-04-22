@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import request from "superagent";
 import Dropzone from 'react-dropzone';
+import 'regenerator-runtime/runtime';
 
 import block from "../helpers/BEM";
 import "../styles/AddUserSidebar.less";

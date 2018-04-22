@@ -80,7 +80,7 @@ class Person extends Component {
 export default connect((state, props) => {
         return {
             user: getPersonById(props.person.id, state),
-            families:state.family.families
+            families:state.family.families,
         }
     },
     null

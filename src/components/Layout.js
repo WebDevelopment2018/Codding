@@ -21,7 +21,6 @@ class Layout extends Component {
                         <Route exact path='/' component={Tree}/>
                         <Route path='/:person' component={Tree}/>
                     </Switch>
-
                 </div>
             </Fragment>
         )
