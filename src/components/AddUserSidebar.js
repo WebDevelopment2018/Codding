@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import request from "superagent";
 import Dropzone from 'react-dropzone';
-import 'regenerator-runtime/runtime';
+import {Async} from 'react-select';
+import 'react-select/less/default.less';
 
 import block from "../helpers/BEM";
 import "../styles/AddUserSidebar.less";
@@ -25,7 +26,13 @@ class AddUserSidebar extends Component {
             "href": "/",
             uploadedFile: null,
             uploadedFileCloudinaryUrl: '',
-            suggestedNames: []
+            suggestedNames: [],
+            mother: '',
+            motherId: null,
+            father: '',
+            fatherId: null,
+            children: '',
+            childrenId: null,
         }
     }
 
@@ -37,29 +44,21 @@ class AddUserSidebar extends Component {
         this.handleImageUpload(files[0]);
     }
 
-    async onListChange(e) {
-        const who = e.target.getAttribute("list");
-        let response;
-        if (who === 'father') {
-            response = await fetch(`http://localhost:3000/persons?gender=male&name_like=${e.target.value}`);
-        } else if (who === 'mother') {
-            response = await fetch(`http://localhost:3000/persons?gender=female&name_like=${e.target.value}`);
+    getOptions(input){
+        if (!input) {
+            return Promise.resolve({ options: [] });
         }
-        else {
-            response = await fetch(`http://localhost:3000/persons?name_like=${e.target.value}`);
-        }
-        if (!response.ok) {
-            console.log("ERROR in searching");
-        } else {
-            let suggestedNames = await (response.json());
-            if (suggestedNames !== []) {
-                this.setState({suggestedNames});
-                console.log('sug names', this.state.suggestedNames);
+        return fetch(`http://localhost:3000/persons?name_like=${input}`)
+            .then((response) => {
+            return response.json();
+        }).then((json) => {
+            json.map((person)=>{
+                person['label']  = person.name + " " + person.surname;
+                person['value']  = person.name + " " + person.surname;
             }
-        }
-    }
-    chooseFromList(e) {
-        console.log("click ",e.target);
+            );
+            return { options: json };
+        });
     }
 
     handleImageUpload(file) {
@@ -70,7 +69,6 @@ class AddUserSidebar extends Component {
             if (err) {
                 console.error(err);
             }
-
             if (response.body.secure_url !== '') {
                 this.setState({
                     uploadedFileCloudinaryUrl: response.body.secure_url
@@ -78,7 +76,27 @@ class AddUserSidebar extends Component {
             }
         });
     }
-
+    onChangeMother(mother) {
+        console.log(mother.id);
+        this.setState({
+            mother,
+            "motherId":mother.id
+        });
+    }
+    onChangeFather(father) {
+        console.log(father.id);
+        this.setState({
+            father,
+            "fatherId":father.id
+        });
+    }
+    onChangeChild(children) {
+        console.log(children.id);
+        this.setState({
+            children,
+            "childrenId":children.id
+        });
+    }
     addPersonToData(e) {
         e.preventDefault();
         const name = this.refs.name.value;
@@ -86,13 +104,12 @@ class AddUserSidebar extends Component {
         const gender = document.querySelector('input[name=gender]:checked').value;
         const birthday = this.refs.birthday.value;
         const death = this.refs.death.value === "" ? null : this.refs.death.value;
-        const father = parseInt(this.refs.father.value) === "" ? null : parseInt(this.refs.father.value);
-        const mother = parseInt(this.refs.mother.value) === "" ? null : parseInt(this.refs.mother.value);
+        const father = this.state.fatherId;
+        const mother = this.state.motherId;
         let children = [];
-        if(parseInt(this.refs.children.value)){
-            children = [parseInt(this.refs.children.value)];
+        if(this.state.childrenId){
+            children = [this.state.childrenId];
         }
-        console.log(children);
         const relationship = [];
         const photo = this.state.uploadedFileCloudinaryUrl === "" ? "https://res.cloudinary.com/csucu/image/upload/v1524057401/av97c7rihdxzy7apnjaj.jpg" : this.state.uploadedFileCloudinaryUrl;
 
@@ -133,23 +150,15 @@ class AddUserSidebar extends Component {
                     <h4 className={b("text")}>День смерті:</h4>
                     <input ref='death' type="date" className={b("input-death")} name="bday"/>
                 </div>
-                <input ref='father' type="text" className={b("input-surname")} placeholder="Тато"
-                       onInput={this.onListChange.bind(this)} list="father"/>
-                <datalist id="father">
-                    {this.state.suggestedNames.map((person, i) => <option key={person.id} value={person.id +". "+ person.name + " " + person.surname}/>)}
-                </datalist>
-                <input ref='mother' type="text" className={b("input-surname")} placeholder="Мама"
-                       onInput={this.onListChange.bind(this)} list="mother"/>
-                <datalist id="mother">
-                    {this.state.suggestedNames.map((person, i) => <option key={i}
-                                                                          value={person.id +". "+ person.name + " " + person.surname}/>)}
-                </datalist>
-                <input ref='children' type="text" className={b("input-surname")} placeholder="Діти"
-                       onInput={this.onListChange.bind(this)} list="children"/>
-                <datalist id="children">
-                    {this.state.suggestedNames.map((person, i) => <option key={i}
-                                                                          value={person.id +". " + person.name + " " + person.surname}/>)}
-                </datalist>
+                <Async className={b("input-surname")} loadOptions={this.getOptions} value={this.state.father}
+                       onChange={this.onChangeFather.bind(this)}
+                       placeholder="Тато"/>
+                <Async className={b("input-surname")} loadOptions={this.getOptions} value={this.state.mother}
+                       onChange={this.onChangeMother.bind(this)}
+                    placeholder="Мама"/>
+                <Async className={b("input-surname")} loadOptions={this.getOptions} value={this.state.children}
+                       onChange={this.onChangeChild.bind(this)}
+                       placeholder="Діти"/>
                 <div className={b("fileUpload")}>
                     <div className={b("dropzone-text")}>Drop an image or click to select a file to upload.</div>
                     <Dropzone
