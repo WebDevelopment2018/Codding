@@ -150,13 +150,13 @@ class AddUserSidebar extends Component {
                     <h4 className={b("text")}>День смерті:</h4>
                     <input ref='death' type="date" className={b("input-death")} name="bday"/>
                 </div>
-                <Async className={b("input-surname")} loadOptions={this.getOptions} value={this.state.father}
+                <Async className={b("father-select")} loadOptions={this.getOptions} value={this.state.father}
                        onChange={this.onChangeFather.bind(this)}
                        placeholder="Тато"/>
-                <Async className={b("input-surname")} loadOptions={this.getOptions} value={this.state.mother}
+                <Async className={b("mother-select")} loadOptions={this.getOptions} value={this.state.mother}
                        onChange={this.onChangeMother.bind(this)}
                     placeholder="Мама"/>
-                <Async className={b("input-surname")} loadOptions={this.getOptions} value={this.state.children}
+                <Async className={b("children-select")} loadOptions={this.getOptions} value={this.state.children}
                        onChange={this.onChangeChild.bind(this)}
                        placeholder="Діти"/>
                 <div className={b("fileUpload")}>
