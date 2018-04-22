@@ -53,8 +53,8 @@ class Person extends Component {
         const id = "/" + this.state.user.id;
         return (
             <div className={b("wrapper")}>
-                <button className={b("addParents")} style={this.getMargins()}>+</button>
-                <button className={b("addLove")} style={this.getMargins()}>+</button>
+                {/*<button className={b("addParents")} style={this.getMargins()}>+</button>*/}
+                {/*<button className={b("addLove")} style={this.getMargins()}>+</button>*/}
             <NavLink to={id}>
                     <div className={this.state.className} style={this.getMargins()}>
                         <img className={b("img")} src={this.state.user.photo} alt=""/>
@@ -70,8 +70,8 @@ class Person extends Component {
                         </div>
                     </div>
             </NavLink>
-                <button className={b("addSibling")} style={this.getMargins()}>+</button>
-                <button className={b("addChildren")} style={this.getMargins()}>+</button>
+                {/*<button className={b("addSibling")} style={this.getMargins()}>+</button>*/}
+                {/*<button className={b("addChildren")} style={this.getMargins()}>+</button>*/}
             </div>
         )
     }
