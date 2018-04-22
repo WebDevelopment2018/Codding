@@ -34,6 +34,7 @@ export const editPersonChildren = (id, child) => async (dispatch, getState) => {
     }
     person = getPersonById(id, getState());
     const children = person.children.concat(child);
+    console.log(children);
     await fetch("http://localhost:3000/persons/" + id, {
         method: 'PATCH',
         headers: {
@@ -52,6 +53,7 @@ export const addUser = (data) => async (dispatch) => {
         .then((response) => response.json())
         .then((data) => {
             if (data.mother) {
+                console.log("edit mother: ");
                 dispatch(editPersonChildren(data.mother, [data.id]));
             }
             if (data.father) {
@@ -60,9 +62,9 @@ export const addUser = (data) => async (dispatch) => {
             if(data.children){
                 dispatch(editPersonParents(data.children[0], data.id ,data.gender));
             }
-            window.location.href = "http://localhost:5000/" + data.id;
             return data.id;
         });
+    window.location.href = "http://localhost:5000/" + id;
     return id;
 
 };
