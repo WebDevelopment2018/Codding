@@ -9,7 +9,7 @@ class ToggleSidebar extends Component {
     constructor() {
         super();
         this.state = {
-            showSidebar: true,
+            showSidebar: false,
             textValueAdd: true,
             textValueClose: false
         }
