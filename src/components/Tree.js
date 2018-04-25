@@ -75,7 +75,8 @@ class Tree extends Component {
     }
 
     initTree(treeData) {
-        let treemap = d3.tree().size([500, this.state.height]);                              //розміщення відносно svg
+        let treemap = d3.tree().nodeSize([120,150]);                              //розміщення відносно svg
+        console.log(treemap);
         let nodes = d3.hierarchy(treeData);
         nodes = treemap(nodes);
         return nodes;

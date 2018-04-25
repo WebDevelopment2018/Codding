@@ -26,7 +26,6 @@ class AddUserSidebar extends Component {
             "href": "/",
             uploadedFile: null,
             uploadedFileCloudinaryUrl: '',
-            suggestedNames: [],
             mother: '',
             motherId: null,
             father: '',
