@@ -1,0 +1,60 @@
+.NewPerson {
+  margin: 5em auto auto;
+  width: 10em;
+  height: 10em;
+  background-color: #ffffff;
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  border-radius: 5px;
+  border: 1px solid #bdc3c7;
+  box-shadow: 3px 3px 3px #bdc3c7;
+  display: flex;
+  flex-direction: row;
+  &__link{
+    color: #4864b7;
+    text-decoration: none;
+  }
+  &__link-wrap{
+    width: 100%;
+    text-align: center;
+  }
+  &__png{
+    width: 25px;
+    padding-top: 10px;
+    height: 25px;
+  }
+  &__left{
+    width: 60%;
+    border-right: 2px solid #cccccc;
+  }
+  &__right{
+    display: flex;
+    width: 40%;
+    align-items: center;
+    flex-direction: column;
+  }
+  &__info {
+    text-align: center;
+    margin: 0.5em;
+  }
+  &__name, &__surname {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all .2s linear;
+    font-size: 0.8rem;
+    color: #2c3e50;
+    margin: 0;
+  }
+  &__name:focus, &__name:hover, &__surname:focus, &__surname:hover {
+    color: #2c3e50;
+    white-space: nowrap;
+    content: attr(data-text);
+    word-wrap: break-word;
+    overflow: visible;
+    text-overflow: inherit;
+    font-size: 0.9rem;
+    display: block;
+  }
+}
+

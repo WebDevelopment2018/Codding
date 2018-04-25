@@ -1,0 +1,5 @@
+Person example:
+
+```js
+<Person/>
+```
