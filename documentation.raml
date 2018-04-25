@@ -21,3 +21,14 @@ title: Hello world # required title
               {
                 "message": "Hello world"
               }
+
+/fetchPerson: # optional resource
+   get: # HTTP method declaration
+     responses: # declare a response
+       200: # HTTP status code
+         body: # declare content of response
+           application/json: # media type
+             type: | # structural definition of a response (schema or type)
+               {
+                 "type": "object"
+               }
