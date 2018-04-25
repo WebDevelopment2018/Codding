@@ -2,9 +2,6 @@ import {fetchPerson} from "./fetching";
 import {getPersonById} from "../reducers";
 
 export const editPersonParents = (child, id, gender) => async (dispatch, getState) => {
-    console.log("child id ",child);
-    console.log("parent id ",parent);
-    console.log(gender);
     if(gender === "male"){
         const father = id;
         await fetch("http://localhost:3000/persons/" + child, {

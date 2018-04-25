@@ -1,7 +1,7 @@
-import {getChildren, getParents, getRelationship, getSiblings} from "./index"
+import {getPersonById} from "../reducers/index";
+import {uniq} from "ramda";
 
 export const changePersonId = (id) => {
-    console.log(id);
     return {
         type: 'CHANGE_ID',
         id
@@ -69,4 +69,86 @@ export const fetchUserFamily = (id) => async (dispatch) => {
         "siblings": await dispatch(getSiblings(id))
     };
     dispatch(fetchFamilySuccess(family, id));
+};
+
+export const getParents = (id) => async (dispatch, getState) => {
+    if (id) {
+        let person = getPersonById(id, getState());
+        if (!person) {
+            await dispatch(fetchPerson(id));
+        }
+        person = getPersonById(id, getState());
+        let parents = [await dispatch(getParents(person.father)),
+            await dispatch(getParents(person.mother))];
+        return {
+            "name": person.id,
+            "children": parents.filter(n => n)
+        };
+    }
+    return null;
+};
+export const getRelationship = (id) => async (dispatch, getState) => {
+    let person = getPersonById(id, getState());
+    if (!person) {
+        await dispatch(fetchPerson(id));
+    }
+    await Promise.all(
+        person.relationship.map(i => !getPersonById(i, getState()) ? dispatch(fetchPerson(i)) : i)
+    );
+    return person.relationship;
+};
+export const getSiblings = (id) => async (dispatch, getState) => {
+    let person = getPersonById(id, getState());
+    if (!person) {
+        person = await dispatch(fetchPerson(id));
+    }
+    let siblings = [];
+    if (person.mother !== null) {
+        let mother = getPersonById(person.mother, getState());
+        if (!mother) {
+            mother = await dispatch(fetchPerson(person.mother));
+        }
+        mother.children.map(child => {
+            child !== person.id ? siblings.push(child) : child
+        });
+    }
+    if (person.father !== null) {
+        let father = getPersonById(person.father, getState());
+        if (!father) {
+            father = await dispatch(fetchPerson(person.father));
+        }
+        father.children.map(child => {
+            child !== person.id ? siblings.push(child) : child
+        });
+    }
+    siblings = uniq(siblings);
+    await Promise.all(
+        siblings.map(i => !getPersonById(i, getState()) ? dispatch(fetchPerson(i)) : i)
+    );
+    return siblings;
+};
+export const getChildren = (id) => async (dispatch, getState) => {
+    if (id) {
+        let person = getPersonById(id, getState());
+        if (!person) {
+            await dispatch(fetchPerson(id));
+        }
+        person = getPersonById(id, getState());
+        if (person.children !== []) {
+            const children = await Promise.all(
+                person.children.map(id =>
+                    dispatch(getChildren(id))
+                )
+            );
+            return {
+                "name": person.id,
+                children
+            };
+        }
+        return {
+            "name": person.id,
+            "children": []
+        };
+    }
+    return null;
 };

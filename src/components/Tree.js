@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import * as d3 from "d3";
 import {connect} from "react-redux";
+import {makeDraggable, moveElement, stopMoving} from "../helpers/drugAndDrop";
 
 import "../styles/Tree.less";
 import block from "../helpers/BEM";
@@ -8,7 +9,7 @@ import Family from "./Family";
 import {fetchUserFamily} from "../actions/fetching";
 import {getFamilyByPersonId, isFamilyFetching} from "../reducers";
 import TreePathes from "./TreePathes";
-import {makeDraggable, moveElement, stopMoving} from "../helpers/drugAndDrop";
+
 
 const b = block("Tree");
 
@@ -20,7 +21,7 @@ class Tree extends Component {
             "childrenCoordinates": [],
             "siblingsCoordinates": [],
             "relationshipCoordinates": []
-        }
+        };
     }
 
     componentWillMount() {
@@ -75,12 +76,12 @@ class Tree extends Component {
     }
 
     initTree(treeData) {
-        let treemap = d3.tree().nodeSize([120,150]);                              //розміщення відносно svg
-        console.log(treemap);
+        let treemap = d3.tree().nodeSize([120,150]);
         let nodes = d3.hierarchy(treeData);
         nodes = treemap(nodes);
         return nodes;
     }
+
 
     buildTree(nodes) {
         let nodesMap = [];

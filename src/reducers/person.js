@@ -10,6 +10,17 @@ export const activePersonId = (state = {}, action) => {
             return state;
     }
 };
+export const editingPersonId = (state = {}, action) => {
+    switch (action.type) {
+        case "EDITING_PERSON_START":
+            return {id: action.id};
+        case "EDITING_PERSON_END":
+            return {id: null};
+        default:
+            return state;
+    }
+};
+
 
 export const persons = (state = {}, action) => {
     switch (action.type) {
@@ -36,12 +47,14 @@ export const fetching = (state = {}, action) => {
 export default combineReducers({
         activePersonId,
         persons,
-        fetching
+        fetching,
+        editingPersonId
     }
 );
 
 
 export const getPerson = (personId, state) => state.activePersonId;
 export const getPersonById = (id, state) => state.persons[id];
+export const getEditingPersonId = (state) => state.editingPersonId;
 export const isPersonFetching = (id, state) => state.fetching[id];
 

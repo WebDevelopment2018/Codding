@@ -8,6 +8,9 @@ import 'react-select/less/default.less';
 import block from "../helpers/BEM";
 import "../styles/AddUserSidebar.less";
 import {addUser} from "../actions/addUser";
+import {getEditingPersonId} from "../reducers/index";
+import {editPerson} from "../actions/index";
+import {getPersonById} from "../reducers/index";
 
 const b = block("AddUserSidebar");
 const CLOUDINARY_UPLOAD_PRESET = 'redgw5c9';
@@ -20,18 +23,39 @@ const dropzoneStyle = {
 };
 
 class AddUserSidebar extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             "href": "/",
             uploadedFile: null,
             uploadedFileCloudinaryUrl: '',
-            mother: '',
-            motherId: null,
-            father: '',
-            fatherId: null,
-            children: '',
-            childrenId: null,
+            motherName: '',
+            fatherName: '',
+            childrenName: '',
+            mother: null,
+            father: null,
+            children: []
+        }
+    }
+
+    componentWillReceiveProps(props) {
+        if (props.person) {
+            if(props.person.gender === "male"){
+                this.refs.male.checked = true;
+            }else{
+                this.refs.female.checked = true;
+            }
+            this.refs.birthday.value = this.getDate(props.person.birthday);
+            this.refs.death.value = this.getDate(props.person.death);
+            this.refs.name.value = props.person.name;
+            this.refs.surname.value = props.person.surname;
+            this.setState({
+                fatherName: props.fatherName,
+                motherName: props.motherName,
+                mother: props.person.mother,
+                father: props.person.father,
+                children: props.person.children,
+            });
         }
     }
 
@@ -39,25 +63,24 @@ class AddUserSidebar extends Component {
         this.setState({
             uploadedFile: files[0]
         });
-
         this.handleImageUpload(files[0]);
     }
 
-    getOptions(input){
+    getOptions(input) {
         if (!input) {
-            return Promise.resolve({ options: [] });
+            return Promise.resolve({options: []});
         }
         return fetch(`http://localhost:3000/persons?name_like=${input}`)
             .then((response) => {
-            return response.json();
-        }).then((json) => {
-            json.map((person)=>{
-                person['label']  = person.name + " " + person.surname;
-                person['value']  = person.name + " " + person.surname;
-            }
-            );
-            return { options: json };
-        });
+                return response.json();
+            }).then((json) => {
+                json.map((person) => {
+                        person['label'] = person.name + " " + person.surname;
+                        person['value'] = person.name + " " + person.surname;
+                    }
+                );
+                return {options: json};
+            });
     }
 
     handleImageUpload(file) {
@@ -75,27 +98,28 @@ class AddUserSidebar extends Component {
             }
         });
     }
-    onChangeMother(mother) {
-        console.log(mother.id);
+
+    onChangeMother(motherName) {
         this.setState({
-            mother,
-            "motherId":mother.id
+            motherName,
+            mother:motherName.id
         });
     }
-    onChangeFather(father) {
-        console.log(father.id);
+
+    onChangeFather(fatherName) {
         this.setState({
-            father,
-            "fatherId":father.id
+            fatherName,
+            father:fatherName.id
         });
     }
-    onChangeChild(children) {
-        console.log(children.id);
+
+    onChangeChild(childrenName) {
         this.setState({
-            children,
-            "childrenId":children.id
+            childrenName,
+            children:[children.id]
         });
     }
+
     addPersonToData(e) {
         e.preventDefault();
         const name = this.refs.name.value;
@@ -103,27 +127,13 @@ class AddUserSidebar extends Component {
         const gender = document.querySelector('input[name=gender]:checked').value;
         const birthday = this.refs.birthday.value;
         const death = this.refs.death.value === "" ? null : this.refs.death.value;
-        const father = this.state.fatherId;
-        const mother = this.state.motherId;
-        let children = [];
-        if(this.state.childrenId){
-            children = [this.state.childrenId];
-        }
+        const father = this.state.father;
+        const mother = this.state.mother;
+        const children = this.state.children;
         const relationship = [];
         const photo = this.state.uploadedFileCloudinaryUrl === "" ? "https://res.cloudinary.com/csucu/image/upload/v1524057401/av97c7rihdxzy7apnjaj.jpg" : this.state.uploadedFileCloudinaryUrl;
 
-        const person = {
-            name,
-            surname,
-            gender,
-            birthday,
-            death,
-            father,
-            mother,
-            children,
-            relationship,
-            photo
-        };
+        const person = {name,surname,gender,birthday,death,father,mother,children, relationship,photo};
         const {addUser} = this.props;
         const id = addUser(person);
         this.setState({"href": "/" + id});
@@ -131,15 +141,22 @@ class AddUserSidebar extends Component {
         document.querySelector(".AddUserSidebar").reset()
     };
 
+    getDate(date){
+        if(date){
+            return date.substr(6,8)+"-" + date.substr(3,2)+"-" +date.substr(0,2);
+        }
+        return "";
+    }
     render() {
+        console.log("person: ", this.state);
         return (
             <form className={b()} onSubmit={this.addPersonToData.bind(this)}
                   href={this.props.href}>{this.props.children}
-                <input ref='name' type="text" className={b("input-name")} placeholder="Ім'я" required/>
+                <input ref='name' type="text" className={b("input-name")} placeholder="Ім'я"  required/>
                 <input ref='surname' type="text" className={b("input-surname")} placeholder="Прізвище" required/>
                 <div className={b("gender")}>
-                    <input type="radio" name="gender" value="male"/> Male
-                    <input type="radio" name="gender" value="female"/> Female
+                    <input type="radio" ref="male" name="gender" value="male"/> Male
+                    <input type="radio" ref="female" name="gender" value="female"/> Female
                 </div>
                 <div className={b("bday")}>
                     <h4 className={b("text")}>День народження:</h4>
@@ -147,15 +164,15 @@ class AddUserSidebar extends Component {
                 </div>
                 <div className={b("dday")}>
                     <h4 className={b("text")}>День смерті:</h4>
-                    <input ref='death' type="date" className={b("input-death")} name="bday"/>
+                    <input ref='death' type="date" className={b("input-death")} name="dday"/>
                 </div>
-                <Async className={b("father-select")} loadOptions={this.getOptions} value={this.state.father}
+                <Async className={b("father-select")} loadOptions={this.getOptions} value={this.state.fatherName}
                        onChange={this.onChangeFather.bind(this)}
                        placeholder="Тато"/>
-                <Async className={b("mother-select")} loadOptions={this.getOptions} value={this.state.mother}
+                <Async className={b("mother-select")} loadOptions={this.getOptions} value={this.state.motherName}
                        onChange={this.onChangeMother.bind(this)}
-                    placeholder="Мама"/>
-                <Async className={b("children-select")} loadOptions={this.getOptions} value={this.state.children}
+                       placeholder="Мама"/>
+                <Async className={b("children-select")} loadOptions={this.getOptions} value={this.state.childrenName}
                        onChange={this.onChangeChild.bind(this)}
                        placeholder="Діти"/>
                 <div className={b("fileUpload")}>
@@ -178,7 +195,27 @@ class AddUserSidebar extends Component {
     }
 }
 
-export default connect(
-    null,
-    {addUser}
+export default connect((state) => {
+        let person = null;
+        let motherName = '';
+        let fatherName = '';
+        if (getEditingPersonId(state)) {
+            person = getPersonById(getEditingPersonId(state).id, state);
+            if (person){
+                motherName = person.mother === null ? '' :
+                        getPersonById(person.mother, state).name+" " + getPersonById(person.mother, state).surname;
+                fatherName = person.father === null ? '' :
+                        getPersonById(person.father, state).name+" " + getPersonById(person.father, state).surname;
+            }
+        }
+        return {
+            person,
+            motherName,
+            fatherName
+        }
+    },
+    {
+        addUser,
+        editPerson
+    }
 )(AddUserSidebar);

@@ -5,6 +5,7 @@ import {NavLink} from 'react-router-dom'
 import "../styles/Person.less"
 import block from "../helpers/BEM";
 import {getPersonById} from "../reducers";
+import {editingPersonStart} from "../actions/index";
 
 const b = block("Person");
 
@@ -23,13 +24,13 @@ class Person extends Component {
         if (props.user.id === parseInt(props.activeId)) {
             className += " Person_active";
         }
-        if(props.families[props.activeId]){
+        if (props.families[props.activeId]) {
             const love = props.families[props.activeId].relationship;
-            if(love.includes(props.user.id)){
+            if (love.includes(props.user.id)) {
                 className += " Person__love";
             }
             const siblings = props.families[props.activeId].siblings;
-            if(siblings.includes(props.user.id)){
+            if (siblings.includes(props.user.id)) {
                 className += " Person__sibling";
             }
         }
@@ -38,15 +39,20 @@ class Person extends Component {
             "user": props.user,
             "x": props.person.x,
             "y": props.person.y,
-            className
+            className,
+
         };
     }
 
-    getMargins() {
+    getMargins(button=0) {
         return {
-            "marginLeft": this.state.x + 400,
+            "marginLeft": this.state.x + 400 - button,
             "marginTop": this.state.y - 500
         }
+    }
+    editPerson(){
+        console.log("clicked edit!");
+        this.props.editingPersonStart(this.state.user.id);
     }
 
     render() {
@@ -55,21 +61,23 @@ class Person extends Component {
             <div className={b("wrapper")}>
                 {/*<button className={b("addParents")} style={this.getMargins()}>+</button>*/}
                 {/*<button className={b("addLove")} style={this.getMargins()}>+</button>*/}
-            <NavLink to={id}>
+                <button className={b("edit-button")} onClick={this.editPerson.bind(this)} style={this.getMargins(30)}>
+                    <img className={b("edit-button__img")}
+                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Feedbin-Icon-home-edit.svg/2000px-Feedbin-Icon-home-edit.svg.png"
+                         alt=""/>
+                </button>
+                <NavLink to={id}>
                     <div className={this.state.className} style={this.getMargins()}>
                         <img className={b("img")} src={this.state.user.photo} alt=""/>
                         <div className={b("info")}>
                             <h3 className={b("name")} data-text={this.state.user.name}>{this.state.user.name}</h3>
-                            <button className={b("edit-button")}><img className={b("edit-button__img")}
-                                                                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Feedbin-Icon-home-edit.svg/2000px-Feedbin-Icon-home-edit.svg.png"
-                                                                      alt=""/></button>
                             <h3 className={b("surname")}
                                 data-text={this.state.user.surname}>{this.state.user.surname}</h3>
                             <time className={b("birthday")}>{this.state.user.birthday}</time>
                             <time className={b("death")}>{this.state.user.death}</time>
                         </div>
                     </div>
-            </NavLink>
+                </NavLink>
                 {/*<button className={b("addSibling")} style={this.getMargins()}>+</button>*/}
                 {/*<button className={b("addChildren")} style={this.getMargins()}>+</button>*/}
             </div>
@@ -80,9 +88,9 @@ class Person extends Component {
 export default connect((state, props) => {
         return {
             user: getPersonById(props.person.id, state),
-            families:state.family.families,
+            families: state.family.families,
         }
     },
-    null
+    {editingPersonStart}
 )(Person);
 
