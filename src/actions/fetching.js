@@ -1,65 +1,12 @@
 import {getPersonById} from "../reducers/index";
 import {uniq} from "ramda";
+import {fetchPerson} from "./person";
 
-export const changePersonId = (id) => {
-    return {
-        type: 'CHANGE_ID',
-        id
-    }
-};
+export const fetchFamilyStart = (id) => ({type: "FETCH_FAMILY", id});
 
-export const fetchPersonStart = (id) => {
-    return {
-        type: "FETCH_PERSON",
-        id
-    }
-};
+export const fetchFamilySuccess = (family, id) => ({type: "FETCH_FAMILY_SUCCESS", family, id});
 
-export const fetchPersonSuccess = (id, data) => {
-    return {
-        type: "FETCH_PERSON_SUCCESS",
-        id,
-        data
-    }
-};
-
-export const fetchPersonFail = (id, data) => {
-    return {
-        type: "FETCH_PERSON_FAIL",
-        id,
-        data
-    }
-};
-
-export const fetchPerson = (id) => async (dispatch) => {
-    dispatch(fetchPersonStart(id));
-    const person = await ((await fetch(`http://localhost:3000/persons/${id}`)).json());
-    dispatch(fetchPersonSuccess(id, person));
-    return person;
-};
-
-export const fetchFamilyStart = (id) => {
-    return {
-        type: "FETCH_FAMILY",
-        id
-    }
-};
-
-export const fetchFamilySuccess = (family, id) => {
-    return {
-        type: "FETCH_FAMILY_SUCCESS",
-        family,
-        id
-    }
-};
-
-export const fetchFamilyFail = (family, id) => {
-    return {
-        type: "FETCH_FAMILY_FAIL",
-        family,
-        id
-    }
-};
+export const fetchFamilyFail = (family, id) => ({type: "FETCH_FAMILY_FAIL", family, id});
 export const fetchUserFamily = (id) => async (dispatch) => {
     dispatch(fetchFamilyStart(id));
     const family = {

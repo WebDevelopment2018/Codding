@@ -6,7 +6,6 @@ import Layout from "./components/Layout";
 import "../src/styles/common.less"
 import initStore from "./initStore";
 import {BrowserRouter} from 'react-router-dom';
-import NewPerson from "./newV/NewPerson";
 
 ReactDOM.render(
     <Provider store={initStore()}>

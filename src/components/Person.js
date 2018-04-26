@@ -5,7 +5,7 @@ import {NavLink} from 'react-router-dom'
 import "../styles/Person.less"
 import block from "../helpers/BEM";
 import {getPersonById} from "../reducers";
-import {editingPersonStart} from "../actions/index";
+import {editingPersonStart} from "../actions/person";
 
 const b = block("Person");
 
@@ -51,7 +51,6 @@ class Person extends Component {
         }
     }
     editPerson(){
-        console.log("clicked edit!");
         this.props.editingPersonStart(this.state.user.id);
     }
 
@@ -62,7 +61,7 @@ class Person extends Component {
                 {/*<button className={b("addParents")} style={this.getMargins()}>+</button>*/}
                 {/*<button className={b("addLove")} style={this.getMargins()}>+</button>*/}
                 <button className={b("edit-button")} onClick={this.editPerson.bind(this)} style={this.getMargins(30)}>
-                    <img className={b("edit-button__img")}
+                    <img className={b("edit-button",["img"])}
                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Feedbin-Icon-home-edit.svg/2000px-Feedbin-Icon-home-edit.svg.png"
                          alt=""/>
                 </button>

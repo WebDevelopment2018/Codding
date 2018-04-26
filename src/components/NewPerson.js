@@ -41,7 +41,6 @@ class NewPerson extends Component {
                         <span>4</span></div>
                 </div>
             </div>
-            <NewPersonZoom/>
             </Fragment>
         )
     }
