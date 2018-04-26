@@ -27,6 +27,7 @@ class AddUserSidebar extends Component {
         super(props);
         this.state = {
             "href": "/",
+            action: "Submit",
             uploadedFile: null,
             uploadedFileCloudinaryUrl: '',
             motherName: '',
@@ -34,7 +35,8 @@ class AddUserSidebar extends Component {
             childrenName: '',
             mother: null,
             father: null,
-            children: []
+            children: [],
+            relationship:[]
         }
     }
 
@@ -50,11 +52,14 @@ class AddUserSidebar extends Component {
             this.refs.name.value = props.person.name;
             this.refs.surname.value = props.person.surname;
             this.setState({
+                action: "Edit",
                 fatherName: props.fatherName,
                 motherName: props.motherName,
                 mother: props.person.mother,
                 father: props.person.father,
                 children: props.person.children,
+                uploadedFileCloudinaryUrl: props.person.photo,
+                relationship:props.person.relationship
             });
         }
     }
@@ -130,13 +135,18 @@ class AddUserSidebar extends Component {
         const father = this.state.father;
         const mother = this.state.mother;
         const children = this.state.children;
-        const relationship = [];
+        const relationship = this.state.relationship;
         const photo = this.state.uploadedFileCloudinaryUrl === "" ? "https://res.cloudinary.com/csucu/image/upload/v1524057401/av97c7rihdxzy7apnjaj.jpg" : this.state.uploadedFileCloudinaryUrl;
 
         const person = {name,surname,gender,birthday,death,father,mother,children, relationship,photo};
-        const {addUser} = this.props;
-        const id = addUser(person);
-        this.setState({"href": "/" + id});
+        const {addUser, editPerson} = this.props;
+        if(this.state.action === "Submit"){
+            addUser(person);
+            //const id = addUser(person);
+            //this.setState({"href": "/" + id});
+        }else{
+            editPerson(this.props.person.id,person);
+        }
         alert("Done!");
         document.querySelector(".AddUserSidebar").reset()
     };
@@ -189,7 +199,7 @@ class AddUserSidebar extends Component {
                         </div>
                     </Dropzone>
                 </div>
-                <button type='submit' className="ToggleSidebar__action-button">Submit</button>
+                <button type='submit' className="ToggleSidebar__action-button">{this.state.action}</button>
             </form>
         )
     }

@@ -13,8 +13,15 @@ export const editingPersonEnd = () => {
     }
 };
 
-export const editPerson = (data) => async (dispatch) => {
-    //const person = await ((await fetch(`http://localhost:3000/persons/${id}`)).json());
-    console.log("EDIT");
+export const editPerson = (id,data) => async (dispatch) => {
+    console.log("EDIT",id,data);
+    await fetch("http://localhost:3000/persons/" + id, {
+        method: 'PATCH',
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
     dispatch(editingPersonEnd());
+    window.location.href = "http://localhost:5000/" + id;
 };
