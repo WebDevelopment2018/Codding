@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
 import block from "../helpers/BEM";
@@ -21,12 +21,12 @@ class ToggleSidebar extends Component {
 
   render() {
     return (
-      <aside className={b()}>
+      <Fragment>
         <button className={b("action-button")} onClick={this.onClick.bind(this)}>
           {this.state.showSidebar ? "Close" : "Add"}
         </button>
         {this.state.showSidebar && <AddUserForm />}
-      </aside>
+      </Fragment>
     );
   }
 }

@@ -16,7 +16,7 @@ class Layout extends Component {
         return (
             <Fragment>
                 <div className={b()}>
-                    <ToggleSidebar/>
+                  <aside className={b("toggleSidebar")}><ToggleSidebar/></aside>
                     <Switch>
                         <Route exact path='/' component={Tree}/>
                         <Route path='/:person' component={Tree}/>
