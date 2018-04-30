@@ -26,14 +26,14 @@ class AddUserForm extends Component {
   state = {
     name: "",
     surname: "",
-
     action: "Submit",
     uploadedFile: null,
     photo: "https://res.cloudinary.com/csucu/image/upload/v1524057401/av97c7rihdxzy7apnjaj.jpg",
     mother: null,
     father: null,
     children: [],
-    relationship: []
+    relationship: [],
+    submit_button: true
   };
 
   static getDerivedStateFromProps = (nextProps, state) => {
@@ -82,7 +82,6 @@ class AddUserForm extends Component {
     e.preventDefault();
 
     const { action, ...person } = this.state;
-
     const { addUser, editPerson } = this.props;
 
     if (this.state.action === "Submit") {
@@ -90,7 +89,6 @@ class AddUserForm extends Component {
     } else {
       editPerson(this.props.person.id, person);
     }
-
     //TODO: fix it;
     alert("Done!");
     document.querySelector(".AddUserForm").reset();
@@ -112,49 +110,16 @@ class AddUserForm extends Component {
     return (
       <form className={b()} onSubmit={this.addPersonToData.bind(this)} href={this.props.href}>
         {this.props.children}
-
-        <input
-          value={this.state.name}
-          onChange={this.handleStateChangeFromEvent.bind(this, "name")}
-          className={b("input-name")}
-          placeholder="Ім'я"
-          required
-        />
-        <input
-          value={this.state.surname}
-          onChange={this.handleStateChangeFromEvent.bind(this, "surname")}
-          type="text"
-          className={b("input-surname")}
-          placeholder="Прізвище"
-          required
-        />
-
+        <input value={this.state.name} onChange={this.handleStateChangeFromEvent.bind(this, "name")} className={b("input-name")} placeholder="Ім'я" required/>
+        <input value={this.state.surname} onChange={this.handleStateChangeFromEvent.bind(this, "surname")} type="text" className={b("input-surname")} placeholder="Прізвище" required/>
         <div className={b("gender")}>
           <label>
-            <input
-              onChange={this.handleStateChangeFromEvent.bind(this, "gender")}
-              type="radio"
-              ref="male"
-              name="gender"
-              value="male"
-              checked={this.state.gender === "male"}
-            />{" "}
-            Male
+            <input onChange={this.handleStateChangeFromEvent.bind(this, "gender")} type="radio" ref="male" name="gender" value="male" checked={this.state.gender === "male"}/>{" "}Male
           </label>
-
           <label>
-            <input
-              onChange={this.handleStateChangeFromEvent.bind(this, "gender")}
-              type="radio"
-              ref="female"
-              name="gender"
-              value="female"
-              checked={this.state.gender === "female"}
-            />{" "}
-            Female
+            <input onChange={this.handleStateChangeFromEvent.bind(this, "gender")} type="radio" ref="female" name="gender" value="female" checked={this.state.gender === "female"}/>{" "}Female
           </label>
         </div>
-
         <div className={b("bday")}>
           <h4 className={b("text")}>День народження:</h4>
           <input ref="birthday" type="date" className={b("input-birthday")} name="bday" required />
@@ -164,48 +129,21 @@ class AddUserForm extends Component {
           <input ref="death" type="date" className={b("input-death")} name="dday" />
         </div>
 
-        <div>
-          <br />
-          <br />
-          Father = {this.state.father} <br />
-          Mather = {this.state.mother}
-        </div>
-
-        <SearchPerson
-          gender={"male"}
-          className={b("father-select")}
-          value={this.state.father}
-          onChange={this.handleStateChange.bind(this, "father")}
-          placeholder="Тато"
-        />
-
-        <SearchPerson
-          gender={"female"}
-          className={b("mother-select")}
-          value={this.state.mother}
-          onChange={this.handleStateChange.bind(this, "mother")}
-          placeholder="Мама"
-        />
+        <SearchPerson gender={"male"} className={b("father-select")} value={this.state.father} onChange={this.handleStateChange.bind(this, "father")} placeholder="Тато"/>
+        <SearchPerson gender={"female"} className={b("mother-select")} value={this.state.mother} onChange={this.handleStateChange.bind(this, "mother")} placeholder="Мама"/>
         {/*<SearchPerson className={b("children-select")} value={this.state.children} onChange={this.handleStateChange.bind(this, "children")} placeholder="Діти"/>*/}
 
         <div className={b("fileUpload")}>
           <div className={b("dropzone-text")}>
             Drop an image or click to select a file to upload.
           </div>
-          <Dropzone
-            onDrop={this.onImageDrop.bind(this)}
-            multiple={false}
-            style={dropzoneStyle}
-            accept="image/*"
-          >
+          <Dropzone onDrop={this.onImageDrop.bind(this)} multiple={false} style={dropzoneStyle} accept="image/*">
             <div className={b("preview")}>
-              {this.state.photo === "" ? null : (
-                <img className={b("preview-img")} src={this.state.photo} />
-              )}
+              {this.state.photo === "" ? null : (<img className={b("preview-img")} src={this.state.photo} />)}
             </div>
           </Dropzone>
         </div>
-        <button type="submit" className="ToggleSidebar__action-button">
+        <button type="submit" className={b("submit-button")}>
           {this.state.action}
         </button>
       </form>
@@ -216,11 +154,9 @@ class AddUserForm extends Component {
 export default connect(
   state => {
     let person = null;
-
     if (getEditingPersonId(state)) {
       person = getPersonById(getEditingPersonId(state).id, state);
     }
-
     return { person };
   },
   {
