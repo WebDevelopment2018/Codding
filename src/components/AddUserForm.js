@@ -31,16 +31,17 @@ class AddUserForm extends Component {
     photo: "https://res.cloudinary.com/csucu/image/upload/v1524057401/av97c7rihdxzy7apnjaj.jpg",
     mother: null,
     father: null,
+    birthday:'',
+    death:'',
     children: [],
     relationship: [],
     submit_button: true
   };
 
-  static getDerivedStateFromProps = (nextProps, state) => {
+  static getDerivedStateFromProps = (nextProps) => {
     if (nextProps.person) {
       return {
         action: "Edit",
-
         name: nextProps.person.name,
         surname: nextProps.person.surname,
         gender: nextProps.person.gender,
@@ -48,6 +49,8 @@ class AddUserForm extends Component {
         father: nextProps.person.father,
         children: nextProps.person.children,
         photo: nextProps.person.photo,
+        birthday:nextProps.person.birthday,
+        death:nextProps.person.death,
         relationship: nextProps.person.relationship
       };
     } else {
@@ -84,18 +87,14 @@ class AddUserForm extends Component {
     const { action, ...person } = this.state;
     const { addUser, editPerson } = this.props;
 
-    if (this.state.action === "Submit") {
+    if (action === "Submit") {
       addUser(person);
     } else {
-      editPerson(this.props.person.id, person);
+      editPerson(person.id, person);
     }
     //TODO: fix it;
     alert("Done!");
     document.querySelector(".AddUserForm").reset();
-  }
-
-  getDate(date) {
-    return date ? date.substr(6, 8) + "-" + date.substr(3, 2) + "-" + date.substr(0, 2) : "";
   }
 
   handleStateChange(propName, value) {
@@ -122,11 +121,11 @@ class AddUserForm extends Component {
         </div>
         <div className={b("bday")}>
           <h4 className={b("text")}>День народження:</h4>
-          <input ref="birthday" type="date" className={b("input-birthday")} name="bday" required />
+          <input ref="birthday" type="date" value={this.state.birthday} className={b("input-birthday")} name="bday" onChange={this.handleStateChangeFromEvent.bind(this, "birthday")} required />
         </div>
         <div className={b("dday")}>
           <h4 className={b("text")}>День смерті:</h4>
-          <input ref="death" type="date" className={b("input-death")} name="dday" />
+          <input ref="death" type="date" value={this.state.death} onChange={this.handleStateChangeFromEvent.bind(this, "death")} className={b("input-death")} name="dday" />
         </div>
 
         <SearchPerson gender={"male"} className={b("father-select")} value={this.state.father} onChange={this.handleStateChange.bind(this, "father")} placeholder="Тато"/>
