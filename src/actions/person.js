@@ -19,11 +19,19 @@ export const editingPersonStart = id => ({ type: EDITING_PERSON_START, id });
 export const editingPersonSuccess = () => ({ type: EDITING_PERSON_SUCCESS });
 export const editingPersonFail = () => ({ type: EDITING_PERSON_FAIL, error: true });
 
+const searchPersonByNameStart = search => ({ type: SEARCH_PERSON_START, search });
+const searchPersonByNameSuccess = (search, persons) => ({ type: SEARCH_PERSON_SUCCESS, search, persons });
+const searchPersonByNameFail = (search, persons) => ({ type: SEARCH_PERSON_FAIL, error: true, search, persons });
+
 export const fetchPerson = id => async dispatch => {
-  dispatch(fetchPersonStart(id));
-  const person = await api.fetchUser(id);
-  dispatch(fetchPersonSuccess(id, person));
-  return person;
+  try {
+    dispatch(fetchPersonStart(id));
+    const person = await api.fetchUser(id);
+    dispatch(fetchPersonSuccess(id, person));
+    return person;
+  } catch (error) {
+    dispatch(fetchPersonFail(error))
+  }
 };
 
 export const editPersonParents = (child, id, gender) => async (dispatch, getState) => {
@@ -58,20 +66,22 @@ export const addUser = data => async dispatch => {
 };
 
 export const editPerson = (id, data) => async dispatch => {
-  await api.editUser(id, data);
-  dispatch(editingPersonSuccess());
-  window.location.href = "http://localhost:5000/" + id;
+  try {
+    await api.editUser(id, data);
+    dispatch(editingPersonSuccess());
+    window.location.href = "http://localhost:5000/" + id;
+  } catch (error) {
+    dispatch(editingPersonFail(error))
+  }
 };
 
-const searchPersonByNameStart = search => ({ type: SEARCH_PERSON_START, search });
-const searchPersonByNameSuccess = (search, persons) => ({ type: SEARCH_PERSON_SUCCESS, search, persons });
-const searchPersonByNameFail = (search, persons) => ({ type: SEARCH_PERSON_FAIL, error: true, search, persons });
-
 export const searchPersonByName = searchString => async dispatch => {
-  dispatch(searchPersonByNameStart(searchString));
-
-  const response = await fetch(`http://localhost:3000/persons?name_like=${searchString}`);
-  const result = await response.json();
-
-  dispatch(searchPersonByNameSuccess(searchString, result));
+  try {
+    dispatch(searchPersonByNameStart(searchString));
+    const response = await fetch(`http://localhost:3000/persons?name_like=${searchString}`);
+    const result = await response.json();
+    dispatch(searchPersonByNameSuccess(searchString, result));
+  } catch (error) {
+    dispatch(searchPersonByNameFail(error))
+  }
 };
