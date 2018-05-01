@@ -1,0 +1,51 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "required": true,
+  "properties": {
+    "id": {
+      "type": "integer",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "surname": {
+      "type": "string",
+      "required": true
+    },
+    "birthday": {
+      "type": "string",
+      "required": true
+    },
+    "death": {
+      "type": "string",
+      "required": false
+    },
+    "mother": {
+      "type": "integer",
+      "required": false
+    },
+    "father": {
+      "type": "integer",
+      "required": false
+    },
+    "gender": {
+      "type": "string",
+      "required": true
+    },
+    "relationship": {
+      "type": "object",
+      "required": false
+    },
+    "children": {
+      "type": "object",
+      "required": false
+    },
+    "photo": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

@@ -10,17 +10,10 @@ import { addUser } from "../actions/person";
 import { getEditingPersonId } from "../reducers/index";
 import { editPerson } from "../actions/person";
 import { getPersonById } from "../reducers/index";
-import { CLOUDINARY_UPLOAD_PRESET, CLOUDINARY_UPLOAD_URL } from "../helpers/consts";
+import { CLOUDINARY_UPLOAD_PRESET, CLOUDINARY_UPLOAD_URL, DROPZONE_STYLES } from "../helpers/consts";
 import SearchPerson from "./SearchPerson";
 
 const b = block("AddUserForm");
-
-const dropzoneStyle = {
-  width: "150px",
-  margin: "auto",
-  height: "150px",
-  border: "2px dashed #82BF56"
-};
 
 class AddUserForm extends Component {
   state = {
@@ -136,7 +129,7 @@ class AddUserForm extends Component {
           <div className={b("dropzone-text")}>
             Drop an image or click to select a file to upload.
           </div>
-          <Dropzone onDrop={this.onImageDrop.bind(this)} multiple={false} style={dropzoneStyle} accept="image/*">
+          <Dropzone onDrop={this.onImageDrop.bind(this)} multiple={false} style={DROPZONE_STYLES} accept="image/*">
             <div className={b("preview")}>
               {this.state.photo === "" ? null : (<img className={b("preview-img")} src={this.state.photo} />)}
             </div>

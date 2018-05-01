@@ -1,21 +1,25 @@
 import {getPersonById} from "../reducers/index";
 import {uniq} from "ramda";
 import {fetchPerson} from "./person";
+import { FETCH_FAMILY, FETCH_FAMILY_FAIL, FETCH_FAMILY_SUCCESS } from "./actionTypes";
 
-export const fetchFamilyStart = (id) => ({type: "FETCH_FAMILY", id});
+export const fetchFamilyStart = (id) => ({type: FETCH_FAMILY, id});
+export const fetchFamilySuccess = (family, id) => ({type: FETCH_FAMILY_SUCCESS, family, id});
+export const fetchFamilyFail = (family, id) => ({type: FETCH_FAMILY_FAIL, family, id});
 
-export const fetchFamilySuccess = (family, id) => ({type: "FETCH_FAMILY_SUCCESS", family, id});
-
-export const fetchFamilyFail = (family, id) => ({type: "FETCH_FAMILY_FAIL", family, id});
 export const fetchUserFamily = (id) => async (dispatch) => {
     dispatch(fetchFamilyStart(id));
-    const family = {
+    try {
+      const family = {
         "parents": await dispatch(getParents(id)),
         "children": await dispatch(getChildren(id)),
         "relationship": await dispatch(getRelationship(id)),
         "siblings": await dispatch(getSiblings(id))
-    };
-    dispatch(fetchFamilySuccess(family, id));
+      };
+      dispatch(fetchFamilySuccess(family, id));
+    } catch (error) {
+      dispatch(fetchFamilyFail(error))
+    }
 };
 
 export const getParents = (id) => async (dispatch, getState) => {
