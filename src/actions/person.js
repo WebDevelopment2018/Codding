@@ -4,7 +4,9 @@ import {
   EDITING_PERSON_SUCCESS,
   FETCH_PERSON,
   FETCH_PERSON_FAIL,
-  FETCH_PERSON_SUCCESS, SEARCH_PERSON_FAIL, SEARCH_PERSON_START, SEARCH_PERSON_SUCCESS
+  FETCH_PERSON_SUCCESS,
+  SEARCH_PERSON_FAIL, SEARCH_PERSON_START, SEARCH_PERSON_SUCCESS,
+  ADD_RELATIVES_FAIL, ADD_RELATIVES_START, ADD_RELATIVES_SUCCESS
 } from "./actionTypes";
 import * as api from "../api";
 import { getPersonById } from "../reducers";
@@ -18,6 +20,10 @@ export const fetchPersonFail = (id, data) => ({ type: FETCH_PERSON_FAIL, error: 
 export const editingPersonStart = id => ({ type: EDITING_PERSON_START, id });
 export const editingPersonSuccess = () => ({ type: EDITING_PERSON_SUCCESS });
 export const editingPersonFail = () => ({ type: EDITING_PERSON_FAIL, error: true });
+
+export const addRelativesStart = relatives => ({ type: ADD_RELATIVES_START, relatives });
+export const addRelativesSuccess = () => ({ type: ADD_RELATIVES_SUCCESS });
+export const addRelativesFail = () => ({ type: ADD_RELATIVES_FAIL, error: true });
 
 export const fetchPerson = id => async dispatch => {
   dispatch(fetchPersonStart(id));

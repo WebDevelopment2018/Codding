@@ -5,7 +5,9 @@ import {
   EDITING_PERSON_SUCCESS,
   FETCH_PERSON,
   FETCH_PERSON_FAIL,
-  FETCH_PERSON_SUCCESS
+  FETCH_PERSON_SUCCESS,
+  ADD_RELATIVES_START,
+  ADD_RELATIVES_SUCCESS
 } from "../actions/actionTypes";
 
 export const activePersonId = (state = {}, action) => {
@@ -25,6 +27,16 @@ export const editingPersonId = (state = {}, action) => {
     default:
       return state;
   }
+};
+export const addRelatives = (state = {}, action) => {
+    switch (action.type) {
+        case  ADD_RELATIVES_START:
+            return { relatives: action.relatives };
+        case  ADD_RELATIVES_SUCCESS:
+            return { relatives: null };
+        default:
+            return state;
+    }
 };
 
 //TODO: use normalizr https://github.com/paularmstrong/normalizr;
@@ -65,14 +77,13 @@ export default combineReducers({
   activePersonId,
   persons,
   fetching,
-  editingPersonId
+  editingPersonId,
+  addRelatives
 });
 
 export const getPerson = (personId, state) => state.activePersonId;
 export const getPersonById = (id, state) => state.persons[id];
 export const getEditingPersonId = state => state.editingPersonId;
 export const isPersonFetching = (id, state) => state.fetching[id];
-
-export const getAllPersons = state => {
-  return values(state.persons);
-};
+export const getAllPersons = state =>  values(state.persons);
+export const getRelatives = state =>  values(state.addRelatives);
