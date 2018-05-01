@@ -5,17 +5,10 @@ import {
   EDITING_PERSON_SUCCESS,
   FETCH_PERSON,
   FETCH_PERSON_FAIL,
-  FETCH_PERSON_SUCCESS
+  FETCH_PERSON_SUCCESS, SEARCH_PERSON_SUCCESS
 } from "../actions/actionTypes";
 
-export const activePersonId = (state = {}, action) => {
-  switch (action.type) {
-    case "CHANGE_ID":
-      return { id: action.person };
-    default:
-      return state;
-  }
-};
+
 export const editingPersonId = (state = {}, action) => {
   switch (action.type) {
     case EDITING_PERSON_START:
@@ -33,7 +26,7 @@ export const persons = (state = {}, action) => {
     case FETCH_PERSON_SUCCESS:
       return assoc(action.id, action.data, state);
 
-    case "TODO_FINISH":
+    case SEARCH_PERSON_SUCCESS:
       const { persons } = action;
       return {
         ...state,
@@ -62,7 +55,6 @@ export const fetching = (state = {}, action) => {
 };
 
 export default combineReducers({
-  activePersonId,
   persons,
   fetching,
   editingPersonId
