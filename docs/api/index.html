@@ -1,0 +1,217 @@
+<!DOCTYPE HTML><html><head><title>Family Tree API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 7.1.0"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+        $('.page-header pre code, .top-resource-description pre code, .modal-body pre code').each(function(i, block) {
+          hljs.highlightBlock(block);
+        });
+
+        $('[data-toggle]').click(function() {
+          var selector = $(this).data('target') + ' pre code';
+          $(selector).each(function(i, block) {
+            hljs.highlightBlock(block);
+          });
+        });
+
+        // open modal on hashes like #_action_get
+        $(window).bind('hashchange', function(e) {
+          var anchor_id = document.location.hash.substr(1); //strip #
+          var element = $('#' + anchor_id);
+
+          // do we have such element + is it a modal?  --> show it
+          if (element.length && element.hasClass('modal')) {
+            element.modal('show');
+          }
+        });
+
+        // execute hashchange on first page load
+        $(window).trigger('hashchange');
+
+        // remove url fragment on modal hide
+        $('.modal').on('hidden.bs.modal', function() {
+          try {
+            if (history && history.replaceState) {
+                history.replaceState({}, '', '#');
+            }
+          } catch(e) {}
+        });
+      });
+    </script><style>
+      .hljs {
+        background: transparent;
+      }
+      .parent {
+        color: #999;
+      }
+      .list-group-item > .badge {
+        float: none;
+        margin-right: 6px;
+      }
+      .panel-title > .methods {
+        float: right;
+      }
+      .badge {
+        border-radius: 0;
+        text-transform: uppercase;
+        width: 70px;
+        font-weight: normal;
+        color: #f3f3f6;
+        line-height: normal;
+      }
+      .badge_get {
+        background-color: #63a8e2;
+      }
+      .badge_post {
+        background-color: #6cbd7d;
+      }
+      .badge_put {
+        background-color: #22bac4;
+      }
+      .badge_delete {
+        background-color: #d26460;
+      }
+      .badge_patch {
+        background-color: #ccc444;
+      }
+      .list-group, .panel-group {
+        margin-bottom: 0;
+      }
+      .panel-group .panel+.panel-white {
+        margin-top: 0;
+      }
+      .panel-group .panel-white {
+        border-bottom: 1px solid #F5F5F5;
+        border-radius: 0;
+      }
+      .panel-white:last-child {
+        border-bottom-color: white;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .panel-white .panel-heading {
+        background: white;
+      }
+      .tab-pane ul {
+        padding-left: 2em;
+      }
+      .tab-pane h1 {
+        font-size: 1.3em;
+      }
+      .tab-pane h2 {
+        font-size: 1.2em;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #ddd;
+      }
+      .tab-pane h3 {
+        font-size: 1.1em;
+      }
+      .tab-content {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+      }
+      #sidebar {
+        margin-top: 30px;
+        padding-right: 5px;
+        overflow: auto;
+        height: 90%;
+      }
+      .top-resource-description {
+        border-bottom: 1px solid #ddd;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description {
+        border-bottom: 1px solid #fcfcfc;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description p:last-child {
+        margin: 0;
+      }
+      .list-group .badge {
+        float: left;
+      }
+      .method_description {
+        margin-left: 85px;
+      }
+      .method_description p:last-child {
+        margin: 0;
+      }
+      .list-group-item {
+        cursor: pointer;
+      }
+      .list-group-item:hover {
+        background-color: #f5f5f5;
+      }
+      pre code {
+        overflow: auto;
+        word-wrap: normal;
+        white-space: pre;
+      }
+      .items {
+        background: #f5f5f5;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 9.5px;
+        margin: 0 0 10px;
+        font-size: 13px;
+        line-height: 1.42857143;
+      }
+      .examples {
+        margin-left: 0.5em;
+      }
+      .resource-modal li > ul {
+        margin-bottom: 1em;
+      }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Family Tree API documentation <small>version v1</small></h1><p>https://localhost:5000/</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="persons" class="panel-title">/persons</h3></div><div class="panel-body"><div class="top-resource-description"><p>Collection of available persons.</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_persons"><span class="parent"></span>/persons</a> <span class="methods"><a href="#persons_get"><span class="badge badge_get">get</span></a> <a href="#persons_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_persons" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#persons_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>All persons</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#persons_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Add a new person</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="persons_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/persons</h4></div><div class="modal-body"><div class="alert alert-info"><p>All persons</p></div><ul class="nav nav-tabs"><li class="active"><a href="#persons_get_request" data-toggle="tab">Request</a></li><li><a href="#persons_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="persons_get_request"><h3>Query Parameters</h3><ul><li><strong>query</strong>: <em>required (string)</em><p>JSON array [{"field1","value1","operator1"},{"field2","value2","operator2"},...,{"fieldN","valueN","operatorN"}] with valid searchable fields: Name</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>["Name", "Get L", "like"]
+</code></pre></div></li><li><strong>orderBy</strong>: <em>(string)</em><p>Order by field: Name</p></li><li><strong>order</strong>: <em>(one of desc, asc - default: desc)</em><p>Order</p></li></ul></div><div class="tab-pane" id="persons_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 1,
+  "name": "Марія",
+  "surname": "Романова",
+  "birthday": "01.04.1624",
+  "death": "13.03.1669",
+  "mother": null,
+  "father": null,
+  "gender": "female",
+  "relationship": [
+    2
+  ],
+  "children": [
+    4
+  ],
+  "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520238626/maria_romanova_x0sjf2.jpg"
+}
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="persons_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/persons</h4></div><div class="modal-body"><div class="alert alert-info"><p>Add a new person</p></div><ul class="nav nav-tabs"><li class="active"><a href="#persons_post_request" data-toggle="tab">Request</a></li><li><a href="#persons_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="persons_post_request"><h3>Query Parameters</h3><ul><li><strong>access_token</strong>: <em>required (string)</em><p>The access token provided by the authentication application</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>AABBCCDD</code></pre></div></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: person example</p><p><strong>Media type</strong>: multipart/form-data</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>file</strong>: <em>required (file)</em><p>The file to be uploaded</p></li></ul></div><div class="tab-pane" id="persons_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{ "message": "The person has been properly entered" }
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_persons__id_"><span class="parent">/persons</span>/{id}</a> <span class="methods"><a href="#persons__id__get"><span class="badge badge_get">get</span></a> <a href="#persons__id__patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_persons__id_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Entity representing a person</p></div><div class="list-group"><div onclick="window.location.href = '#persons__id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get a specific person</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#persons__id__patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"><p>Update the person</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="persons__id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/persons</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a specific person</p></div><ul class="nav nav-tabs"><li class="active"><a href="#persons__id__get_request" data-toggle="tab">Request</a></li><li><a href="#persons__id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="persons__id__get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="persons__id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": 4,
+  "name": "Іван V",
+  "surname": "Романов",
+  "birthday": "27.08.1666",
+  "death": "29.01.1696",
+  "mother": 1,
+  "father": 2,
+  "gender": "male",
+  "relationship": [
+    5
+  ],
+  "children": [
+    6,
+    7
+  ],
+  "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520238626/Ivan_V_imwgqd.jpg"
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{"message": "person not found" }
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="persons__id__patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/persons</span>/{id}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update the person</p></div><ul class="nav nav-tabs"><li class="active"><a href="#persons__id__patch_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="persons__id__patch_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_persons__id__name"><span class="parent">/persons/{id}</span>/name</a> <span class="methods"><a href="#persons__id__name_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_persons__id__name" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Person&#39;s name</p></div><div class="list-group"><div onclick="window.location.href = '#persons__id__name_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get a specific person&#39;s names</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="persons__id__name_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/persons/{id}</span>/name</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a specific person&#39;s names</p></div><ul class="nav nav-tabs"><li class="active"><a href="#persons__id__name_get_request" data-toggle="tab">Request</a></li><li><a href="#persons__id__name_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="persons__id__name_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="persons__id__name_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>"Іван V"
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_persons__id__surname"><span class="parent">/persons/{id}</span>/surname</a> <span class="methods"><a href="#persons__id__surname_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_persons__id__surname" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Person&#39;s surname</p></div><div class="list-group"><div onclick="window.location.href = '#persons__id__surname_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get a specific person&#39;s surname</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="persons__id__surname_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/persons/{id}</span>/surname</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a specific person&#39;s surname</p></div><ul class="nav nav-tabs"><li class="active"><a href="#persons__id__surname_get_request" data-toggle="tab">Request</a></li><li><a href="#persons__id__surname_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="persons__id__surname_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="persons__id__surname_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>"Романов"
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_persons__id__birthday"><span class="parent">/persons/{id}</span>/birthday</a> <span class="methods"><a href="#persons__id__birthday_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_persons__id__birthday" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Person&#39;s birthday</p></div><div class="list-group"><div onclick="window.location.href = '#persons__id__birthday_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get a specific person&#39;s birthday</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="persons__id__birthday_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/persons/{id}</span>/birthday</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a specific person&#39;s birthday</p></div><ul class="nav nav-tabs"><li class="active"><a href="#persons__id__birthday_get_request" data-toggle="tab">Request</a></li><li><a href="#persons__id__birthday_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="persons__id__birthday_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="persons__id__birthday_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>"27.08.1666"
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_persons__id__death"><span class="parent">/persons/{id}</span>/death</a> <span class="methods"><a href="#persons__id__death_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_persons__id__death" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Person&#39;s death</p></div><div class="list-group"><div onclick="window.location.href = '#persons__id__death_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get a specific person&#39;s death</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="persons__id__death_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/persons/{id}</span>/death</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a specific person&#39;s death</p></div><ul class="nav nav-tabs"><li class="active"><a href="#persons__id__death_get_request" data-toggle="tab">Request</a></li><li><a href="#persons__id__death_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="persons__id__death_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="persons__id__death_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>"29.01.1696"
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_persons__id__mother"><span class="parent">/persons/{id}</span>/mother</a> <span class="methods"><a href="#persons__id__mother_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_persons__id__mother" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Person&#39;s mother</p></div><div class="list-group"><div onclick="window.location.href = '#persons__id__mother_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get a specific person&#39;s mother</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="persons__id__mother_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/persons/{id}</span>/mother</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a specific person&#39;s mother</p></div><ul class="nav nav-tabs"><li class="active"><a href="#persons__id__mother_get_request" data-toggle="tab">Request</a></li><li><a href="#persons__id__mother_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="persons__id__mother_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="persons__id__mother_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_persons__id__father"><span class="parent">/persons/{id}</span>/father</a> <span class="methods"><a href="#persons__id__father_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_persons__id__father" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Person&#39;s father</p></div><div class="list-group"><div onclick="window.location.href = '#persons__id__father_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get a specific person&#39;s father</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="persons__id__father_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/persons/{id}</span>/father</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a specific person&#39;s father</p></div><ul class="nav nav-tabs"><li class="active"><a href="#persons__id__father_get_request" data-toggle="tab">Request</a></li><li><a href="#persons__id__father_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="persons__id__father_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="persons__id__father_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>2
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_persons__id__gender"><span class="parent">/persons/{id}</span>/gender</a> <span class="methods"><a href="#persons__id__gender_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_persons__id__gender" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Person&#39;s father</p></div><div class="list-group"><div onclick="window.location.href = '#persons__id__gender_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get a specific person&#39;s gender</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="persons__id__gender_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/persons/{id}</span>/gender</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a specific person&#39;s gender</p></div><ul class="nav nav-tabs"><li class="active"><a href="#persons__id__gender_get_request" data-toggle="tab">Request</a></li><li><a href="#persons__id__gender_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="persons__id__gender_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="persons__id__gender_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>"male"
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_persons__id__relationships"><span class="parent">/persons/{id}</span>/relationships</a> <span class="methods"><a href="#persons__id__relationships_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_persons__id__relationships" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Collection of person&#39;s relationships</p></div><div class="list-group"><div onclick="window.location.href = '#persons__id__relationships_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get a specific person&#39;s relationships</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="persons__id__relationships_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/persons/{id}</span>/relationships</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a specific person&#39;s relationships</p></div><ul class="nav nav-tabs"><li class="active"><a href="#persons__id__relationships_get_request" data-toggle="tab">Request</a></li><li><a href="#persons__id__relationships_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="persons__id__relationships_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="persons__id__relationships_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[5]
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_persons__id__children"><span class="parent">/persons/{id}</span>/children</a> <span class="methods"><a href="#persons__id__children_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_persons__id__children" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Collection of person&#39;s children</p></div><div class="list-group"><div onclick="window.location.href = '#persons__id__children_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get a specific person&#39;s children</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="persons__id__children_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/persons/{id}</span>/children</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a specific person&#39;s children</p></div><ul class="nav nav-tabs"><li class="active"><a href="#persons__id__children_get_request" data-toggle="tab">Request</a></li><li><a href="#persons__id__children_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="persons__id__children_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="persons__id__children_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[ 6, 7 ]
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_persons__id__photo"><span class="parent">/persons/{id}</span>/photo</a> <span class="methods"><a href="#persons__id__photo_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_persons__id__photo" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Person&#39;s photo</p></div><div class="list-group"><div onclick="window.location.href = '#persons__id__photo_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get a specific person&#39;s photo</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="persons__id__photo_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/persons/{id}</span>/photo</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a specific person&#39;s photo</p></div><ul class="nav nav-tabs"><li class="active"><a href="#persons__id__photo_get_request" data-toggle="tab">Request</a></li><li><a href="#persons__id__photo_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="persons__id__photo_get_request"><h3>URI Parameters</h3><ul><li><strong>id</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="persons__id__photo_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>"http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520238626/Ivan_V_imwgqd.jpg"
+</code></pre></div></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#persons">/persons</a></li></ul></div></div></div></div></body></html>

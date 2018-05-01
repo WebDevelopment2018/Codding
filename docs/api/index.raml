@@ -1,0 +1,200 @@
+#%RAML 1.0
+---
+title: Family Tree
+version: v1
+baseUri: https://localhost:5000/
+
+types:
+ person: !include person-new.sample
+
+resourceTypes:
+  readOnlyCollection:
+    description: Collection of available <<resourcePathName>>.
+    get:
+      description: Get a list of <<resourcePathName>>.
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                <<exampleCollection>>
+  collection:
+    description: Collection of available <<resourcePathName>>.
+    get:
+      description: Get a list of <<resourcePathName>>.
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                <<exampleCollection>>
+    post:
+      description: |
+        Add a new <<resourcePathName|!singularize>>.
+      queryParameters:
+        access_token:
+          description: "The access token provided by the authentication application"
+          example: AABBCCDD
+          required: true
+          type: string
+      body:
+        application/json:
+          type: <<resourcePathName|!singularize>>
+            example: |
+              <<exampleItem>>
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                { "message": "The <<resourcePathName|!singularize>> has been properly entered" }
+  collection-item:
+    description: Entity representing a <<resourcePathName|!singularize>>
+    get:
+      description: |
+        Get the <<resourcePathName|!singularize>>
+        with <<resourcePathName|!singularize>>Id =
+        {<<resourcePathName|!singularize>>Id}
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                <<exampleItem>>
+        404:
+          body:
+            application/json:
+              example: |
+                {"message": "<<resourcePathName|!singularize>> not found" }
+traits:
+  searchable:
+    queryParameters:
+      query:
+        description: |
+          JSON array [{"field1","value1","operator1"},{"field2","value2","operator2"},...,{"fieldN","valueN","operatorN"}] <<description>>
+        example: |
+          <<example>>
+  orderable:
+    queryParameters:
+      orderBy:
+        description: |
+          Order by field: <<fieldsList>>
+        type: string
+        required: false
+      order:
+        description: Order
+        enum: [desc, asc]
+        default: desc
+        required: false
+
+/persons:
+  type:
+    collection:
+      exampleCollection: !include person-new.sample
+      exampleItem: !include person-new.sample
+  get:
+    description: All persons
+    is: [
+          searchable: {description: "with valid searchable fields: Name", example: "[\"Name\", \"Get L\", \"like\"]"},
+          orderable: {fieldsList: "Name"}
+        ]
+  post:
+    description: Add a new person
+    body:
+      application/json:
+      multipart/form-data:
+        properties:
+          file:
+            description: The file to be uploaded
+            required: true
+            type: file
+
+  /{id}:
+    type:
+      collection-item:
+        exampleItem: !include person-retrieve.sample
+    get:
+      description: Get a specific person
+    patch:
+      description: Update the person
+
+    /name:
+      type:
+        readOnlyCollection:
+          exampleCollection: !include person-name.sample
+      description: Person's name
+      get:
+        description: Get a specific person's names
+
+    /surname:
+      type:
+        readOnlyCollection:
+          exampleCollection: !include person-surname.sample
+      description: Person's surname
+      get:
+        description: Get a specific person's surname
+
+    /birthday:
+      type:
+        readOnlyCollection:
+          exampleCollection: !include person-birthday.sample
+      description: Person's birthday
+      get:
+        description: Get a specific person's birthday
+
+    /death:
+      type:
+        readOnlyCollection:
+          exampleCollection: !include person-death.sample
+      description: Person's death
+      get:
+        description: Get a specific person's death
+
+    /mother:
+      type:
+        readOnlyCollection:
+          exampleCollection: !include person-mother.sample
+      description: Person's mother
+      get:
+        description: Get a specific person's mother
+
+    /father:
+      type:
+        readOnlyCollection:
+          exampleCollection: !include person-father.sample
+      description: Person's father
+      get:
+        description: Get a specific person's father
+
+    /gender:
+      type:
+        readOnlyCollection:
+          exampleCollection: !include person-gender.sample
+      description: Person's father
+      get:
+        description: Get a specific person's gender
+
+    /relationships:
+      type:
+        readOnlyCollection:
+          exampleCollection: !include person-relationships.sample
+      description: Collection of person's relationships
+      get:
+        description: Get a specific person's relationships
+
+    /children:
+      type:
+        readOnlyCollection:
+          exampleCollection: !include person-children.sample
+      description: Collection of person's children
+      get:
+        description: Get a specific person's children
+
+    /photo:
+      type:
+        readOnlyCollection:
+          exampleCollection: !include person-photo.sample
+      description: Person's photo
+      get:
+        description: Get a specific person's photo
+
