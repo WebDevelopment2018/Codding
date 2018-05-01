@@ -10,14 +10,6 @@ import {
   ADD_RELATIVES_SUCCESS
 } from "../actions/actionTypes";
 
-export const activePersonId = (state = {}, action) => {
-  switch (action.type) {
-    case "CHANGE_ID":
-      return { id: action.person };
-    default:
-      return state;
-  }
-};
 export const editingPersonId = (state = {}, action) => {
   switch (action.type) {
     case EDITING_PERSON_START:
@@ -74,14 +66,12 @@ export const fetching = (state = {}, action) => {
 };
 
 export default combineReducers({
-  activePersonId,
   persons,
   fetching,
   editingPersonId,
   addRelatives
 });
 
-export const getPerson = (personId, state) => state.activePersonId;
 export const getPersonById = (id, state) => state.persons[id];
 export const getEditingPersonId = state => state.editingPersonId;
 export const isPersonFetching = (id, state) => state.fetching[id];

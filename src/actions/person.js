@@ -11,8 +11,6 @@ import {
 import * as api from "../api";
 import { getPersonById } from "../reducers";
 
-export const changeActivePersonId = id => ({ type: "CHANGE_ID", id });
-
 export const fetchPersonStart = id => ({ type: FETCH_PERSON, id });
 export const fetchPersonSuccess = (id, data) => ({ type: FETCH_PERSON_SUCCESS, id, data });
 export const fetchPersonFail = (id, data) => ({ type: FETCH_PERSON_FAIL, error: true, id, data });
