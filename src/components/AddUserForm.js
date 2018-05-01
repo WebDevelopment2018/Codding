@@ -103,7 +103,7 @@ class AddUserForm extends Component {
   }
 
   handleStateChangeFromEvent(propName, ev) {
-    this.handleStateChange(propName, ev.target.name);
+    this.handleStateChange(propName, ev.target.value);
   }
 
   render() {
@@ -131,7 +131,7 @@ class AddUserForm extends Component {
 
         <SearchPerson gender={"male"} className={b("father-select")} value={this.state.father} onChange={this.handleStateChange.bind(this, "father")} placeholder="Тато"/>
         <SearchPerson gender={"female"} className={b("mother-select")} value={this.state.mother} onChange={this.handleStateChange.bind(this, "mother")} placeholder="Мама"/>
-        {/*<SearchPerson className={b("children-select")} value={this.state.children} onChange={this.handleStateChange.bind(this, "children")} placeholder="Діти"/>*/}
+        <SearchPerson className={b("children-select")} multi={true} value={this.state.children} onChange={this.handleStateChange.bind(this, "children")} placeholder="Діти"/>
 
         <div className={b("fileUpload")}>
           <div className={b("dropzone-text")}>

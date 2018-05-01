@@ -19,7 +19,6 @@ class SearchPerson extends Component {
   };
 
   static getDerivedStateFromProps = ({ persons }) => {
-    console.log("====", persons);
     return {
       options: persons.map(({ name: label, id: value }) => ({ label, value }))
     };
