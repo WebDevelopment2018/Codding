@@ -101,8 +101,6 @@ class Tree extends Component {
         const all = this.state.relationshipCoordinates.concat(this.state.siblingsCoordinates,
             this.state.childrenCoordinates.slice(1, this.state.childrenCoordinates.length),
             this.state.parentsCoordinates);
-        console.log(this.state.parentsCoordinates);
-        console.log(this.state.childrenCoordinates);
         return (
             <Fragment>
                 <svg onMouseDown={makeDraggable}

@@ -103,7 +103,7 @@ class AddUserForm extends Component {
   }
 
   handleStateChangeFromEvent(propName, ev) {
-    this.handleStateChange(propName, ev.target.name);
+    this.handleStateChange(propName, ev.target.value);
   }
 
   render() {
