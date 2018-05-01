@@ -1,12 +1,8 @@
 import { combineReducers } from "redux";
 import { assoc, values } from "ramda";
-import {
-  EDITING_PERSON_START,
-  EDITING_PERSON_SUCCESS,
-  FETCH_PERSON,
-  FETCH_PERSON_FAIL,
-  FETCH_PERSON_SUCCESS, SEARCH_PERSON_SUCCESS
-} from "../actions/actionTypes";
+import {normalize} from 'normalizr';
+
+import { EDITING_PERSON_START, EDITING_PERSON_SUCCESS, FETCH_PERSON, FETCH_PERSON_FAIL, FETCH_PERSON_SUCCESS, SEARCH_PERSON_SUCCESS } from "../actions/actionTypes";
 
 
 export const editingPersonId = (state = {}, action) => {

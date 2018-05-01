@@ -16,11 +16,15 @@
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "cors": "latest",
     "d3": "^5",
+    "express": "latest",
     "flow-runtime": "^0.17.0",
     "fluxible": "^1.4.0",
     "fluxible-router": "^1.5.1",
     "json-server": "^0.12.1",
+    "morgan": "latest",
+    "normalizr": "^3.2.4",
     "ramda": "^0.25.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
@@ -31,10 +35,7 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "superagent": "^3.8.2",
-    "cors": "latest",
-    "morgan": "latest",
-    "express": "latest"
+    "superagent": "^3.8.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

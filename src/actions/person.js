@@ -24,7 +24,7 @@ const searchPersonByNameFail = (search, persons) => ({ type: SEARCH_PERSON_FAIL,
 export const fetchPerson = id => async dispatch => {
   try {
     dispatch(fetchPersonStart(id));
-    const person = await api.fetchUser(id);
+    let person = await api.fetchUser(id);
     dispatch(fetchPersonSuccess(id, person));
     return person;
   } catch (error) {
