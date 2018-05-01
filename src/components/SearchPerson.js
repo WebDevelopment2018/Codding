@@ -7,11 +7,8 @@ import { searchPersonByName } from "../actions/person";
 
 import block from "../helpers/BEM";
 import "../styles/SearchPerson.less";
-import { getEditingPersonId } from "../reducers/index";
 
 const b = block("SearchPerson");
-
-const options = [{ label: "Peter 1", value: 2 }, { label: "Natalia Romanove", value: 6 }];
 
 class SearchPerson extends Component {
   state = {

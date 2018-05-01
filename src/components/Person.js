@@ -10,16 +10,13 @@ import {editingPersonStart} from "../actions/person";
 const b = block("Person");
 
 class Person extends Component {
-    constructor(props) {
-        super(props);
-        this.state = this.mapPropsToState(props);
-    }
-
-    componentWillReceiveProps(newProps) {
-        this.setState(this.mapPropsToState(newProps));
-    }
-
-    mapPropsToState(props) {
+    state = {
+        user: null,
+        x: 0,
+        y : 0,
+        className: ''
+    };
+    static getDerivedStateFromProps = (props) => {
         let className = "Person";
         if (props.user.id === parseInt(props.activeId)) {
             className += " Person_active";
@@ -34,15 +31,13 @@ class Person extends Component {
                 className += " Person__sibling";
             }
         }
-
         return {
             "user": props.user,
             "x": props.person.x,
             "y": props.person.y,
             className,
-
         };
-    }
+    };
 
     getMargins(button=0) {
         return {
