@@ -58,8 +58,8 @@ class Person extends Component {
         const id = "/" + this.state.user.id;
         return (
             <div className={b("wrapper")}>
-                {/*<button className={b("addParents")} style={this.getMargins()}>+</button>*/}
-                {/*<button className={b("addLove")} style={this.getMargins()}>+</button>*/}
+                <button className={b("addParents")} style={this.getMargins()}>+</button>
+                <button className={b("addLove")} style={this.getMargins()}>+</button>
                 <button className={b("edit-button")} onClick={this.editPerson.bind(this)} style={this.getMargins(30)}>
                     <img className={b("edit-button",["img"])}
                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Feedbin-Icon-home-edit.svg/2000px-Feedbin-Icon-home-edit.svg.png"
@@ -77,8 +77,8 @@ class Person extends Component {
                         </div>
                     </div>
                 </NavLink>
-                {/*<button className={b("addSibling")} style={this.getMargins()}>+</button>*/}
-                {/*<button className={b("addChildren")} style={this.getMargins()}>+</button>*/}
+                <button className={b("addSibling")} style={this.getMargins()}>+</button>
+                <button className={b("addChildren")} style={this.getMargins()}>+</button>
             </div>
         )
     }

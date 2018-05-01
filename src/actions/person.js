@@ -1,9 +1,10 @@
 import {
+  EDITING_PERSON_FAIL,
   EDITING_PERSON_START,
   EDITING_PERSON_SUCCESS,
   FETCH_PERSON,
   FETCH_PERSON_FAIL,
-  FETCH_PERSON_SUCCESS
+  FETCH_PERSON_SUCCESS, SEARCH_PERSON_FAIL, SEARCH_PERSON_START, SEARCH_PERSON_SUCCESS
 } from "./actionTypes";
 import * as api from "../api";
 import { getPersonById } from "../reducers";
@@ -12,10 +13,11 @@ export const changeActivePersonId = id => ({ type: "CHANGE_ID", id });
 
 export const fetchPersonStart = id => ({ type: FETCH_PERSON, id });
 export const fetchPersonSuccess = (id, data) => ({ type: FETCH_PERSON_SUCCESS, id, data });
-export const fetchPersonFail = (id, data) => ({ type: FETCH_PERSON_FAIL, id, data });
+export const fetchPersonFail = (id, data) => ({ type: FETCH_PERSON_FAIL, error: true, id, data });
 
 export const editingPersonStart = id => ({ type: EDITING_PERSON_START, id });
 export const editingPersonSuccess = () => ({ type: EDITING_PERSON_SUCCESS });
+export const editingPersonFail = () => ({ type: EDITING_PERSON_FAIL, error: true });
 
 export const fetchPerson = id => async dispatch => {
   dispatch(fetchPersonStart(id));
@@ -61,8 +63,9 @@ export const editPerson = (id, data) => async dispatch => {
   window.location.href = "http://localhost:5000/" + id;
 };
 
-const searchPersonByNameStart = search => ({ type: "TODO", search });
-const searchPersonByNameSuccess = (search, persons) => ({ type: "TODO_FINISH", search, persons });
+const searchPersonByNameStart = search => ({ type: SEARCH_PERSON_START, search });
+const searchPersonByNameSuccess = (search, persons) => ({ type: SEARCH_PERSON_SUCCESS, search, persons });
+const searchPersonByNameFail = (search, persons) => ({ type: SEARCH_PERSON_FAIL, error: true, search, persons });
 
 export const searchPersonByName = searchString => async dispatch => {
   dispatch(searchPersonByNameStart(searchString));
