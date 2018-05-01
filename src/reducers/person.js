@@ -2,7 +2,8 @@ import { combineReducers } from "redux";
 import { assoc, values } from "ramda";
 import {normalize} from 'normalizr';
 
-import { EDITING_PERSON_START, EDITING_PERSON_SUCCESS, FETCH_PERSON, FETCH_PERSON_FAIL, FETCH_PERSON_SUCCESS, SEARCH_PERSON_SUCCESS } from "../actions/actionTypes";
+import { EDITING_PERSON_START, EDITING_PERSON_SUCCESS, FETCH_PERSON, FETCH_PERSON_FAIL, FETCH_PERSON_SUCCESS, SEARCH_PERSON_SUCCESS, ADD_RELATIVES_START,
+  ADD_RELATIVES_SUCCESS} from "../actions/actionTypes";
 
 
 export const editingPersonId = (state = {}, action) => {
@@ -11,6 +12,17 @@ export const editingPersonId = (state = {}, action) => {
       return { id: action.id };
     case EDITING_PERSON_SUCCESS:
       return { id: null };
+    default:
+      return state;
+  }
+};
+
+export const addRelatives = (state = {}, action) => {
+  switch (action.type) {
+    case  ADD_RELATIVES_START:
+      return { relatives: action.relatives };
+    case  ADD_RELATIVES_SUCCESS:
+      return { relatives: null };
     default:
       return state;
   }
@@ -53,13 +65,15 @@ export const fetching = (state = {}, action) => {
 export default combineReducers({
   persons,
   fetching,
-  editingPersonId
+  editingPersonId,
+  addRelatives
 });
 
 export const getPerson = (personId, state) => state.activePersonId;
 export const getPersonById = (id, state) => state.persons[id];
 export const getEditingPersonId = state => state.editingPersonId;
 export const isPersonFetching = (id, state) => state.fetching[id];
+export const getRelatives = state =>  values(state.addRelatives);
 
 export const getAllPersons = state => {
   return values(state.persons);

@@ -1,4 +1,6 @@
 import {
+  ADD_RELATIVES_FAIL,
+  ADD_RELATIVES_START, ADD_RELATIVES_SUCCESS,
   EDITING_PERSON_FAIL,
   EDITING_PERSON_START,
   EDITING_PERSON_SUCCESS,
@@ -20,6 +22,10 @@ export const editingPersonFail = () => ({ type: EDITING_PERSON_FAIL, error: true
 const searchPersonByNameStart = search => ({ type: SEARCH_PERSON_START, search });
 const searchPersonByNameSuccess = (search, persons) => ({ type: SEARCH_PERSON_SUCCESS, search, persons });
 const searchPersonByNameFail = (search, persons) => ({ type: SEARCH_PERSON_FAIL, error: true, search, persons });
+
+export const addRelativesStart = relatives => ({ type: ADD_RELATIVES_START, relatives });
+export const addRelativesSuccess = () => ({ type: ADD_RELATIVES_SUCCESS });
+export const addRelativesFail = () => ({ type: ADD_RELATIVES_FAIL, error: true });
 
 export const fetchPerson = id => async dispatch => {
   try {
