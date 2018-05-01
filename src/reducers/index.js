@@ -10,6 +10,7 @@ const FamilyApp = combineReducers({
 export default FamilyApp;
 export const getPersonById = (id,state) => fromPerson.getPersonById(id,state.person);
 export const getEditingPersonId = (state) => fromPerson.getEditingPersonId(state.person);
+export const getRelatives = (state) => fromPerson.getRelatives(state.person);
 export const isPersonFetching = (id,state) => fromPerson.isPersonFetching(id,state.person);
 export const getAllPersons =  (state) => fromPerson.getAllPersons(state.person);
 

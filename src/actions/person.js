@@ -65,7 +65,7 @@ export const addUser = data => async dispatch => {
   if (user.father) dispatch(editPersonChildren(user.father, [user.id]));
   if (user.children) dispatch(editPersonParents(user.children[0], user.id, user.gender));
 
-  window.location.href = "http://localhost:5000/" + user.id;
+  //window.location.href = "http://localhost:5000/" + user.id;
   return user.id;
 };
 

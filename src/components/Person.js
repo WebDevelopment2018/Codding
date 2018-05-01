@@ -5,7 +5,7 @@ import {NavLink} from 'react-router-dom'
 import "../styles/Person.less"
 import block from "../helpers/BEM";
 import {getPersonById} from "../reducers";
-import {editingPersonStart} from "../actions/person";
+import {addRelativesStart, editingPersonStart} from "../actions/person";
 
 const b = block("Person");
 
@@ -45,16 +45,18 @@ class Person extends Component {
             "marginTop": this.state.y - 500
         }
     }
-    editPerson(){
-        this.props.editingPersonStart(this.state.user.id);
-    }
+    editPerson=()=>{this.props.editingPersonStart(this.state.user.id);};
 
+    addRelatives(relativeName){
+        console.log(relativeName,this.state.user.id);
+        this.props.addRelativesStart({[relativeName] : this.state.user.id});
+    }
     render() {
         const id = "/" + this.state.user.id;
         return (
             <div className={b("wrapper")}>
-                <button className={b("addParents")} style={this.getMargins()}>+</button>
-                <button className={b("edit-button")} onClick={this.editPerson.bind(this)} style={this.getMargins(30)}>
+                <button className={b("addParents")} onClick={this.addRelatives.bind(this,"children")} style={this.getMargins()}>+</button>
+                <button className={b("edit-button")} onClick={this.editPerson} style={this.getMargins(30)}>
                     <img className={b("edit-button",["img"])}
                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Feedbin-Icon-home-edit.svg/2000px-Feedbin-Icon-home-edit.svg.png"
                          alt=""/>
@@ -83,6 +85,7 @@ export default connect((state, props) => {
             families: state.family.families,
         }
     },
-    {editingPersonStart}
+    {editingPersonStart,
+    addRelativesStart}
 )(Person);
 

@@ -4,13 +4,15 @@ import { connect } from "react-redux";
 import block from "../helpers/BEM";
 import "../styles/ToggleSidebar.less";
 import AddUserForm from "./AddUserForm";
-import { getEditingPersonId } from "../reducers/index";
+import {getEditingPersonId, getRelatives} from "../reducers/index";
 
 const b = block("ToggleSidebar");
 
 class ToggleSidebar extends Component {
   state = { showSidebar: false };
-  static getDerivedStateFromProps = ({editing})=> ({showSidebar: Boolean(editing.id)});
+  static getDerivedStateFromProps = ({editing})=> {
+    return {showSidebar: Boolean(editing)};
+  };
 
   onClick(e) {
     e.preventDefault();
@@ -30,4 +32,6 @@ class ToggleSidebar extends Component {
     );
   }
 }
-export default connect(state => ({editing: getEditingPersonId(state)}))(ToggleSidebar);
+export default connect(state => {
+  return {editing: getEditingPersonId(state).id || getRelatives(state).relatives};
+})(ToggleSidebar);
