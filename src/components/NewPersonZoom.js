@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import "../newV/NewPersonZoom.less"
+import "../styles/NewPersonZoom.less"
 import block from "../helpers/BEM";
 
 const b = block("NewPersonZoom");

@@ -1,8 +1,7 @@
 import React, {Component, Fragment} from 'react'
 
-import "../newV/NewPerson.less"
+import "../styles/NewPerson.less"
 import block from "../helpers/BEM";
-import NewPersonZoom from "./NewPersonZoom";
 
 const b = block("NewPerson");
 
