@@ -11,6 +11,7 @@ const app = express();
 app.use(express.static(path.resolve('build')));
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(morgan(':method :url'));
 app.use("/persons", personRouter);
 

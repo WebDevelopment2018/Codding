@@ -6,7 +6,6 @@
   "scripts": {
     "webpack": "webpack --watch",
     "serve": "serve --single",
-    "json": "json-server --watch data/db.json",
     "start": "npm run webpack | npm run serve"
   },
   "keywords": [],
@@ -21,7 +20,6 @@
     "flow-runtime": "^0.17.0",
     "fluxible": "^1.4.0",
     "fluxible-router": "^1.5.1",
-    "json-server": "^0.12.1",
     "morgan": "latest",
     "normalizr": "^3.2.4",
     "path": "^0.12.7",

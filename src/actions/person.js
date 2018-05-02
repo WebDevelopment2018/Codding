@@ -82,7 +82,7 @@ export const editPerson = (id, data) => async dispatch => {
 export const searchPersonByName = searchString => async dispatch => {
   try {
     dispatch(searchPersonByNameStart(searchString));
-    const response = await fetch(`http://localhost:3000/persons?name_like=${searchString}`);
+    const response = await fetch(`http://localhost:3000/persons/name/${searchString}`);
     const result = await response.json();
     dispatch(searchPersonByNameSuccess(searchString, result));
   } catch (error) {
