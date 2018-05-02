@@ -7,15 +7,14 @@
     "webpack": "webpack --watch",
     "serve": "serve --single",
     "json": "json-server --watch data/db.json",
-    "start": "npm run webpack | npm run serve",
-    "test": "jest",
-    "test:watch": "npm test -- --watch"
+    "start": "npm run webpack | npm run serve"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.2",
     "cors": "latest",
     "d3": "^5",
     "express": "latest",
@@ -25,6 +24,7 @@
     "json-server": "^0.12.1",
     "morgan": "latest",
     "normalizr": "^3.2.4",
+    "path": "^0.12.7",
     "ramda": "^0.25.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
