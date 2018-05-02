@@ -1,12 +1,22 @@
 import React, {Component} from 'react';
 import "../styles/PersonAddedPopUp.less";
+import block from "../helpers/BEM";
+
+const b = block("PersonAddedPopUp");
 
 class PersonAddedPopUp extends Component {
     render() {
         return (
-            <section className="PersonAddedPopUp">
-                <span className="close" onClick={this.props.closePopup}>&times;</span>
-                PersonAddedPopUp
+            <section className={b()}>
+                <div className={b("wrapper")}>
+                  <div className={b("header")}>
+                      <span className={b("close-text")} onClick={this.props.closePopup}>Close</span>
+                      <span className={b("close-button")} onClick={this.props.closePopup}/>
+                  </div>
+                  <div className={b("message")}>Done!
+                    <p className={b("message",["result"])}>Person was added.</p>
+                  </div>
+                </div>
             </section>
         )
     }

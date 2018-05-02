@@ -530,19 +530,6 @@
       "relationship": [],
       "children": [],
       "photo": "https://res.cloudinary.com/csucu/image/upload/v1523866580/xmsq6xh02rdyf1mwmh3q.jpg"
-    },
-    {
-      "name": "test",
-      "surname": "grg",
-      "gender": "male",
-      "birthday": "2018-04-11",
-      "death": null,
-      "father": null,
-      "mother": 3,
-      "children": [],
-      "relationship": [],
-      "photo": "https://res.cloudinary.com/csucu/image/upload/v1524057401/av97c7rihdxzy7apnjaj.jpg",
-      "id": 33
     }
   ]
 }

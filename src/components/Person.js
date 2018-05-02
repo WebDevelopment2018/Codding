@@ -56,11 +56,12 @@ class Person extends Component {
         return (
             <div className={b("wrapper")}>
                 <button className={b("addParents")} onClick={this.addRelatives.bind(this,"children")} style={this.getMargins()}>+</button>
-                <button className={b("edit-button")} onClick={this.editPerson} style={this.getMargins(30)}>
+              <button className={b("edit-button")} onClick={this.editPerson} style={this.getMargins(30)}/>
                     <img className={b("edit-button",["img"])}
+                         onClick={this.editPerson}
+                         style={this.getMargins(25)}
                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Feedbin-Icon-home-edit.svg/2000px-Feedbin-Icon-home-edit.svg.png"
                          alt=""/>
-                </button>
                 <NavLink to={id}>
                     <div className={this.state.className} style={this.getMargins()}>
                         <img className={b("img")} src={this.state.user.photo} alt=""/>
@@ -78,7 +79,6 @@ class Person extends Component {
         )
     }
 }
-
 export default connect((state, props) => {
         return {
             user: getPersonById(props.person.id, state),
