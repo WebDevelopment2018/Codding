@@ -27,8 +27,6 @@ export const addRelatives = (state = {}, action) => {
       return state;
   }
 };
-
-//TODO: use normalizr https://github.com/paularmstrong/normalizr;
 export const persons = (state = {}, action) => {
   switch (action.type) {
     case FETCH_PERSON_SUCCESS:
