@@ -68,17 +68,19 @@
   }
   &__edit-button {
     opacity: 1;
+    top: -25px;
+    left: 125px;
     transition: opacity 0.5s linear;
     background: none;
-    width: 2.5em;
-    height: 2.5em;
     border: none;
     position: absolute;
     cursor: pointer;
+    z-index: 1;
   }
   &__edit-button:hover {
     width: 2.5em;
     height: 2.5em;
+    position: absolute;
     background-color: #BFD863;
     transition: 0.5s;
     border-radius: 2px;
@@ -106,6 +108,5 @@
   }
   &__wrapper:hover .Person__addParents{opacity: 1;}
   &__wrapper:hover .Person__addChildren{opacity: 1;}
-  &__wrapper:hover .Person__edit-button{opacity: 1;}
 }
 
