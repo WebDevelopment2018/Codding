@@ -132,9 +132,6 @@ class AddUserForm extends Component {
                                onChange={this.handleStateChangeFromEvent.bind(this, "death")}
                                className={b("input-death")} name="dday"/>
                     </div>
-                    <button type="submit" className={b("submit-button")}>
-                        {this.state.action}
-                    </button>
                     <SearchPerson gender={"male"} className={b("father-select")} value={this.state.father}
                                   onChange={this.handleStateChange.bind(this, "father")} placeholder="Тато"/>
                     <SearchPerson gender={"female"} className={b("mother-select")} value={this.state.mother}
@@ -154,9 +151,9 @@ class AddUserForm extends Component {
                             </div>
                         </Dropzone>
                     </div>
-                    {/*<button type="submit" className={b("submit-button")}>*/}
-                        {/*{this.state.action}*/}
-                    {/*</button>*/}
+                    <button type="submit" className={b("submit-button")}>
+                  {this.state.action}
+                </button>
                 </form>
                 {this.state.personAdded ? <PersonAddedPopUp closePopup={this.togglePopup.bind(this)} /> : null}
             </Fragment>
