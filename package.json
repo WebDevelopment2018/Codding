@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "webpack": "webpack --watch",
+    "webpack": "NODE_ENV=development webpack --watch",
     "serve": "serve --single",
     "node": "node api/index.js",
     "raml": "raml2html docs/api/index.raml > docs/api/index.html",

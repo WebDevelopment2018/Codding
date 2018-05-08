@@ -72,6 +72,7 @@ class AddUserForm extends Component {
                 this.setState({
                     photo: response.body.secure_url
                 });
+              console.log(response.body.secure_url);
             }
         });
     }
