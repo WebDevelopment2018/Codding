@@ -6,7 +6,10 @@
   "scripts": {
     "webpack": "webpack --watch",
     "serve": "serve --single",
-    "start": "npm run webpack | npm run serve"
+    "node": "node api/index.js",
+    "raml": "raml2html docs/api/index.raml > docs/api/index.html",
+    "styleguidist": "npx styleguidist build",
+    "start": "npm run node | npm run serve | npm run raml"
   },
   "keywords": [],
   "author": "",
