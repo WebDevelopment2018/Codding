@@ -34,6 +34,10 @@ class AddUserForm extends Component {
     };
 
     static getDerivedStateFromProps = (nextProps) => {
+        if(nextProps.relatives){
+            //console.log("form : ",nextProps.relatives);
+            return nextProps.relatives;
+        }
         if (nextProps.person) {
             return {
                 action: "Edit",
@@ -72,7 +76,6 @@ class AddUserForm extends Component {
                 this.setState({
                     photo: response.body.secure_url
                 });
-              console.log(response.body.secure_url);
             }
         });
     }
@@ -153,8 +156,8 @@ class AddUserForm extends Component {
                         </Dropzone>
                     </div>
                     <button type="submit" className={b("submit-button")}>
-                  {this.state.action}
-                </button>
+                        {this.state.action}
+                    </button>
                 </form>
                 {this.state.personAdded ? <PersonAddedPopUp closePopup={this.togglePopup.bind(this)} /> : null}
             </Fragment>
@@ -172,7 +175,7 @@ export default connect(
         //     person = getRelatives(state).relatives;
         // }
         // console.log(person);
-        return {person};
+        return {person, relatives:getRelatives(state).relatives};
     },
     {
         addUser,

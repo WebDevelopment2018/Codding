@@ -11,12 +11,11 @@ const b = block("ToggleSidebar");
 
 class ToggleSidebar extends Component {
   state = { showSidebar: false , editing: null};
-  static getDerivedStateFromProps = ({editing})=> {
-    return {showSidebar: Boolean(editing.id), editing: editing.id};
+  static getDerivedStateFromProps = ({editing,relatives})=> {
+    return {showSidebar: Boolean(editing.id) || Boolean(relatives), editing: editing.id};
   };
 
-  onClick(e) {
-    e.preventDefault();
+  onClick() {
     this.setState({
       showSidebar: !this.state.showSidebar
     });
@@ -25,15 +24,17 @@ class ToggleSidebar extends Component {
   render() {
     return (
       <Fragment>
+        {this.state.relatives}
         <button className={b("action-button")} onClick={this.onClick.bind(this)}>
           {this.state.showSidebar ? "Close" : "Add"}
         </button>
-        {this.state.showSidebar && <AddUserForm />}
+        {this.state.showSidebar ? <AddUserForm /> : null}
         {this.state.editing && (<Redirect to={`/${this.state.editing}`}/>)}
       </Fragment>
     );
   }
 }
 export default connect(state => {
-  return {editing: getEditingPersonId(state)};
+  return {editing: getEditingPersonId(state),
+          relatives:  getRelatives(state).relatives};
 })(ToggleSidebar);
