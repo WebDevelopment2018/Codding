@@ -14,7 +14,8 @@ class Person extends Component {
         user: null,
         x: 0,
         y : 0,
-        className: ''
+        className: '',
+        zooming: true
     };
     static getDerivedStateFromProps = (props) => {
         let className = "Person";
@@ -38,7 +39,13 @@ class Person extends Component {
             className,
         };
     };
-
+    zooming(){
+      let className = "Person";
+      if(this.state.zooming === true)
+          className = "ZoomedPerson";
+      console.log(className);
+      return className
+    }
     getMargins(button=0) {
         return {
             "marginLeft": this.state.x + 400 - button,
@@ -52,6 +59,7 @@ class Person extends Component {
         this.props.addRelativesStart({[relativeName] : this.state.user.id});
     }
     render() {
+      {this.zooming()}
         const id = "/" + this.state.user.id;
         return (
             <div className={b("wrapper")}>
