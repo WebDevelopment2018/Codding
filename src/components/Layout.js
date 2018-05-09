@@ -5,6 +5,7 @@ import "../styles/Layout.less";
 import Tree from "./Tree";
 import block from "../helpers/BEM";
 import ToggleSidebar from "./ToggleSidebar";
+import InfoSidebar from "./InfoSidebar";
 
 const b = block("Layout");
 
@@ -16,6 +17,7 @@ class Layout extends Component {
         return (
             <Fragment>
                 <div className={b()}>
+                  <aside className={b("infoSidebar")}><InfoSidebar/></aside>
                   <aside className={b("toggleSidebar")}><ToggleSidebar/></aside>
                     <Switch>
                         <Route exact path='/' component={Tree}/>

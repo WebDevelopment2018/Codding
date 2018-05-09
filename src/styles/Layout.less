@@ -9,9 +9,21 @@
     width: 30%;
     top: 0;
     right: 0;
-    bottom: 0;
     z-index: 1;
     overflow-x: hidden;
     overflow-y: visible;
+    transition: top 1s ease-out 0.5s;
+  }
+  &__infoSidebar{
+    width: 30%;
+    background-color: white;
+    position: fixed;
+    top: 150px;
+    bottom: 100px;
+    right: 0;
+    max-height: 100vh;
+    z-index: 1;
+    overflow: auto;
+    border-left: 1px solid greenyellow;
   }
 }

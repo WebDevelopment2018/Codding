@@ -5,7 +5,8 @@
   width: 100%;
   background-color: white;
   bottom: 0;
-  z-index: 3;
+  z-index: 2;
+  transition: top 1s ease-out 0.5s;
   &__input-name, &__input-surname, &__gender {
     border: 0;
     outline: 0;
@@ -70,7 +71,6 @@
     box-shadow: 0 1px 1px 1px #669644;
     resize: none;
     font-size: 1.2em;
-
   }
   &__submit-button {
     margin: 3.4em;
@@ -87,7 +87,4 @@
     background-color: #82BF56;
     border-bottom: 0.5em solid #669644;
   }
-}
-.Select--multi .Select--value{
-  color: red;
 }
