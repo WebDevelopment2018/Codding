@@ -1,6 +1,16 @@
 .Layout{
   font-size: 10px;
   z-index: 0;
+  &__zoom{
+    margin-top: 50px;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 50px;
+    border-bottom: 1px solid #82BF56;
+  }
   &__toggleSidebar{
     position: fixed;
     display: flex;
@@ -9,9 +19,21 @@
     width: 30%;
     top: 0;
     right: 0;
-    bottom: 0;
     z-index: 1;
     overflow-x: hidden;
     overflow-y: visible;
+    transition: top 1s ease-out 0.5s;
+  }
+  &__infoSidebar{
+    width: 30%;
+    background-color: white;
+    position: fixed;
+    top: 150px;
+    bottom: 100px;
+    right: 0;
+    max-height: 100vh;
+    z-index: 1;
+    overflow: auto;
+    border-left: 1px solid #82BF56;
   }
 }
