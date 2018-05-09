@@ -59,13 +59,12 @@ export const editPersonChildren = (id, child) => async (dispatch, getState) => {
   await api.editUser(id, { children });
 };
 
-export const addUser = data => async dispatch => {
+export const addPerson = data => async dispatch => {
   const user = await api.addUser(data);
-  if (user.mother) dispatch(editPersonChildren(user.mother, [user.id]));
-  if (user.father) dispatch(editPersonChildren(user.father, [user.id]));
-  if (user.children) dispatch(editPersonParents(user.children[0], user.id, user.gender));
-
-  //window.location.href = "http://localhost:5000/" + user.id;
+  //console.log("added person: ",user);
+  if (user.mother) dispatch(editPersonChildren(user.mother, [await user.id]));
+  if (user.father) dispatch(editPersonChildren(user.father, [await user.id]));
+  if (user.children) dispatch(editPersonParents(user.children[0], await user.id, user.gender));
   return user.id;
 };
 

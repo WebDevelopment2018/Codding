@@ -3,10 +3,11 @@ import {connect} from "react-redux";
 import request from "superagent";
 import Dropzone from "react-dropzone";
 import "react-select/less/default.less";
+import {Redirect} from 'react-router';
 
 import block from "../helpers/BEM";
 import "../styles/AddUserForm.less";
-import {addUser} from "../actions/person";
+import {addPerson} from "../actions/person";
 import {getEditingPersonId} from "../reducers/index";
 import {editPerson} from "../actions/person";
 import {getPersonById} from "../reducers/index";
@@ -23,14 +24,14 @@ class AddUserForm extends Component {
         personAdded : false,
         name : "" ,
         surname: "",
-        uploadedFile: null,
         photo: "https://res.cloudinary.com/csucu/image/upload/v1524057401/av97c7rihdxzy7apnjaj.jpg",
         mother: null,
         father: null,
         birthday: '',
         death: '',
         children: [],
-        relationship: []
+        relationship: [],
+        addedId:null,
     };
 
     static getDerivedStateFromProps = (nextProps) => {
@@ -41,6 +42,7 @@ class AddUserForm extends Component {
         if (nextProps.person) {
             return {
                 action: "Edit",
+                addedId:null,
                 name: nextProps.person.name,
                 surname: nextProps.person.surname,
                 gender: nextProps.person.gender,
@@ -58,7 +60,7 @@ class AddUserForm extends Component {
     };
 
     onImageDrop(files) {
-        this.setState({uploadedFile: files[0]});
+        this.setState({photo: files[0]});
         this.handleImageUpload(files[0]);
     }
 
@@ -84,15 +86,18 @@ class AddUserForm extends Component {
     addPersonToData(e) {
         e.preventDefault();
 
-        const {action,personAdded, ...person} = this.state;
+        const {action,personAdded,addedId, ...person} = this.state;
         const {addUser, editPerson} = this.props;
 
         if (action === "Submit") {
-            addUser(person);
+            const id = addUser(person);
+            //this.togglePopup();
+            console.log("added id: ",id);
+            this.setState({addedId: id});
         } else {
-            editPerson(person.id, person);
+            editPerson(this.props.person.id, person);
         }
-        this.togglePopup();
+
         document.querySelector(".AddUserForm").reset();
 
     }
@@ -159,6 +164,7 @@ class AddUserForm extends Component {
                         {this.state.action}
                     </button>
                 </form>
+                {this.state.addedId && (<Redirect to={`/${this.state.addedId}`}/>)}
                 {this.state.personAdded ? <PersonAddedPopUp closePopup={this.togglePopup.bind(this)} /> : null}
             </Fragment>
         );
@@ -178,7 +184,7 @@ export default connect(
         return {person, relatives:getRelatives(state).relatives};
     },
     {
-        addUser,
+        addUser: addPerson,
         editPerson
     }
 )(AddUserForm);

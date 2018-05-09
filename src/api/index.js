@@ -6,6 +6,7 @@ export const fetchUser = async (id) => {
 }
 
 export const editUser = async (id,data) => {
+    console.log("edited id:",id);
     const response = await fetch(`${API_ENDPOINT}/persons/${id}`, {
         method: 'PATCH',
         headers: {
@@ -21,6 +22,6 @@ export const addUser = async (data) => {
         method: 'POST',
         headers: {"Content-type": "application/json"},
         body: JSON.stringify(data)
-    })
+    });
     return response.json();
 }
