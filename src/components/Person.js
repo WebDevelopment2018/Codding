@@ -43,7 +43,6 @@ class Person extends Component {
       let className = "Person";
       if(this.state.zooming === true)
           className = "ZoomedPerson";
-      console.log(className);
       return className
     }
     getMargins(button=0) {
@@ -63,7 +62,7 @@ class Person extends Component {
         const id = "/" + this.state.user.id;
         return (
             <div className={b("wrapper")}>
-                <button className={b("addParents")} onClick={this.addRelatives.bind(this,"children")} style={this.getMargins()}>+</button>
+                {/*<button className={b("addParents")} onClick={this.addRelatives.bind(this,"children")} style={this.getMargins()}>+</button>*/}
               <button className={b("edit-button")} onClick={this.editPerson} style={this.getMargins(30)}/>
                     <img className={b("edit-button",["img"])}
                          onClick={this.editPerson}
@@ -82,7 +81,7 @@ class Person extends Component {
                         </div>
                     </div>
                 </NavLink>
-                <button className={b("addChildren")} style={this.getMargins()}>+</button>
+                {/*<button className={b("addChildren")} style={this.getMargins()}>+</button>*/}
             </div>
         )
     }

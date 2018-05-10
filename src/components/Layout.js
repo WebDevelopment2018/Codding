@@ -26,10 +26,10 @@ class Layout extends Component {
         return (
             <Fragment>
                 <div className={b()}>
-                  <div className={b("zoom")}>
-                    <button className={b("zoomOut")} onClick={this.zoomOut.bind(this)}>-</button>
-                    <button className={b("zoomIn")} onClick={this.zoomIn.bind(this)}>+</button>
-                  </div>
+                  {/*<div className={b("zoom")}>*/}
+                    {/*<button className={b("zoomOut")} onClick={this.zoomOut.bind(this)}>-</button>*/}
+                    {/*<button className={b("zoomIn")} onClick={this.zoomIn.bind(this)}>+</button>*/}
+                  {/*</div>*/}
                   <aside className={b("infoSidebar")}><InfoSidebar/></aside>
                   <aside className={b("toggleSidebar")}><ToggleSidebar/></aside>
                     <Switch>

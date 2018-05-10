@@ -91,7 +91,7 @@ class AddUserForm extends Component {
 
         if (action === "Submit") {
             const id = addUser(person);
-            //this.togglePopup();
+            this.togglePopup();
             console.log("added id: ",id);
             this.setState({addedId: id});
         } else {
