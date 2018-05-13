@@ -19,16 +19,16 @@ class Person extends Component {
     };
     static getDerivedStateFromProps = (props) => {
         let className = "Person";
-        if (props.user.id === parseInt(props.activeId)) {
+        if (props.user._id === props.activeId) {
             className += " Person_active";
         }
         if (props.families[props.activeId]) {
             const love = props.families[props.activeId].relationship;
-            if (love.includes(props.user.id)) {
+            if (love.includes(props.user._id)) {
                 className += " Person__love";
             }
             const siblings = props.families[props.activeId].siblings;
-            if (siblings.includes(props.user.id)) {
+            if (siblings.includes(props.user._id)) {
                 className += " Person__sibling";
             }
         }
@@ -51,18 +51,13 @@ class Person extends Component {
             "marginTop": this.state.y - 500
         }
     }
-    editPerson=()=>{this.props.editingPersonStart(this.state.user.id);};
+    editPerson=()=>{this.props.editingPersonStart(this.state.user._id);};
 
-    addRelatives(relativeName){
-        console.log(relativeName,this.state.user.id);
-        this.props.addRelativesStart({[relativeName] : this.state.user.id});
-    }
     render() {
-      {this.zooming()}
-        const id = "/" + this.state.user.id;
+      // {this.zooming()}
+        const id = "/" + this.state.user._id;
         return (
             <div className={b("wrapper")}>
-                {/*<button className={b("addParents")} onClick={this.addRelatives.bind(this,"children")} style={this.getMargins()}>+</button>*/}
               <button className={b("edit-button")} onClick={this.editPerson} style={this.getMargins(30)}/>
                     <img className={b("edit-button",["img"])}
                          onClick={this.editPerson}
@@ -81,7 +76,6 @@ class Person extends Component {
                         </div>
                     </div>
                 </NavLink>
-                {/*<button className={b("addChildren")} style={this.getMargins()}>+</button>*/}
             </div>
         )
     }

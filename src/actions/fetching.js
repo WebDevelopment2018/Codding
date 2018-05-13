@@ -32,7 +32,7 @@ export const getParents = (id) => async (dispatch, getState) => {
         let parents = [await dispatch(getParents(person.father)),
             await dispatch(getParents(person.mother))];
         return {
-            "name": person.id,
+            "name": person._id,
             "children": parents.filter(n => n)
         };
     }
@@ -60,7 +60,7 @@ export const getSiblings = (id) => async (dispatch, getState) => {
             mother = await dispatch(fetchPerson(person.mother));
         }
         mother.children.map(child => {
-            child !== person.id ? siblings.push(child) : child
+            child !== person._id ? siblings.push(child) : child
         });
     }
     if (person.father !== null) {
@@ -69,7 +69,7 @@ export const getSiblings = (id) => async (dispatch, getState) => {
             father = await dispatch(fetchPerson(person.father));
         }
         father.children.map(child => {
-            child !== person.id ? siblings.push(child) : child
+            child !== person._id ? siblings.push(child) : child
         });
     }
     siblings = uniq(siblings);
@@ -92,12 +92,12 @@ export const getChildren = (id) => async (dispatch, getState) => {
                 )
             );
             return {
-                "name": person.id,
+                "name": person._id,
                 children
             };
         }
         return {
-            "name": person.id,
+            "name": person._id,
             "children": []
         };
     }

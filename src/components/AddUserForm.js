@@ -20,7 +20,7 @@ const b = block("AddUserForm");
 
 class AddUserForm extends Component {
     state = {
-        action: "Submit",
+        action: "submit",
         personAdded : false,
         name : "" ,
         surname: "",
@@ -31,7 +31,7 @@ class AddUserForm extends Component {
         death: '',
         children: [],
         relationship: [],
-        addedId:null,
+        redirectToId:null,
     };
 
     static getDerivedStateFromProps = (nextProps) => {
@@ -41,8 +41,8 @@ class AddUserForm extends Component {
         }
         if (nextProps.person) {
             return {
-                action: "Edit",
-                addedId:null,
+                action: "edit",
+                redirectToId:null,
                 name: nextProps.person.name,
                 surname: nextProps.person.surname,
                 gender: nextProps.person.gender,
@@ -81,23 +81,26 @@ class AddUserForm extends Component {
             }
         });
     }
-    togglePopup() { this.setState({personAdded: !this.state.personAdded});}
+    togglePopup() {this.setState({personAdded: !this.state.personAdded});}
 
     addPersonToData(e) {
         e.preventDefault();
 
-        const {action,personAdded,addedId, ...person} = this.state;
+        const {action,personAdded,redirectToId, ...person} = this.state;
         const {addUser, editPerson} = this.props;
 
-        if (action === "Submit") {
+        if (action === "submit") {
             const id = addUser(person);
-            this.togglePopup();
             console.log("added id: ",id);
-            this.setState({addedId: id});
+            this.setState({redirectToId: id});
         } else {
             editPerson(this.props.person.id, person);
+            console.log("person editing")
+            //this.togglePopup();
+            // if(!this.state.personAdded){
+            //   this.setState({redirectToId: this.props.person.id});
+            // }
         }
-
         document.querySelector(".AddUserForm").reset();
 
     }
@@ -164,8 +167,8 @@ class AddUserForm extends Component {
                         {this.state.action}
                     </button>
                 </form>
-                {this.state.addedId && (<Redirect to={`/${this.state.addedId}`}/>)}
-                {this.state.personAdded ? <PersonAddedPopUp closePopup={this.togglePopup.bind(this)} /> : null}
+                {this.state.redirectToId && (<Redirect to={`/${this.state.redirectToId}`}/>)}
+                {this.state.personAdded ? <PersonAddedPopUp edit={this.state.action} closePopup={this.togglePopup.bind(this)} /> : null}
             </Fragment>
         );
     }

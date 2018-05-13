@@ -38,7 +38,7 @@ export const fetchPerson = id => async dispatch => {
   }
 };
 
-export const editPersonParents = (child, id, gender) => async (dispatch, getState) => {
+export const editPersonParents = async (child, id, gender) =>  {
   if (gender === "male") {
     const father = id;
     await api.editUser(child, { father });
@@ -62,17 +62,16 @@ export const editPersonChildren = (id, child) => async (dispatch, getState) => {
 export const addPerson = data => async dispatch => {
   const user = await api.addUser(data);
   //console.log("added person: ",user);
-  if (user.mother) dispatch(editPersonChildren(user.mother, [await user.id]));
-  if (user.father) dispatch(editPersonChildren(user.father, [await user.id]));
-  if (user.children) dispatch(editPersonParents(user.children[0], await user.id, user.gender));
-  return user.id;
+  if (user.mother) dispatch(editPersonChildren(user.mother, [await user._id]));
+  if (user.father) dispatch(editPersonChildren(user.father, [await user._id]));
+  if (user.children) dispatch(editPersonParents(user.children[0], await user._id, user.gender));
+  return user._id;
 };
 
 export const editPerson = (id, data) => async dispatch => {
   try {
     await api.editUser(id, data);
     dispatch(editingPersonSuccess());
-    window.location.href = "http://localhost:5000/" + id;
   } catch (error) {
     dispatch(editingPersonFail(error))
   }

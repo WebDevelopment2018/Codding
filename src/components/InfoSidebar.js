@@ -5,7 +5,6 @@ import "../styles/InfoSidebar.less";
 const b = block("InfoSidebar");
 
 class InfoSidebar extends Component {
-
   render() {
     return (
       <Fragment>

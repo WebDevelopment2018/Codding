@@ -14,7 +14,7 @@ class PersonAddedPopUp extends Component {
                       <span className={b("close-button")} onClick={this.props.closePopup}/>
                   </div>
                   <div className={b("message")}>Done!
-                    <p className={b("message",["result"])}>Person was added.</p>
+                    <p className={b("message",["result"])}>Person was {this.props.action}ed.</p>
                   </div>
                 </div>
             </section>
