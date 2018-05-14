@@ -9,7 +9,9 @@
     "node": "node api/index.js",
     "raml": "raml2html docs/api/index.raml > docs/api/index.html",
     "styleguidist": "npx styleguidist build",
-    "start": "npm run node | npm run serve | npm run raml"
+    "start": "npm run node | npm run serve | npm run raml",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -48,11 +50,13 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-app": "^3.1.1",
+    "chai": "^4.1.2",
     "css-loader": "^0.28.11",
     "expect": "^22.4.3",
     "jest": "^22.4.3",
     "less": "^3.0.2",
     "less-loader": "^4.1.0",
+    "mocha": "^5.1.1",
     "prettier": "^1.12.1",
     "react-styleguidist": "^7.0.8",
     "style-loader": "^0.20.3"

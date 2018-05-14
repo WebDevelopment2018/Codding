@@ -1,5 +1,6 @@
-import * as family from "../src/reducers/family";
-import * as familyAction from "../src/actions/fetching"
+
+let family = require("../src/reducers/family");
+let familyAction = require("../src/actions/fetching");
 
 describe('Family Reducers', () => {
   it('get default state in families', () => {
