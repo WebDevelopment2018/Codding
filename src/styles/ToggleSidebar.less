@@ -1,3 +1,4 @@
+@import "consts";
 .ToggleSidebar {
   &__action-button {
     margin:3.4em;
@@ -8,11 +9,11 @@
     width: 9em;
     line-height: 0.5em;
     border-radius: 0.5em;
-    color: #FFF;
+    color: @main-background;
     font-size: 1.5em;
     text-decoration: none;
-    background-color: #82BF56;
-    border-bottom: 0.5em solid #669644;
+    background-color: @button-green;
+    border-bottom: 0.5em solid @form-shadow-green;
     z-index: 2;
     &__action-button:active {
       transform: translate(0px, 5px);

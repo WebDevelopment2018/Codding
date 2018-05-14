@@ -1,16 +1,17 @@
+@import "consts";
 .Person {
   width: 10em;
   height: 15em;
   position: absolute;
-  background-color: #ffffff;
-  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  background-color: @main-background;
+  font-family: @main-font;
   border-radius: 5px;
   &__info {
     text-align: center;
     margin: 0.5em;
   }
   &_active {
-    box-shadow: 0 2px 0 #BFD863;
+    box-shadow: 0 2px 0 @active-person-color;
   }
   &__img{
     border-radius: 40%;
@@ -19,7 +20,7 @@
     content: "Sibling";
     width: 12em;
     position: absolute;
-    border-bottom: 2px dashed #bdc3c7;
+    border-bottom: 2px dashed @dashed-lines;
     top: 53px;
     left: -150px;
     font-size: 0.8rem;
@@ -31,12 +32,12 @@
     content: "Love";
     width: 8em;
     position: absolute;
-    border-bottom: 2px dashed #bdc3c7;
+    border-bottom: 2px dashed @dashed-lines;
     top: 53px;
     right: -110px;
     font-size: 0.8rem;
     text-align: start;
-    color: #2c3e50;
+    color: @main-text-color;
     z-index: -1;
   }
   &__name, &__surname {
@@ -46,11 +47,11 @@
     text-overflow: ellipsis;
     transition: all .2s linear;
     font-size: 0.8rem;
-    color: #2c3e50;
+    color: @main-text-color;
     margin: 0;
   }
   &__name:focus, &__name:hover, &__surname:focus, &__surname:hover {
-    color: #2c3e50;
+    color: @main-text-color;
     white-space: nowrap;
     content: attr(data-text);
     word-wrap: break-word;
@@ -65,7 +66,7 @@
   &__death, &__birthday {
     display: block;
     font-size: 0.7rem;
-    color: #2c3e50;
+    color: @main-text-color;
   }
   &__edit-button {
     opacity: 1;
@@ -81,7 +82,7 @@
     width: 2.5em;
     height: 2.5em;
     position: absolute;
-    background-color: #BFD863;
+    background-color: @active-person-color;
     transition: 0.5s;
     border-radius: 2px;
     opacity: 1;
