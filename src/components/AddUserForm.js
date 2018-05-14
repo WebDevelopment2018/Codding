@@ -35,10 +35,6 @@ class AddUserForm extends Component {
     };
 
     static getDerivedStateFromProps = (nextProps) => {
-        if(nextProps.relatives){
-            //console.log("form : ",nextProps.relatives);
-            return nextProps.relatives;
-        }
         if (nextProps.person) {
             return {
                 action: "edit",
@@ -94,8 +90,8 @@ class AddUserForm extends Component {
             console.log("added id: ",id);
             this.setState({redirectToId: id});
         } else {
-            editPerson(this.props.person.id, person);
-            console.log("person editing")
+            editPerson(this.props.person._id, person);
+            //console.log("person editing", this.props.person._id)
             //this.togglePopup();
             // if(!this.state.personAdded){
             //   this.setState({redirectToId: this.props.person.id});
@@ -180,14 +176,7 @@ export default connect(
         if (getEditingPersonId(state)) {
             person = getPersonById(getEditingPersonId(state).id, state);
         }
-        // if (getRelatives(state).relatives) {
-        //     person = getRelatives(state).relatives;
-        // }
-        // console.log(person);
-        return {person, relatives:getRelatives(state).relatives};
+        return {person};
     },
-    {
-        addUser: addPerson,
-        editPerson
-    }
+    {addUser: addPerson, editPerson }
 )(AddUserForm);

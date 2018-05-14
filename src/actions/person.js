@@ -38,10 +38,10 @@ export const fetchPerson = id => async dispatch => {
   }
 };
 
-export const editPersonParents = async (child, id, gender) =>  {
+export const editPersonParents = async (childs, id, gender) =>  {
   if (gender === "male") {
     const father = id;
-    await api.editUser(child, { father });
+    await Promise.all(childs.map(child => api.editUser(child, { father })));
   }
   if (gender === "female") {
     const mother = id;
@@ -71,6 +71,9 @@ export const addPerson = data => async dispatch => {
 export const editPerson = (id, data) => async dispatch => {
   try {
     await api.editUser(id, data);
+    if (data.mother) dispatch(editPersonChildren(data.mother, [id]));
+    if (data.father) dispatch(editPersonChildren(data.father, [id]));
+    if (data.children) dispatch(editPersonParents(data.children, id, data.gender));
     dispatch(editingPersonSuccess());
   } catch (error) {
     dispatch(editingPersonFail(error))
