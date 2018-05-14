@@ -117,10 +117,11 @@ class Tree extends Component {
 }
 
 export default connect((state, props) => {
+    const defaultPerson = "5af3e8a8040fa70c56eafead";
         return {
-            activePersonId: props.match.params.person || "5af2cba581e1022890d33eda",
-            family: getFamilyByPersonId(props.match.params.person || "5af2cba581e1022890d33eda", state),
-            isFamilyFetching: isFamilyFetching(props.match.params.person || "5af2cba581e1022890d33eda", state)
+            activePersonId: props.match.params.person || defaultPerson,
+            family: getFamilyByPersonId(props.match.params.person || defaultPerson, state),
+            isFamilyFetching: isFamilyFetching(props.match.params.person || defaultPerson, state)
         }
     },
     {fetchUserFamily}
