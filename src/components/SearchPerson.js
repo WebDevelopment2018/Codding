@@ -17,7 +17,7 @@ class SearchPerson extends Component {
 
   static getDerivedStateFromProps = ({ persons }) => {
     return {
-      options: persons.map(({ name: label, id: value }) => ({ label, value }))
+      options: persons.map(({ name: label, _id: value }) => ({ label, value }))
     };
   };
 
@@ -27,6 +27,9 @@ class SearchPerson extends Component {
 
   render() {
     const { options } = this.state;
+    // console.log(options);
+    // console.log(this.props.value);
+
     return (
       <Select
         simpleValue={true}

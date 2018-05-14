@@ -37,7 +37,8 @@ export const persons = (state = {}, action) => {
       return {
         ...state,
         ...persons.reduce((accum, el) => {
-          accum[el.id] = el;
+          accum[el._id] = el;
+          console.log(accum , el);
           return accum;
         }, {})
       };
