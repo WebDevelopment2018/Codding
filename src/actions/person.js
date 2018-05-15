@@ -19,9 +19,9 @@ export const editingPersonStart = id => ({ type: EDITING_PERSON_START, id });
 export const editingPersonSuccess = () => ({ type: EDITING_PERSON_SUCCESS });
 export const editingPersonFail = () => ({ type: EDITING_PERSON_FAIL, error: true });
 
-const searchPersonByNameStart = search => ({ type: SEARCH_PERSON_START, search });
-const searchPersonByNameSuccess = (search, persons) => ({ type: SEARCH_PERSON_SUCCESS, search, persons });
-const searchPersonByNameFail = (search, persons) => ({ type: SEARCH_PERSON_FAIL, error: true, search, persons });
+export const searchPersonByNameStart = search => ({ type: SEARCH_PERSON_START, search });
+export const searchPersonByNameSuccess = (search, persons) => ({ type: SEARCH_PERSON_SUCCESS, search, persons });
+export const searchPersonByNameFail = (search, persons) => ({ type: SEARCH_PERSON_FAIL, error: true, search, persons });
 
 export const addRelativesStart = relatives => ({ type: ADD_RELATIVES_START, relatives });
 export const addRelativesSuccess = () => ({ type: ADD_RELATIVES_SUCCESS });
