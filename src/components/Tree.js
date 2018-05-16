@@ -117,7 +117,7 @@ class Tree extends Component {
 }
 
 export default connect((state, props) => {
-    const defaultPerson = "5af3e8a8040fa70c56eafead";
+    const defaultPerson = "5afc4eb1bb2d17343c580f6e";
         return {
             activePersonId: props.match.params.person || defaultPerson,
             family: getFamilyByPersonId(props.match.params.person || defaultPerson, state),

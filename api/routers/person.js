@@ -2,11 +2,10 @@ const express = require('express');
 const personsRouter = express.Router();
 const ObjectID = require('mongodb').ObjectID;
 const db = require('../db');
-const collectionName = 'persons';
-
+const COLLECTION_NAME = 'persons';
 
 personsRouter.get('/:id', async (req, res) => {
-  const person = await db.get().collection(collectionName).findOne({_id: ObjectID(req.params.id)});
+  const person = await db.get().collection(COLLECTION_NAME).findOne({_id: ObjectID(req.params.id)});
   try {
     res.send(person);
   } catch(error) {
@@ -22,18 +21,18 @@ personsRouter.get('/name/:query', async (req, res) => {
   if (query) {
     params.name = {'$regex': '^' + query, '$options': 'i'};
   }
-  const persons = await db.get().collection(collectionName)
+  const persons = await db.get().collection(COLLECTION_NAME)
     .find(params).toArray();
   res.send(persons);
 });
 
 personsRouter.post('/', async (req, res) => {
-  const person = await db.get().collection(collectionName).save(req.body);
+  const person = await db.get().collection(COLLECTION_NAME).save(req.body);
   res.send(person);
 });
 
 personsRouter.patch('/:id', async (req, res) => {
-  const person = await db.get().collection(collectionName).findOneAndUpdate({_id: ObjectID(req.params.id)}, { $set: req.body}, {returnOriginal: false})
+  const person = await db.get().collection(COLLECTION_NAME).findOneAndUpdate({_id: ObjectID(req.params.id)}, { $set: req.body}, {returnOriginal: false})
   res.send(person.value)
 });
 
