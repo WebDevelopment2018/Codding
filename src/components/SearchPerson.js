@@ -11,25 +11,14 @@ import "../styles/SearchPerson.less";
 const b = block("SearchPerson");
 
 class SearchPerson extends Component {
-  state = {
-    options: []
-  };
+  state = {options: [] };
 
-  static getDerivedStateFromProps = ({ persons }) => {
-    return {
-      options: persons.map(({ name: label, _id: value }) => ({ label, value }))
-    };
-  };
+  static getDerivedStateFromProps = ({ persons }) => {options: persons.map(({ name: label, _id: value }) => ({ label, value }))}
 
-  handleChange = value => {
-    this.props.searchPersonByName(value);
-  };
+  handleChange = value => {if(value.trim()) this.props.searchPersonByName(value);};
 
   render() {
     const { options } = this.state;
-    // console.log(options);
-    // console.log(this.props.value);
-
     return (
       <Select
         simpleValue={true}
@@ -44,7 +33,5 @@ export default connect(
   (state, { gender }) => ({
     persons: getAllPersons(state).filter(person => (gender ? person.gender === gender : true))
   }),
-  {
-    searchPersonByName
-  }
+  {searchPersonByName}
 )(SearchPerson);

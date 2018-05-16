@@ -14,8 +14,8 @@ personsRouter.get('/:id', async (req, res) => {
   }
 });
 
-personsRouter.get('/name/:query', async (req, res) => {
-  const query = req.params.query;
+personsRouter.get('/', async (req, res) => {
+  const query = req.query.name;
   //console.log(query);
   let params = {};
   if (query) {
