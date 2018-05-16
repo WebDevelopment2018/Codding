@@ -3,7 +3,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const db = require('./db');
-const url = "mongodb://localhost/family-tree";
+// const url = "mongodb://localhost/family-tree";
+const url = "mongodb://mohylevska:647098@ds119150.mlab.com:19150/familytreecs";
 const personRouter = require("./routers/person");
 const PORT = 3000;
 const app = express();

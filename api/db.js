@@ -1,5 +1,5 @@
 const MongoClient = require("MongoDB").MongoClient;
-const DB_NAME = "family-tree";
+const DB_NAME = "familytreecs";
 
 let db = null;
 exports.connect = function(url, done) {
