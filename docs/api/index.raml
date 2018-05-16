@@ -112,87 +112,18 @@ traits:
   /{id}:
     type:
       collection-item:
-        exampleItem: !include person-retrieve.sample
+        exampleItem: !include person.sample
     get:
       description: Get a specific person
+    patch:
+      description: Edit a specific person
 
-    /name:
+  ?name=query:
       type:
-        readOnlyCollection:
-          exampleCollection: !include person-name.sample
-      description: Person's name
+        collection-item:
+          exampleItem: !include person.sample
       get:
-        description: Get a specific person's names
+        description: Search a person by name
 
-    /surname:
-      type:
-        readOnlyCollection:
-          exampleCollection: !include person-surname.sample
-      description: Person's surname
-      get:
-        description: Get a specific person's surname
 
-    /birthday:
-      type:
-        readOnlyCollection:
-          exampleCollection: !include person-birthday.sample
-      description: Person's birthday
-      get:
-        description: Get a specific person's birthday
-
-    /death:
-      type:
-        readOnlyCollection:
-          exampleCollection: !include person-death.sample
-      description: Person's death
-      get:
-        description: Get a specific person's death
-
-    /mother:
-      type:
-        readOnlyCollection:
-          exampleCollection: !include person-mother.sample
-      description: Person's mother
-      get:
-        description: Get a specific person's mother
-
-    /father:
-      type:
-        readOnlyCollection:
-          exampleCollection: !include person-father.sample
-      description: Person's father
-      get:
-        description: Get a specific person's father
-
-    /gender:
-      type:
-        readOnlyCollection:
-          exampleCollection: !include person-gender.sample
-      description: Person's father
-      get:
-        description: Get a specific person's gender
-
-    /relationships:
-      type:
-        readOnlyCollection:
-          exampleCollection: !include person-relationships.sample
-      description: Collection of person's relationships
-      get:
-        description: Get a specific person's relationships
-
-    /children:
-      type:
-        readOnlyCollection:
-          exampleCollection: !include person-children.sample
-      description: Collection of person's children
-      get:
-        description: Get a specific person's children
-
-    /photo:
-      type:
-        readOnlyCollection:
-          exampleCollection: !include person-photo.sample
-      description: Person's photo
-      get:
-        description: Get a specific person's photo
 

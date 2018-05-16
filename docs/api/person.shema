@@ -4,7 +4,7 @@
   "required": true,
   "properties": {
     "id": {
-      "type": "integer",
+      "type": "ObjectId",
       "required": true
     },
     "name": {
@@ -24,11 +24,11 @@
       "required": false
     },
     "mother": {
-      "type": "integer",
+      "type": "ObjectId",
       "required": false
     },
     "father": {
-      "type": "integer",
+      "type": "ObjectId",
       "required": false
     },
     "gender": {
