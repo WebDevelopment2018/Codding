@@ -1,0 +1,17 @@
+{
+      "id": 1,
+      "name": "Марія",
+      "surname": "Романова",
+      "birthday": "01.04.1624",
+      "death": "13.03.1669",
+      "mother": null,
+      "father": null,
+      "gender": "female",
+      "relationship": [
+        2
+      ],
+      "children": [
+        4
+      ],
+      "photo": "http://res.cloudinary.com/csucu/image/upload/q_100,h_70,w_100,c_thumb,g_face/v1520238626/maria_romanova_x0sjf2.jpg"
+    }
