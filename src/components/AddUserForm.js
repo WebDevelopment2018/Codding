@@ -87,7 +87,6 @@ class AddUserForm extends Component {
 
         if (action === "submit") {
             const id = addUser(person);
-            console.log("added id: ",id);
             this.setState({redirectToId: id});
         } else {
             editPerson(this.props.person._id, person);

@@ -1,5 +1,4 @@
 const APIRoute = require("express").Router()
-
-APIRoute.use("/person", require("./person"))
+APIRoute.use("/persons", require("./person"))
 
 module.exports = APIRoute

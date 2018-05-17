@@ -1,4 +1,4 @@
-const API_ENDPOINT = "/api";
+const API_ENDPOINT = "/api"
 
 export const fetchUser = async id => {
   const response = await fetch(`${API_ENDPOINT}/persons/${id}`)
@@ -6,7 +6,6 @@ export const fetchUser = async id => {
 }
 
 export const editUser = async (id, data) => {
-  console.log("edited id:", id)
   const response = await fetch(`${API_ENDPOINT}/persons/${id}`, {
     method: "PATCH",
     headers: {
@@ -24,4 +23,12 @@ export const addUser = async data => {
     body: JSON.stringify(data)
   })
   return response.json()
+}
+
+export const searchUserByName = async name => {
+  const response = await fetch(`${API_ENDPOINT}/persons/?name=${name}`, {
+    method: "GET",
+    headers: { "Content-type": "application/json" }
+  })
+  return await response.json()
 }

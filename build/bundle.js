@@ -5607,10 +5607,19 @@ var searchPersonByNameStart = function searchPersonByNameStart(search) {
   return { type: __WEBPACK_IMPORTED_MODULE_1__actionTypes__["n" /* SEARCH_PERSON_START */], search: search };
 };
 var searchPersonByNameSuccess = function searchPersonByNameSuccess(search, persons) {
-  return { type: __WEBPACK_IMPORTED_MODULE_1__actionTypes__["o" /* SEARCH_PERSON_SUCCESS */], search: search, persons: persons };
+  return {
+    type: __WEBPACK_IMPORTED_MODULE_1__actionTypes__["o" /* SEARCH_PERSON_SUCCESS */],
+    search: search,
+    persons: persons
+  };
 };
 var searchPersonByNameFail = function searchPersonByNameFail(search, persons) {
-  return { type: __WEBPACK_IMPORTED_MODULE_1__actionTypes__["m" /* SEARCH_PERSON_FAIL */], error: true, search: search, persons: persons };
+  return {
+    type: __WEBPACK_IMPORTED_MODULE_1__actionTypes__["m" /* SEARCH_PERSON_FAIL */],
+    error: true,
+    search: search,
+    persons: persons
+  };
 };
 
 var addRelativesStart = function addRelativesStart(relatives) {
@@ -5868,7 +5877,7 @@ var editPerson = function editPerson(id, data) {
 var searchPersonByName = function searchPersonByName(searchString) {
   return function () {
     var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6(dispatch) {
-      var response, result;
+      var result;
       return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
         while (1) {
           switch (_context6.prev = _context6.next) {
@@ -5877,32 +5886,27 @@ var searchPersonByName = function searchPersonByName(searchString) {
 
               dispatch(searchPersonByNameStart(searchString));
               _context6.next = 4;
-              return fetch("http://localhost:3000/persons/?name=" + searchString);
+              return __WEBPACK_IMPORTED_MODULE_2__api__["d" /* searchUserByName */](searchString);
 
             case 4:
-              response = _context6.sent;
-              _context6.next = 7;
-              return response.json();
-
-            case 7:
               result = _context6.sent;
 
               dispatch(searchPersonByNameSuccess(searchString, result));
-              _context6.next = 14;
+              _context6.next = 11;
               break;
 
-            case 11:
-              _context6.prev = 11;
+            case 8:
+              _context6.prev = 8;
               _context6.t0 = _context6["catch"](0);
 
               dispatch(searchPersonByNameFail(_context6.t0));
 
-            case 14:
+            case 11:
             case "end":
               return _context6.stop();
           }
         }
-      }, _callee6, _this, [[0, 11]]);
+      }, _callee6, _this, [[0, 8]]);
     }));
 
     return function (_x9) {
@@ -49281,13 +49285,14 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__styles_Layout_less__ = __webpack_require__(741);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__styles_Layout_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__styles_Layout_less__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Tree__ = __webpack_require__(744);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_BEM__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ToggleSidebar__ = __webpack_require__(1290);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__InfoSidebar__ = __webpack_require__(1318);
-var _jsxFileName = '/Users/lyana/Documents/Family/src/components/Layout.js';
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ToggleSidebar__ = __webpack_require__(1290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__InfoSidebar__ = __webpack_require__(1318);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Search__ = __webpack_require__(1323);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Tree__ = __webpack_require__(744);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__styles_Layout_less__ = __webpack_require__(741);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__styles_Layout_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__styles_Layout_less__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__helpers_BEM__ = __webpack_require__(64);
+var _jsxFileName = "/Users/lyana/Documents/Family/src/components/Layout.js";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -49300,118 +49305,123 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+//Components
 
 
 
 
 
-var b = Object(__WEBPACK_IMPORTED_MODULE_4__helpers_BEM__["a" /* default */])("Layout");
+//Styles
+
+
+
+var b = Object(__WEBPACK_IMPORTED_MODULE_7__helpers_BEM__["a" /* default */])("Layout");
 
 var Layout = function (_Component) {
-    _inherits(Layout, _Component);
+  _inherits(Layout, _Component);
 
-    function Layout(props) {
-        _classCallCheck(this, Layout);
+  function Layout(props) {
+    _classCallCheck(this, Layout);
 
-        var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
 
-        var zooming = false;
-        _this.state = {
-            zooming: zooming
-        };
-        return _this;
+    var zooming = false;
+    _this.state = {
+      zooming: zooming
+    };
+    return _this;
+  }
+
+  _createClass(Layout, [{
+    key: "zoomIn",
+    value: function zoomIn() {
+      this.setState({ zooming: false });
     }
+  }, {
+    key: "zoomOut",
+    value: function zoomOut() {
+      this.setState({ zooming: true });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_0_react__["Fragment"],
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 32
+          },
+          __self: this
+        },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { className: b(), __source: {
+              fileName: _jsxFileName,
+              lineNumber: 33
+            },
+            __self: this
+          },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "aside",
+            { className: b("infoSidebar"), __source: {
+                fileName: _jsxFileName,
+                lineNumber: 38
+              },
+              __self: this
+            },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__InfoSidebar__["a" /* default */], {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 39
+              },
+              __self: this
+            })
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "aside",
+            { className: b("toggleSidebar"), __source: {
+                fileName: _jsxFileName,
+                lineNumber: 41
+              },
+              __self: this
+            },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__ToggleSidebar__["a" /* default */], {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 42
+              },
+              __self: this
+            })
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["d" /* Switch */],
+            {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 44
+              },
+              __self: this
+            },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { exact: true, path: "/", component: __WEBPACK_IMPORTED_MODULE_4__Search__["a" /* default */], __source: {
+                fileName: _jsxFileName,
+                lineNumber: 45
+              },
+              __self: this
+            }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "/:person", component: __WEBPACK_IMPORTED_MODULE_5__Tree__["a" /* default */], __source: {
+                fileName: _jsxFileName,
+                lineNumber: 46
+              },
+              __self: this
+            })
+          )
+        )
+      );
+    }
+  }]);
 
-    _createClass(Layout, [{
-        key: 'zoomIn',
-        value: function zoomIn() {
-            this.setState({ zooming: false });
-        }
-    }, {
-        key: 'zoomOut',
-        value: function zoomOut() {
-            this.setState({ zooming: true });
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                __WEBPACK_IMPORTED_MODULE_0_react__["Fragment"],
-                {
-                    __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 27
-                    },
-                    __self: this
-                },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: b(), __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 28
-                        },
-                        __self: this
-                    },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'aside',
-                        { className: b("infoSidebar"), __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 33
-                            },
-                            __self: this
-                        },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__InfoSidebar__["a" /* default */], {
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 33
-                            },
-                            __self: this
-                        })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'aside',
-                        { className: b("toggleSidebar"), __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 34
-                            },
-                            __self: this
-                        },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__ToggleSidebar__["a" /* default */], {
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 34
-                            },
-                            __self: this
-                        })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["d" /* Switch */],
-                        {
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 35
-                            },
-                            __self: this
-                        },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { exact: true, path: '/', component: __WEBPACK_IMPORTED_MODULE_3__Tree__["a" /* default */], __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 36
-                            },
-                            __self: this
-                        }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: '/:person', component: __WEBPACK_IMPORTED_MODULE_3__Tree__["a" /* default */], __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 37
-                            },
-                            __self: this
-                        })
-                    )
-                )
-            );
-        }
-    }]);
-
-    return Layout;
+  return Layout;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (Layout);
@@ -51988,153 +51998,161 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var b = Object(__WEBPACK_IMPORTED_MODULE_5__helpers_BEM__["a" /* default */])("Tree");
 
 var Tree = function (_Component) {
-    _inherits(Tree, _Component);
+  _inherits(Tree, _Component);
 
-    function Tree(props) {
-        _classCallCheck(this, Tree);
+  function Tree(props) {
+    _classCallCheck(this, Tree);
 
-        var _this = _possibleConstructorReturn(this, (Tree.__proto__ || Object.getPrototypeOf(Tree)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Tree.__proto__ || Object.getPrototypeOf(Tree)).call(this, props));
 
-        _this.state = {
-            "parentsCoordinates": [],
-            "childrenCoordinates": [],
-            "siblingsCoordinates": [],
-            "relationshipCoordinates": []
-        };
-        return _this;
+    _this.state = {
+      parentsCoordinates: [],
+      childrenCoordinates: [],
+      siblingsCoordinates: [],
+      relationshipCoordinates: []
+    };
+    return _this;
+  }
+
+  _createClass(Tree, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.calculateTree(this.props);
     }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      this.calculateTree(nextProps);
+    }
+  }, {
+    key: "calculateTree",
+    value: function calculateTree(props) {
+      var fetchUserFamily = props.fetchUserFamily,
+          isFamilyFetching = props.isFamilyFetching,
+          family = props.family,
+          activePersonId = props.activePersonId;
 
-    _createClass(Tree, [{
-        key: "componentWillMount",
-        value: function componentWillMount() {
-            this.calculateTree(this.props);
-        }
-    }, {
-        key: "componentWillReceiveProps",
-        value: function componentWillReceiveProps(nextProps) {
-            this.calculateTree(nextProps);
-        }
-    }, {
-        key: "calculateTree",
-        value: function calculateTree(props) {
-            var fetchUserFamily = props.fetchUserFamily,
-                isFamilyFetching = props.isFamilyFetching,
-                family = props.family,
-                activePersonId = props.activePersonId;
+      if (!family && !isFamilyFetching) {
+        fetchUserFamily(activePersonId);
+      }
+      if (family) {
+        var parentsNodes = this.initTree(family.parents);
+        var parentHeight = parentsNodes.height * 200;
+        parentsNodes.each(function (d) {
+          d.y = parentHeight - d.depth * 200;
+        });
+        var childrenNodes = this.initTree(family.children);
+        //console.log("nodes: ",childrenNodes);
+        childrenNodes.each(function (d) {
+          d.y = parentHeight + 200 * d.depth;
+        });
+        var relationshipCoordinates = [];
+        family.relationship.map(function (s, i) {
+          relationshipCoordinates.push({
+            id: s,
+            x: parentsNodes.x - 200 * (i + 1),
+            y: parentsNodes.y - 150
+          });
+        });
+        var siblingsCoordinates = [];
+        family.siblings.map(function (s, i) {
+          siblingsCoordinates.push({
+            id: s,
+            x: parentsNodes.x + 200 * (i + 1),
+            y: parentsNodes.y - 150
+          });
+        });
+        this.setState({
+          relationshipCoordinates: relationshipCoordinates,
+          siblingsCoordinates: siblingsCoordinates,
+          childrenCoordinates: this.buildTree(childrenNodes),
+          parentsCoordinates: this.buildTree(parentsNodes)
+        });
+      }
+    }
+  }, {
+    key: "initTree",
+    value: function initTree(treeData) {
+      var treemap = __WEBPACK_IMPORTED_MODULE_1_d3__["b" /* tree */]().nodeSize([120, 150]);
+      var nodes = __WEBPACK_IMPORTED_MODULE_1_d3__["a" /* hierarchy */](treeData);
+      nodes = treemap(nodes);
+      return nodes;
+    }
+  }, {
+    key: "buildTree",
+    value: function buildTree(nodes) {
+      var nodesMap = [];
+      nodes.each(function (d) {
+        nodesMap.push({
+          id: d.data["name"],
+          x: d.x - 50, //control where to start through width of the block
+          y: d.y - 150, //control where to start through height of the block
+          children: d.children,
+          parent: d.parent
+        });
+      });
+      return nodesMap;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var all = this.state.relationshipCoordinates.concat(this.state.siblingsCoordinates, this.state.childrenCoordinates.slice(1, this.state.childrenCoordinates.length), this.state.parentsCoordinates);
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_0_react__["Fragment"],
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 103
+          },
+          __self: this
+        },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "svg",
+          {
+            onMouseDown: __WEBPACK_IMPORTED_MODULE_3__helpers_drugAndDrop__["a" /* makeDraggable */],
+            onMouseMove: __WEBPACK_IMPORTED_MODULE_3__helpers_drugAndDrop__["b" /* moveElement */],
+            onMouseUp: __WEBPACK_IMPORTED_MODULE_3__helpers_drugAndDrop__["c" /* stopMoving */],
+            ref: "root",
+            className: b(),
+            width: "70%",
+            height: "700",
+            key: "1",
+            transform: "matrix(1 0 0 1 0 0)",
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 104
+            },
+            __self: this
+          },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__TreePathes__["a" /* default */], {
+            parentsCoordinates: this.state.parentsCoordinates,
+            childrenCoordinates: this.state.childrenCoordinates,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 115
+            },
+            __self: this
+          })
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__Family__["a" /* default */], { coordinates: all, activeId: this.props.activePersonId, key: "2", __source: {
+            fileName: _jsxFileName,
+            lineNumber: 120
+          },
+          __self: this
+        })
+      );
+    }
+  }]);
 
-            if (!family && !isFamilyFetching) {
-                fetchUserFamily(activePersonId);
-            }
-            if (family) {
-                var parentsNodes = this.initTree(family.parents);
-                var parentHeight = parentsNodes.height * 200;
-                parentsNodes.each(function (d) {
-                    d.y = parentHeight - d.depth * 200;
-                });
-                var childrenNodes = this.initTree(family.children);
-                //console.log("nodes: ",childrenNodes);
-                childrenNodes.each(function (d) {
-                    d.y = parentHeight + 200 * d.depth;
-                });
-                var relationshipCoordinates = [];
-                family.relationship.map(function (s, i) {
-                    relationshipCoordinates.push({
-                        "id": s,
-                        "x": parentsNodes.x - 200 * (i + 1),
-                        "y": parentsNodes.y - 150
-                    });
-                });
-                var siblingsCoordinates = [];
-                family.siblings.map(function (s, i) {
-                    siblingsCoordinates.push({
-                        "id": s,
-                        "x": parentsNodes.x + 200 * (i + 1),
-                        "y": parentsNodes.y - 150
-                    });
-                });
-                this.setState({
-                    relationshipCoordinates: relationshipCoordinates,
-                    siblingsCoordinates: siblingsCoordinates,
-                    "childrenCoordinates": this.buildTree(childrenNodes),
-                    "parentsCoordinates": this.buildTree(parentsNodes)
-                });
-            }
-        }
-    }, {
-        key: "initTree",
-        value: function initTree(treeData) {
-            var treemap = __WEBPACK_IMPORTED_MODULE_1_d3__["b" /* tree */]().nodeSize([120, 150]);
-            var nodes = __WEBPACK_IMPORTED_MODULE_1_d3__["a" /* hierarchy */](treeData);
-            nodes = treemap(nodes);
-            return nodes;
-        }
-    }, {
-        key: "buildTree",
-        value: function buildTree(nodes) {
-            var nodesMap = [];
-            nodes.each(function (d) {
-                nodesMap.push({
-                    "id": d.data["name"],
-                    "x": d.x - 50, //control where to start through width of the block
-                    "y": d.y - 150, //control where to start through height of the block
-                    "children": d.children,
-                    "parent": d.parent
-                });
-            });
-            return nodesMap;
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var all = this.state.relationshipCoordinates.concat(this.state.siblingsCoordinates, this.state.childrenCoordinates.slice(1, this.state.childrenCoordinates.length), this.state.parentsCoordinates);
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                __WEBPACK_IMPORTED_MODULE_0_react__["Fragment"],
-                {
-                    __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 105
-                    },
-                    __self: this
-                },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "svg",
-                    { onMouseDown: __WEBPACK_IMPORTED_MODULE_3__helpers_drugAndDrop__["a" /* makeDraggable */],
-                        onMouseMove: __WEBPACK_IMPORTED_MODULE_3__helpers_drugAndDrop__["b" /* moveElement */],
-                        onMouseUp: __WEBPACK_IMPORTED_MODULE_3__helpers_drugAndDrop__["c" /* stopMoving */],
-                        ref: "root", className: b(), width: "70%", height: "700", key: "1", transform: "matrix(1 0 0 1 0 0)", __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 106
-                        },
-                        __self: this
-                    },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__TreePathes__["a" /* default */], { parentsCoordinates: this.state.parentsCoordinates,
-                        childrenCoordinates: this.state.childrenCoordinates, __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 110
-                        },
-                        __self: this
-                    })
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__Family__["a" /* default */], { coordinates: all, activeId: this.props.activePersonId, key: "2", __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 113
-                    },
-                    __self: this
-                })
-            );
-        }
-    }]);
-
-    return Tree;
+  return Tree;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_react_redux__["b" /* connect */])(function (state, props) {
-    var defaultPerson = "5afc4eb1bb2d17343c580f6e";
-    return {
-        activePersonId: props.match.params.person || defaultPerson,
-        family: Object(__WEBPACK_IMPORTED_MODULE_8__reducers__["d" /* getFamilyByPersonId */])(props.match.params.person || defaultPerson, state),
-        isFamilyFetching: Object(__WEBPACK_IMPORTED_MODULE_8__reducers__["g" /* isFamilyFetching */])(props.match.params.person || defaultPerson, state)
-    };
+  return {
+    activePersonId: props.match.params.person,
+    family: Object(__WEBPACK_IMPORTED_MODULE_8__reducers__["d" /* getFamilyByPersonId */])(props.match.params.person, state),
+    isFamilyFetching: Object(__WEBPACK_IMPORTED_MODULE_8__reducers__["g" /* isFamilyFetching */])(props.match.params.person, state)
+  };
 }, { fetchUserFamily: __WEBPACK_IMPORTED_MODULE_7__actions_fetching__["a" /* fetchUserFamily */] })(Tree));
 
 /***/ }),
@@ -74850,7 +74868,6 @@ var persons = function persons() {
 
       return Object.assign({}, state, _persons.reduce(function (accum, el) {
         accum[el._id] = el;
-        console.log(accum, el);
         return accum;
       }, {}));
     default:
@@ -75739,6 +75756,7 @@ if (hadRuntime) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return fetchUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return editUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return addUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return searchUserByName; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(277);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 
@@ -75783,8 +75801,7 @@ var editUser = function () {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            console.log("edited id:", id);
-            _context2.next = 3;
+            _context2.next = 2;
             return fetch(API_ENDPOINT + "/persons/" + id, {
               method: "PATCH",
               headers: {
@@ -75793,11 +75810,11 @@ var editUser = function () {
               body: JSON.stringify(data)
             });
 
-          case 3:
+          case 2:
             response = _context2.sent;
             return _context2.abrupt("return", response.json());
 
-          case 5:
+          case 4:
           case "end":
             return _context2.stop();
         }
@@ -75838,6 +75855,40 @@ var addUser = function () {
 
   return function addUser(_x4) {
     return _ref3.apply(this, arguments);
+  };
+}();
+
+var searchUserByName = function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(name) {
+    var response;
+    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.next = 2;
+            return fetch(API_ENDPOINT + "/persons/?name=" + name, {
+              method: "GET",
+              headers: { "Content-type": "application/json" }
+            });
+
+          case 2:
+            response = _context4.sent;
+            _context4.next = 5;
+            return response.json();
+
+          case 5:
+            return _context4.abrupt("return", _context4.sent);
+
+          case 6:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, _this);
+  }));
+
+  return function searchUserByName(_x5) {
+    return _ref4.apply(this, arguments);
   };
 }();
 
@@ -76743,7 +76794,6 @@ var AddUserForm = function (_Component) {
 
             if (action === "submit") {
                 var id = addUser(person);
-                console.log("added id: ", id);
                 this.setState({ redirectToId: id });
             } else {
                 editPerson(this.props.person._id, person);
@@ -76773,7 +76823,7 @@ var AddUserForm = function (_Component) {
                 {
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 114
+                        lineNumber: 113
                     },
                     __self: this
                 },
@@ -76781,7 +76831,7 @@ var AddUserForm = function (_Component) {
                     "form",
                     { className: b(), onSubmit: this.addPersonToData.bind(this), href: this.props.href, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 115
+                            lineNumber: 114
                         },
                         __self: this
                     },
@@ -76789,14 +76839,14 @@ var AddUserForm = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { value: this.state.name, onChange: this.handleStateChangeFromEvent.bind(this, "name"),
                         className: b("input-name"), placeholder: "\u0406\u043C'\u044F", required: true, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 117
+                            lineNumber: 116
                         },
                         __self: this
                     }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { value: this.state.surname, onChange: this.handleStateChangeFromEvent.bind(this, "surname"),
                         type: "text", className: b("input-surname"), placeholder: "\u041F\u0440\u0456\u0437\u0432\u0438\u0449\u0435", required: true, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 119
+                            lineNumber: 118
                         },
                         __self: this
                     }),
@@ -76804,7 +76854,7 @@ var AddUserForm = function (_Component) {
                         "div",
                         { className: b("gender"), __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 121
+                                lineNumber: 120
                             },
                             __self: this
                         },
@@ -76813,14 +76863,14 @@ var AddUserForm = function (_Component) {
                             {
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 122
+                                    lineNumber: 121
                                 },
                                 __self: this
                             },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { onChange: this.handleStateChangeFromEvent.bind(this, "gender"), type: "radio",
                                 ref: "male", name: "gender", value: "male", checked: this.state.gender === "male", __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 123
+                                    lineNumber: 122
                                 },
                                 __self: this
                             }),
@@ -76832,7 +76882,7 @@ var AddUserForm = function (_Component) {
                             {
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 126
+                                    lineNumber: 125
                                 },
                                 __self: this
                             },
@@ -76840,7 +76890,7 @@ var AddUserForm = function (_Component) {
                                 ref: "female", name: "gender", value: "female",
                                 checked: this.state.gender === "female", __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 127
+                                    lineNumber: 126
                                 },
                                 __self: this
                             }),
@@ -76852,7 +76902,7 @@ var AddUserForm = function (_Component) {
                         "div",
                         { className: b("bday"), __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 132
+                                lineNumber: 131
                             },
                             __self: this
                         },
@@ -76860,7 +76910,7 @@ var AddUserForm = function (_Component) {
                             "h4",
                             { className: b("text"), __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 133
+                                    lineNumber: 132
                                 },
                                 __self: this
                             },
@@ -76869,7 +76919,7 @@ var AddUserForm = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { ref: "birthday", type: "date", value: this.state.birthday, className: b("input-birthday"),
                             name: "bday", onChange: this.handleStateChangeFromEvent.bind(this, "birthday"), required: true, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 134
+                                lineNumber: 133
                             },
                             __self: this
                         })
@@ -76878,7 +76928,7 @@ var AddUserForm = function (_Component) {
                         "div",
                         { className: b("dday"), __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 137
+                                lineNumber: 136
                             },
                             __self: this
                         },
@@ -76886,7 +76936,7 @@ var AddUserForm = function (_Component) {
                             "h4",
                             { className: b("text"), __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 138
+                                    lineNumber: 137
                                 },
                                 __self: this
                             },
@@ -76896,7 +76946,7 @@ var AddUserForm = function (_Component) {
                             onChange: this.handleStateChangeFromEvent.bind(this, "death"),
                             className: b("input-death"), name: "dday", __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 139
+                                lineNumber: 138
                             },
                             __self: this
                         })
@@ -76904,21 +76954,21 @@ var AddUserForm = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__SearchPerson__["a" /* default */], { gender: "male", className: b("father-select"), value: this.state.father,
                         onChange: this.handleStateChange.bind(this, "father"), placeholder: "\u0422\u0430\u0442\u043E", __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 143
+                            lineNumber: 142
                         },
                         __self: this
                     }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__SearchPerson__["a" /* default */], { gender: "female", className: b("mother-select"), value: this.state.mother,
                         onChange: this.handleStateChange.bind(this, "mother"), placeholder: "\u041C\u0430\u043C\u0430", __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 145
+                            lineNumber: 144
                         },
                         __self: this
                     }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__SearchPerson__["a" /* default */], { className: b("children-select"), multi: true, value: this.state.children,
                         onChange: this.handleStateChange.bind(this, "children"), placeholder: "\u0414\u0456\u0442\u0438", __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 147
+                            lineNumber: 146
                         },
                         __self: this
                     }),
@@ -76926,7 +76976,7 @@ var AddUserForm = function (_Component) {
                         "div",
                         { className: b("fileUpload"), __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 150
+                                lineNumber: 149
                             },
                             __self: this
                         },
@@ -76934,7 +76984,7 @@ var AddUserForm = function (_Component) {
                             "div",
                             { className: b("dropzone-text"), __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 151
+                                    lineNumber: 150
                                 },
                                 __self: this
                             },
@@ -76945,7 +76995,7 @@ var AddUserForm = function (_Component) {
                             { onDrop: this.onImageDrop.bind(this), multiple: false, style: __WEBPACK_IMPORTED_MODULE_10__helpers_consts__["c" /* DROPZONE_STYLES */],
                                 accept: "image/*", __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 154
+                                    lineNumber: 153
                                 },
                                 __self: this
                             },
@@ -76953,13 +77003,13 @@ var AddUserForm = function (_Component) {
                                 "div",
                                 { className: b("preview"), __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 156
+                                        lineNumber: 155
                                     },
                                     __self: this
                                 },
                                 this.state.photo === "" ? null : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { className: b("preview-img"), src: this.state.photo, __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 158
+                                        lineNumber: 157
                                     },
                                     __self: this
                                 })
@@ -76970,7 +77020,7 @@ var AddUserForm = function (_Component) {
                         "button",
                         { type: "submit", className: b("submit-button"), __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 162
+                                lineNumber: 161
                             },
                             __self: this
                         },
@@ -76979,13 +77029,13 @@ var AddUserForm = function (_Component) {
                 ),
                 this.state.redirectToId && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_router__["a" /* Redirect */], { to: "/" + this.state.redirectToId, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 166
+                        lineNumber: 165
                     },
                     __self: this
                 }),
                 this.state.personAdded ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13__PersonAddedPopUp__["a" /* default */], { edit: this.state.action, closePopup: this.togglePopup.bind(this), __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 167
+                        lineNumber: 166
                     },
                     __self: this
                 }) : null
@@ -80027,7 +80077,7 @@ var SearchPerson = function (_Component) {
         options: options,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 23
+          lineNumber: 27
         },
         __self: this
       }));
@@ -80039,11 +80089,13 @@ var SearchPerson = function (_Component) {
 
 SearchPerson.getDerivedStateFromProps = function (_ref3) {
   var persons = _ref3.persons;
-  options: persons.map(function (_ref4) {
-    var label = _ref4.name,
-        value = _ref4._id;
-    return { label: label, value: value };
-  });
+  return {
+    options: persons.map(function (_ref4) {
+      var label = _ref4.name,
+          value = _ref4._id;
+      return { label: label, value: value };
+    })
+  };
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(function (state, _ref2) {
@@ -83540,6 +83592,72 @@ var thunk = createThunkMiddleware();
 thunk.withExtraArgument = createThunkMiddleware;
 
 exports['default'] = thunk;
+
+/***/ }),
+/* 1323 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SearchPerson__ = __webpack_require__(1309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(212);
+var _jsxFileName = "/Users/lyana/Documents/Family/src/components/Search.js";
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+var Search = function (_Component) {
+  _inherits(Search, _Component);
+
+  function Search() {
+    _classCallCheck(this, Search);
+
+    return _possibleConstructorReturn(this, (Search.__proto__ || Object.getPrototypeOf(Search)).apply(this, arguments));
+  }
+
+  _createClass(Search, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */],
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 8
+          },
+          __self: this
+        },
+        function (_ref) {
+          var history = _ref.history;
+          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__SearchPerson__["a" /* default */], { placeholder: "Петро І", onChange: function onChange(personId) {
+              return history.push("/" + personId);
+            }, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 9
+            },
+            __self: _this2
+          });
+        }
+      );
+    }
+  }]);
+
+  return Search;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (Search);
 
 /***/ })
 /******/ ]);
