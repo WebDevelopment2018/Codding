@@ -1,7 +1,7 @@
 const express = require('express');
 const personsRouter = express.Router();
 const ObjectID = require('mongodb').ObjectID;
-const db = require('../db');
+const db = require('../../db');
 const COLLECTION_NAME = 'persons';
 
 personsRouter.get('/:id', async (req, res) => {

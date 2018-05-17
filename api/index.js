@@ -1,24 +1,25 @@
 const express = require("express")
 const cors = require("cors")
 const bodyParser = require("body-parser")
-
+const path = require("path")
 const db = require("./db")
-const personRouter = require("./routers/person")
 
 const MONOGO_URL = process.env.MONGODB_URI || "mongodb://localhost/family-tree"
-
 const PORT = process.env.PORT || 3000
+
 const app = express()
 
-console.log("=========================");
-console.log(MONOGO_URL, "==", PORT)
-
-//app.use(express.static(path.resolve('build')));
-
-app.use(cors({ origin: "http://localhost:5000" }))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use("/persons", personRouter)
+
+//TODO: create api Router;
+
+app.use("/api", require("./routers/api"))
+
+app.use("/build", express.static(path.resolve("build")))
+app.use("/*", (req, res) => res.sendFile(path.resolve("index.html")))
+
+
 
 db.connect(MONOGO_URL, err => {
   if (err) return console.log("Unable to connect to Mongo.")
