@@ -7,12 +7,14 @@ const personRouter = require("./routers/person")
 
 const MONOGO_URL = process.env.MONGODB || "mongodb://localhost/family-tree"
 
+const PORT = process.env.PORT || 3000
+const app = express()
+
 console.log("=========================");
 console.log(MONOGO_URL, "==", PORT)
 
-const PORT = process.env.PORT || 3000
-const app = express()
 //app.use(express.static(path.resolve('build')));
+
 app.use(cors({ origin: "http://localhost:5000" }))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
