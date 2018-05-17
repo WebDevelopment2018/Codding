@@ -1,4 +1,4 @@
-const MongoClient = require("MongoDB").MongoClient;
+const MongoClient = require("mongodb").MongoClient;
 const DB_NAME = "familytreecs";
 
 let db = null;
