@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const db = require('./db');
 const personRouter = require("./routers/person");
 
+console.log(env.process.MONGODB_URI);
+
 // const url = "mongodb://localhost/family-tree";
 const URL = "mongodb://mohylevska:647098@ds119150.mlab.com:19150/familytreecs";
 
