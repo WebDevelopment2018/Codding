@@ -11,8 +11,6 @@ const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-//TODO: create api Router;
-
 app.use("/api", require("./api/routers/api"))
 
 app.use(express.static(path.resolve("build")));
