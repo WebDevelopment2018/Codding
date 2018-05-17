@@ -1,5 +1,4 @@
 const express = require("express")
-const cors = require("cors")
 const bodyParser = require("body-parser")
 const path = require("path")
 const db = require("./db")
@@ -15,6 +14,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 //TODO: create api Router;
 
 app.use("/api", require("./routers/api"))
+
+
+console.log(path.resolve("build"));
 
 app.use("/build", express.static(path.resolve("build")))
 app.use("/*", (req, res) => res.sendFile(path.resolve("index.html")))
