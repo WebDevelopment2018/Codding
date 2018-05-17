@@ -3,7 +3,10 @@ const bodyParser = require("body-parser")
 const path = require("path")
 const db = require("./api/db")
 
-const MONOGO_URL = process.env.MONGODB_URI || "mongodb://localhost:27017/family-tree"
+const MONOGO_URL =
+  process.env.MONGODB_URI ||
+  "mongodb://heroku_6340984l:gdvle8etjvjspvis7e4knu23t0@ds137550.mlab.com:37550/heroku_6340984l" ||
+  "mongodb://localhost:27017/family-tree"
 const PORT = process.env.PORT || 3000
 
 const app = express()
@@ -13,9 +16,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use("/api", require("./api/routers/api"))
 
-app.use(express.static(path.resolve("build")));
+app.use(express.static(path.resolve("build")))
 
-app.use("/*",  (req, res) => res.sendFile(path.join(__dirname, "build", "index.html")))
+app.use("/*", (req, res) => res.sendFile(path.join(__dirname, "build", "index.html")))
 
 db.connect(MONOGO_URL, err => {
   if (err) return console.log("Unable to connect to Mongo.")

@@ -22,7 +22,7 @@ personsRouter.get("/:id", async (req, res) => {
 personsRouter.get("/", async (req, res) => {
   try {
     const { query } = req
-    //console.log(query);
+    console.log(query);
     let params = {}
 
     if (query) {
@@ -37,7 +37,7 @@ personsRouter.get("/", async (req, res) => {
       .toArray()
 
     res.send(persons)
-  } catch (e) {
+  } catch (error) {
     console.error(error)
     res.error(error)
   }

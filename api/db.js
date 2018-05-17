@@ -1,5 +1,5 @@
 const MongoClient = require("mongodb").MongoClient;
-const DB_NAME = "family-tree";
+const DB_NAME = "heroku_6340984l"; //TODO: fix this shit
 
 let db = null;
 exports.connect = function(url, done) {
