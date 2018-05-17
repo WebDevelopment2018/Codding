@@ -5,7 +5,7 @@ const bodyParser = require("body-parser")
 const db = require("./db")
 const personRouter = require("./routers/person")
 
-const MONOGO_URL = process.env.MONGODB || "mongodb://localhost/family-tree"
+const MONOGO_URL = process.env.MONGODB_URI || "mongodb://localhost/family-tree"
 
 const PORT = process.env.PORT || 3000
 const app = express()
