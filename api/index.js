@@ -8,7 +8,7 @@ const personRouter = require("./routers/person");
 console.log(process.env.MONGODB_URI);
 
 // const url = "mongodb://localhost/family-tree";
-const URL = "mongodb://mohylevska:647098@ds119150.mlab.com:19150/familytreecs";
+const MONOGO_URL = process.env.MONGODB_URI || "mongodb://mohylevska:647098@ds119150.mlab.com:19150/familytreecs";
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/persons", personRouter);
 
-db.connect(URL, (err) => {
+db.connect(MONOGO_URL, (err) => {
   if (err) return console.log('Unable to connect to Mongo.');
   console.log("Connected to mongo");
   startApp(app);
