@@ -22,7 +22,6 @@ personsRouter.get("/:id", async (req, res) => {
 personsRouter.get("/", async (req, res) => {
   try {
     const { query } = req
-    console.log(query);
     let params = {}
 
     if (query) {

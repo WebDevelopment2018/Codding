@@ -14,8 +14,7 @@ class Person extends Component {
         user: null,
         x: 0,
         y : 0,
-        className: '',
-        zooming: true
+        className: ''
     };
     static getDerivedStateFromProps = (props) => {
         let className = "Person";
@@ -39,12 +38,6 @@ class Person extends Component {
             className,
         };
     };
-    zooming(){
-      let className = "Person";
-      if(this.state.zooming === true)
-          className = "ZoomedPerson";
-      return className
-    }
     getMargins(button=0) {
         return {
             "marginLeft": this.state.x + 400 - button,
@@ -54,7 +47,6 @@ class Person extends Component {
     editPerson=()=>{this.props.editingPersonStart(this.state.user._id);};
 
     render() {
-      // {this.zooming()}
         const id = "/" + this.state.user._id;
         return (
             <div className={b("wrapper")}>
