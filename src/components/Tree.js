@@ -3,7 +3,7 @@ import * as d3 from "d3"
 import { connect } from "react-redux"
 import { makeDraggable, moveElement, stopMoving } from "../helpers/drugAndDrop"
 
-import "../styles/Tree.less"
+import "../styles/Tree.scss"
 import block from "../helpers/BEM"
 import Family from "./Family"
 import { fetchUserFamily } from "../actions/fetching"

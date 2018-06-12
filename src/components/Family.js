@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import "../styles/common.less";
+import "../styles/common.scss";
 import Person from "./Person";
-import "../styles/Family.less";
+import "../styles/Family.scss";
 
 class Family extends Component {
 

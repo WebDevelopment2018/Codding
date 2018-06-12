@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import SearchPerson from "./SearchPerson"
 import { Route } from "react-router-dom"
 
-import "../styles/Search.less"
+import "../styles/Search.scss"
 
 import block from "../helpers/BEM"
 const b = block("Search");

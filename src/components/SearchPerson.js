@@ -6,7 +6,7 @@ import { getAllPersons } from "../reducers"
 import { searchPersonByName } from "../actions/person"
 
 import block from "../helpers/BEM"
-import "../styles/SearchPerson.less"
+import "../styles/SearchPerson.scss"
 
 const b = block("SearchPerson")
 

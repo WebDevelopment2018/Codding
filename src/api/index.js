@@ -1,4 +1,4 @@
-const API_ENDPOINT = "/api"
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 export const fetchUser = async id => {
   const response = await fetch(`${API_ENDPOINT}/persons/${id}`)

@@ -1,4 +1,4 @@
-@import "consts";
+@import "consts.scss";
 .Layout{
   font-size: 10px;
   &__zoom{
@@ -9,7 +9,7 @@
     justify-content: center;
     width: 100px;
     height: 50px;
-    border-bottom: 1px solid @button-green;
+    border-bottom: 1px solid $button-green;
   }
   &__toggleSidebar{
     position: absolute;
@@ -27,12 +27,12 @@
   }
   &__infoSidebar{
     width: 30%;
-    background-color: @main-background;
+    background-color: $main-background;
     position: absolute;
     top: 150px;
     bottom: 0;
     right: 0;
     z-index: 1;
-    border-left: 1px solid @button-green;
+    border-left: 1px solid $button-green;
   }
 }

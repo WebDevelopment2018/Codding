@@ -1,6 +1,6 @@
-@import "consts";
+@import "consts.scss";
 .InfoSidebar{
-  background-color: @main-background;
+  background-color: $main-background;
   &__title{
     text-align: center;
     font-size: 1.5rem;

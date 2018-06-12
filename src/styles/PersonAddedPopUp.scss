@@ -1,4 +1,4 @@
-@import "consts";
+@import "consts.scss";
 .PersonAddedPopUp{
   position: fixed;
   z-index: 1;
@@ -9,19 +9,19 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: @dark-background;
+  background-color: $dark-background;
   &__wrapper{
     position: relative;
     top: calc(50% - 200px);
     width: 300px;
     height: 200px;
     margin: auto;
-    background-color: @main-background;
-    box-shadow: @dark-shadow;
+    background-color: $main-background;
+    box-shadow: $dark-shadow;
     border-radius: 2px;
   }
   &__header {
-    background-color: @light-grey;
+    background-color: $light-grey;
     padding: 1em 1.75em;
     margin-bottom: 2em;
     text-align: right;
@@ -35,11 +35,11 @@
     display: inline-block;
     width: 1.5em;
     height: 1.5em;
-    background-color: @red-background;
+    background-color: $red-background;
     border-radius: 50%;
 
     &:hover {
-      background-color: @dark-red-background;
+      background-color: $dark-red-background;
     }
   }
   &__message{

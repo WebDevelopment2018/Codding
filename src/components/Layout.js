@@ -8,7 +8,7 @@ import Search from "./Search"
 import Tree from "./Tree"
 
 //Styles
-import "../styles/Layout.less"
+import "../styles/Layout.scss"
 import block from "../helpers/BEM"
 
 const b = block("Layout")

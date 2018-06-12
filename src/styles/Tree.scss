@@ -1,4 +1,4 @@
-@import "consts";
+@import "consts.scss";
 .Tree{
   width: 92%;
   overflow: visible;
@@ -7,11 +7,11 @@
   z-index: 2;
   &__link {
     fill: none;
-    stroke: @dashed-lines;
+    stroke: $dashed-lines;
     stroke-dasharray: 6;
     stroke-width: 0.2em;
   }
   &__node-rect {
-    fill: @main-background;
+    fill: $main-background;
   }
 }

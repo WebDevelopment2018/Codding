@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {Redirect} from 'react-router'
 
 import block from "../helpers/BEM";
-import "../styles/ToggleSidebar.less";
+import "../styles/ToggleSidebar.scss";
 import AddUserForm from "./AddUserForm";
 import {getEditingPersonId, getRelatives} from "../reducers/index";
 

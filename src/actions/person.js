@@ -58,7 +58,7 @@ export const editPersonParents = async (childs, id, gender) => {
   }
   if (gender === "female") {
     const mother = id
-    await api.editUser(child, { mother })
+    await Promise.all(childs.map(child => api.editUser(child, { mother })))
   }
 }
 

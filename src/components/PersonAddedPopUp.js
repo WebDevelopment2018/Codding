@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import "../styles/PersonAddedPopUp.less";
+import "../styles/PersonAddedPopUp.scss";
 import block from "../helpers/BEM";
 
 const b = block("PersonAddedPopUp");

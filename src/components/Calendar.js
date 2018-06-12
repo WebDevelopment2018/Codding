@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import "../styles/Calendar.less";
+import "../styles/Calendar.scss";
 import CalendarDays from "./CalendarDays";
 import {DAYNAMES, MONTHS} from "../helpers/consts"
 import block from "../helpers/BEM";

@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 
-import "../styles/NewPerson.less"
+import "../styles/NewPerson.scss"
 import block from "../helpers/BEM";
 
 const b = block("NewPerson");

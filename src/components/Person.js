@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from "react-redux";
 import {NavLink} from 'react-router-dom'
 
-import "../styles/Person.less"
+import "../styles/Person.scss"
 import block from "../helpers/BEM";
 import {getPersonById} from "../reducers";
 import {addRelativesStart, editingPersonStart} from "../actions/person";

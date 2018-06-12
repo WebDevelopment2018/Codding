@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import block from "../helpers/BEM";
-import "../styles/InfoSidebar.less";
+import "../styles/InfoSidebar.scss";
 
 const b = block("InfoSidebar");
 
