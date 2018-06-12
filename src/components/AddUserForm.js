@@ -91,11 +91,6 @@ class AddUserForm extends Component {
       this.setState({ redirectToId: id })
     } else {
       editPerson(this.props.person._id, person)
-      //console.log("person editing", this.props.person._id)
-      //this.togglePopup();
-      // if(!this.state.personAdded){
-      //   this.setState({redirectToId: this.props.person.id});
-      // }
     }
     document.querySelector(".AddUserForm").reset()
   }
@@ -228,12 +223,8 @@ class AddUserForm extends Component {
 }
 
 export default connect(
-  state => {
-    let person = null
-    if (getEditingPersonId(state)) {
-      person = getPersonById(getEditingPersonId(state).id, state)
-    }
-    return { person }
-  },
+  (state, { match }) => ({
+    person: match.params.person ? getPersonById(match.params.person, state) : null
+  }),
   { addUser: addPerson, editPerson }
 )(AddUserForm)

@@ -12,6 +12,7 @@
     border-bottom: 1px solid $button-green;
   }
   &__toggleSidebar{
+    z-index: 1;
     position: absolute;
     display: flex;
     flex-direction: column;
