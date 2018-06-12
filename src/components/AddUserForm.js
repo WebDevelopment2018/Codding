@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react"
+import React, { Component } from "react"
 import { connect } from "react-redux"
 import request from "superagent"
 import Dropzone from "react-dropzone"
@@ -110,7 +110,7 @@ class AddUserForm extends Component {
 
   render() {
     return (
-      <Fragment>
+      <>
         <form className={b()} onSubmit={this.addPersonToData.bind(this)} href={this.props.href}>
           {this.props.children}
           <input
@@ -209,7 +209,7 @@ class AddUserForm extends Component {
             >
               <div className={b("preview")}>
                 {this.state.photo === "" ? null : (
-                  <img className={b("preview-img")} src={this.state.photo} />
+                  <img alt={""} className={b("preview-img")} src={this.state.photo} />
                 )}
               </div>
             </Dropzone>
@@ -222,7 +222,7 @@ class AddUserForm extends Component {
         {this.state.personAdded ? (
           <PersonAddedPopUp edit={this.state.action} closePopup={this.togglePopup.bind(this)} />
         ) : null}
-      </Fragment>
+      </>
     )
   }
 }

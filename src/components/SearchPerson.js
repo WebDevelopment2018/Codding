@@ -5,11 +5,6 @@ import Select from "react-select"
 import { getAllPersons } from "../reducers"
 import { searchPersonByName } from "../actions/person"
 
-import block from "../helpers/BEM"
-import "../styles/SearchPerson.scss"
-
-const b = block("SearchPerson")
-
 class SearchPerson extends Component {
   state = { options: [] }
 

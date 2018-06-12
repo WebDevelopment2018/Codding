@@ -1,19 +1,12 @@
-import React, {Component} from 'react';
-import "../styles/common.scss";
-import Person from "./Person";
-import "../styles/Family.scss";
+import React from "react"
+import "../styles/common.scss"
+import Person from "./Person"
+import "../styles/Family.scss"
 
-class Family extends Component {
+const Family = ({ coordinates, activeId }) => (
+  <div className="Family">
+    {coordinates.map((person, i) => <Person person={person} activeId={activeId} key={i} />)}
+  </div>
+)
 
-    render() {
-        return (
-            <div className="Family">
-                {this.props.coordinates.map( (person,i) =>
-                <Person person={person} activeId={this.props.activeId} key={i}/>
-                )}
-            </div>
-        )
-    }
-}
-
-export default Family;
+export default Family

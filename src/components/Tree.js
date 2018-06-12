@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react"
+import React, { Component } from "react"
 import * as d3 from "d3"
 import { connect } from "react-redux"
 import { makeDraggable, moveElement, stopMoving } from "../helpers/drugAndDrop"
@@ -43,26 +43,24 @@ class Tree extends Component {
         d.y = parentHeight - d.depth * 200
       })
       const childrenNodes = this.initTree(family.children)
-      //console.log("nodes: ",childrenNodes);
+
+      //Using function rather than => in case of d3.js
       childrenNodes.each(function(d) {
         d.y = parentHeight + 200 * d.depth
       })
-      let relationshipCoordinates = []
-      family.relationship.map((s, i) => {
-        relationshipCoordinates.push({
-          id: s,
-          x: parentsNodes.x - 200 * (i + 1),
-          y: parentsNodes.y - 150
-        })
-      })
-      let siblingsCoordinates = []
-      family.siblings.map((s, i) => {
-        siblingsCoordinates.push({
-          id: s,
-          x: parentsNodes.x + 200 * (i + 1),
-          y: parentsNodes.y - 150
-        })
-      })
+
+      const relationshipCoordinates = family.relationship.map((s, i) => ({
+        id: s,
+        x: parentsNodes.x - 200 * (i + 1),
+        y: parentsNodes.y - 150
+      }))
+
+      const siblingsCoordinates = family.siblings.map((s, i) => ({
+        id: s,
+        x: parentsNodes.x + 200 * (i + 1),
+        y: parentsNodes.y - 150
+      }))
+
       this.setState({
         relationshipCoordinates,
         siblingsCoordinates,
@@ -100,7 +98,7 @@ class Tree extends Component {
       this.state.parentsCoordinates
     )
     return (
-      <Fragment>
+      <>
         <svg
           onMouseDown={makeDraggable}
           onMouseMove={moveElement}
@@ -118,7 +116,7 @@ class Tree extends Component {
           />
         </svg>
         <Family coordinates={all} activeId={this.props.activePersonId} key="2" />
-      </Fragment>
+      </>
     )
   }
 }
