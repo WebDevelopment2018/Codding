@@ -8,7 +8,7 @@ import { Redirect } from "react-router"
 import block from "../helpers/BEM"
 import "../styles/AddUserForm.scss"
 import { addPerson } from "../actions/person"
-import { getEditingPersonId } from "../reducers/index"
+
 import { editPerson } from "../actions/person"
 import { getPersonById } from "../reducers/index"
 import { CLOUDINARY_UPLOAD_PRESET, CLOUDINARY_UPLOAD_URL, DROPZONE_STYLES } from "../helpers/consts"

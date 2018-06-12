@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from "react"
-import { Switch, Route, Link } from "react-router-dom"
+import React from "react"
+import { Route, Link } from "react-router-dom"
 
 //Components
 import Search from "./Search"
@@ -14,15 +14,15 @@ const b = block("Layout")
 
 const Layout = () => (
   <div className={b()}>
+    <Search />
+
     <aside className={b("toggleSidebar")}>
       <Link to="/create">Create person</Link>
       <Route exact path="/:person/edit" component={AddUserForm} />
       <Route exact path="/create" component={AddUserForm} />
     </aside>
-    <Switch>
-      <Route exact path="/" component={Search} />
-      <Route path="/:person" component={Tree} />
-    </Switch>
+
+    <Route path="/:person" component={Tree} />
   </div>
 )
 
